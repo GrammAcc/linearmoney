@@ -1,0 +1,1493 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://grammacc.github.io/linearmoney/quickstart_tutorial.html">
+      
+      
+        <link rel="prev" href="index.html">
+      
+      
+        <link rel="next" href="recipes.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Quickstart - linearmoney</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.50c56a3b.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="syntax-highlighting.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quickstart-tutorial" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="linearmoney" class="md-header__button md-logo" aria-label="linearmoney" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            linearmoney
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quickstart
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="linearmoney" class="md-nav__button md-logo" aria-label="linearmoney" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    linearmoney
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    User Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Quickstart
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="quickstart_tutorial.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Quickstart
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boilerplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boilerplate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#converting-currencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Converting Currencies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Converting Currencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commandline-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commandline Arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argparse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Argparse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsing-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parsing Args
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Script
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="recipes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recipes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="glossary.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="FAQ.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linear_money_model.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linear Money Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/linearmoney.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boilerplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boilerplate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#converting-currencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Converting Currencies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Converting Currencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commandline-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commandline Arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argparse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Argparse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsing-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parsing Args
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Script
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="quickstart-tutorial">Quickstart Tutorial</h1>
+<p>In this quick start guide, we'll make a simple commandline currency converter.
+Knowledge of commandline applications is not required to complete 
+this tutorial. However, a basic understanding of Python and running Python 
+scripts is assumed. It should take about 30 minutes to complete.</p>
+<p>By the end of this tutorial, you should know how to:</p>
+<ul>
+<li>Parse and utilize foreign exchange rates, localization, and rounding data for currency conversions and formatting.</li>
+<li>Create money vectors and use them in calculations.</li>
+<li>Display money to a user in a localized format.</li>
+</ul>
+<p>Let's get started!</p>
+<h2 id="installation">Installation</h2>
+<p>This tutorial does not use any dependencies outside the standard library other than
+<code>linearmoney</code>.</p>
+<div class="language-python"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>linearmoney
+</code></pre></div>
+
+<h2 id="boilerplate">Boilerplate</h2>
+<p>Add (or just copy and paste) the following code to a new file called <code>converter.py</code>:</p>
+<div class="language-python"><pre><span></span><code><span class="ch">#!/usr/bin/python</span>
+
+<span class="sd">&quot;&quot;&quot;Interactive commandline script for converting currencies.</span>
+
+<span class="sd">Converts &lt;amount&gt; of &lt;from_currency&gt; to &lt;to_currency&gt;</span>
+
+<span class="sd">Usage: [-h|--help] &lt;amount&gt; &lt;from_currency&gt; &lt;to_currency&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">!=</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;This is a standalone script and should not be imported.&quot;</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">readline</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Currency Converter--&gt; &quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Since we intend for this to be an interactive commandline app, we don't want the
+code to execute when imported, so we raise an <code>ImportError</code> immediately if it is
+not running directly from the commandline.</p>
+<p>The infinite loop at the end creates our interactive command prompt with the builtin
+<a href="https://docs.python.org/3/library/functions.html#input"><code>input</code></a> function.
+If you've never built a commandline app before, this infinite loop might have you concerned, but this
+is a very simple way to emulate a custom command prompt.
+We're using the <code>input</code> builtin to provide a prompt and store whatever string that the user
+inputs on the commandline into the <code>readline</code> variable. We aren't doing anything with this
+user input yet, but this is the basic structure of our application. Ctrl+C can be used
+to exit the infinite loop.</p>
+<p>The docstring outlines what we expect the app to do. We pass in a numeric amount, a
+currency to convert from, and a currency to convert to, and it converts the value
+for us, so let's implement that.</p>
+<h2 id="converting-currencies">Converting Currencies</h2>
+<p>First off, we'll add <code>linearmoney</code> to our imports at the top of the file:</p>
+<div class="language-python"><pre><span></span><code><span class="o">...</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">!=</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;This is a standalone script and should not be imported.&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">linearmoney</span> <span class="k">as</span> <span class="nn">lm</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">readline</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Currency Converter--&gt; &quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Next, if we are going to convert currencies, we'll need exchange rates. <em>linearmoney</em>
+provides a helpful <a href="api_reference/linearmoney/vector.html#forex"><code>forex</code></a>
+function for coercing a dictionary of exchange rates into a vector that can be
+used by the conversion functions, but we still need to get rates from somewhere.</p>
+<p>In this case, I'm using the awesome
+<a href="https://theforexapi.com">https://theforexapi.com</a>, which is a free public web API for forex rates:</p>
+<div class="language-python"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">linearmoney</span> <span class="k">as</span> <span class="nn">lm</span>
+
+<span class="k">def</span> <span class="nf">request_rates</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Request the latest rates from theforexapi.com and</span>
+<span class="sd">    return them as a dict.&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fetching latest forex rates from theforexapi.com...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waiting 2 seconds to comply with api rate limits...&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Respect API rate limits.</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://theforexapi.com/api/latest&quot;</span>
+    <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+        <span class="n">rate_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">rate_dict</span>
+</code></pre></div>
+
+<p>If you haven't made HTTP requests with Python before, don't worry about understanding this code.
+The <code>request_rates</code> function just uses the standard library's
+<a href="https://docs.python.org/3/library/urllib.request.html#module-urllib.request"><code>urllib.request</code></a>
+to fetch the latest exchange rates from <em>theforexapi</em> and returns them as a Python dictionary.</p>
+<p>We also wait two seconds before making the request to avoid violating the APIs soft
+rate limits due to a programming oversight such as accidentally calling this function
+in a loop.</p>
+<p>This dictionary is of a particular structure that is common among web APIs for forex rates.
+It includes a <code>base</code> key that indicates the base currency of each exchange rate pair, and
+then a <code>rates</code> key, which is another nested Dictionary where each key is the quote
+currency, and the value is the rate from the base currency to the quote currency.</p>
+<p>The <code>forex</code> function accepts this structure of Dictionary
+directly, so we can simply pass the result of the <code>request_rates</code> function into the
+<code>forex</code> function to get a
+<a href="api_reference/linearmoney/vector.html#ForexVector"><code>ForexVector</code></a> that we can use
+to convert currencies in our script:</p>
+<div class="language-python"><pre><span></span><code><span class="n">forex_vector</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">forex</span><span class="p">(</span><span class="n">request_rates</span><span class="p">())</span>
+<span class="n">currency_space</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">space</span><span class="p">(</span><span class="n">forex_vector</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>ForexVectors</code> represent a specific set of exchange rates in a structure understood
+internally by <em>linearmoney</em> and are not intended to be used in
+calculations directly.</p>
+<p>The <code>currency_space</code> is another key part of the linearmoney math model. In mathematical
+terms, it defines the vector space of all monetary calculations, but in practical
+terms, it's basically a strict definition of the <em>allowed</em> currencies for a calculation.
+We will see how this is used and enforced later on, but for now we just need to know
+that it is using the forex rates we fetched from <code>theforexapi</code> to determine which currencies
+we can calculate/convert.</p>
+<h3 id="commandline-arguments">Commandline Arguments</h3>
+<p>Just like a single-run commandline script, we'll treat user input as a set of
+arguments, so we need to process the string that the user provides in our while loop.</p>
+<p>Since our script is supposed to convert an amount of one currency to
+another, we need three arguments:</p>
+<ol>
+<li>The numeric amount to convert.</li>
+<li>The currency code of the currency we are converting <em>from</em>.</li>
+<li>The currency code of the currency we are converting <em>to</em>.</li>
+</ol>
+<div class="language-python"><pre><span></span><code><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">readline</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Currency Converter--&gt; &quot;</span><span class="p">)</span>
+    <span class="n">raw_args</span> <span class="o">=</span> <span class="n">readline</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>  <span class="c1"># [&lt;amount&gt;, &lt;from_currency&gt;, &lt;to_currency&gt;]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;amount: </span><span class="si">{</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;from_currency: </span><span class="si">{</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;to_currency: </span><span class="si">{</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>This is the most basic way to parse the arguments for our currency converter.
+Now let's use them to actually convert the amount:</p>
+<div class="language-python"><pre><span></span><code><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">readline</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Currency Converter--&gt; &quot;</span><span class="p">)</span>
+    <span class="n">raw_args</span> <span class="o">=</span> <span class="n">readline</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>  <span class="c1"># [&lt;amount&gt;, &lt;from_currency&gt;, &lt;to_currency&gt;]</span>
+    <span class="n">asset_vector</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">asset</span><span class="p">(</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">raw_args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">currency_space</span><span class="p">)</span>
+    <span class="n">converted_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+        <span class="n">asset_vector</span><span class="p">,</span> <span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">forex_vector</span>
+    <span class="p">)</span>
+    <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Let's break down the above code.</p>
+<div class="language-python"><pre><span></span><code>    <span class="n">asset_vector</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">asset</span><span class="p">(</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">raw_args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">currency_space</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>asset_vector</code> uses the
+<a href="api_reference/linearmoney/vector.html#asset"><code>asset</code></a> function
+to create a new vector representing the monetary amount of the <code>amount</code> argument
+in the currency <code>&lt;from_currency&gt;</code>.</p>
+<p>Notice the use of the <code>currency_space</code> that we defined earlier. The <code>asset</code> function
+requires us to provide a currency space when creating a vector in order to ensure
+that any calculations with other vectors are in the same currency space. For example, if
+we create another asset using a different currency space and then we try to add the two
+different assets together, we will get a
+<a href="api_reference/linearmoney/exceptions.html#SpaceError"><code>SpaceError</code></a>, and the
+same would happen if we tried to <a href="glossary.html#evaluation"><em>evaluate</em></a>
+the asset vector we created using a forex vector that was in a different currency space.
+Since we created our <code>currency_space</code> from our <code>forex_vector</code>, we can ensure that any math
+required to <em>evaluate</em> the asset we create will work correctly by creating the
+asset in the same currency space.</p>
+<div class="language-python"><pre><span></span><code>    <span class="n">converted_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+        <span class="n">asset_vector</span><span class="p">,</span> <span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">forex_vector</span>
+    <span class="p">)</span>
+</code></pre></div>
+
+<p>The call to <a href="api_reference/linearmoney/vector.html#evaluate"><code>evaluate</code></a>
+converts the total value of the asset vector to the currency defined by <code>&lt;to_currency&gt;</code>
+using the exchange rates in <code>forex_vector</code>. This function returns a
+<a href="https://docs.python.org/3/library/decimal.html#decimal.Decimal"><code>decimal.Decimal</code></a>, not
+another asset vector. For the remainder of this tutorial, we
+will refer to this as <em>evaluation</em>, not <em>conversion</em>. See also
+<a href="glossary.html#evaluation"><em>Evaluation</em></a> and
+<a href="glossary.html#conversion"><em>Conversion</em></a>.</p>
+<p>In this case, our asset vector was just created and only has one component in one
+currency, so it doesn't really matter, but the <code>evaluate</code> function will give the total
+value of the entire asset in the target currency even if our asset vector contained
+values in multiple currencies, so this allows us to program more complex applications
+in a way where we don't have to worry about what currency a monetary amount is in, we
+just call <code>evaluate</code> to get the value in the currency we want at that point in
+time, and it Just Works &trade;. The same goes for <em>converting</em> assets with
+<a href="api_reference/linearmoney/vector.html#convert"><code>convert</code></a>.</p>
+<div class="language-python"><pre><span></span><code>    <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <a href="api_reference/linearmoney/scalar.html#l10n"><code>l10n</code></a>
+function formats a decimal using the correct rounding for the provided currency
+and the local currency representation for the provided locale. Both the locale
+and the currency are <a href="glossary.html#datasource"><em>Datasources</em></a>, and we have
+to construct them using the corresponding factory functions.</p>
+<p>The <a href="api_reference/linearmoney/data.html#currency"><code>currency</code></a>
+function takes an ISO 4217 currency code (e.g. "USD") and returns the rounding data for the
+corresponding currency, so we call it with the <code>&lt;to_currency&gt;</code> in order to get the
+correct rounding data for our <code>converted_amount</code> before formatting with the current
+system locale.</p>
+<p>The <code>system_locale</code> variable used here has not been defined yet, but it's also not
+dependent on the user's input, so we can define it at the script-level.</p>
+<p>We'll use the standard library's
+<a href="https://docs.python.org/3/library/locale.html"><code>locale</code></a>
+module to get the locale of the running
+machine and set the locale of the running Python process if it hasn't already been set:</p>
+<div class="language-python"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">!=</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;This is a standalone script and should not be imported.&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">locale</span> <span class="k">as</span> <span class="nn">posix_locale</span>
+
+<span class="kn">import</span> <span class="nn">linearmoney</span> <span class="k">as</span> <span class="nn">lm</span>
+
+<span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_MONETARY</span><span class="p">):</span>
+    <span class="c1"># Set the locale of the python session to the system locale.</span>
+    <span class="n">posix_locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">system_locale_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">assert</span> <span class="p">(</span>
+    <span class="n">system_locale_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="p">),</span> <span class="s2">&quot;We init the system locale above, so it should not be None.&quot;</span>
+<span class="n">language</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+
+<span class="n">system_locale</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">locale</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
+</code></pre></div>
+
+<p>We import the stdlib <code>locale</code> module as <code>posix_locale</code> to avoid any
+potential name collisions, and we use it to set the locale for the current
+Python process to the locale of the running system only if it has not already been set.</p>
+<p>The stdlib <code>locale</code> module is a bit tricky to work with
+(this is one of the reasons <em>linearmoney</em> has its own locale system), and we generally
+don't want to set the locale if another module has already set the locale for this
+Python process, so we only set the locale to the system locale if the current
+locale for the Python process is <code>None</code>.</p>
+<p>The <code>assert</code> statement is just to make static type checkers happy since the stdlib
+<a href="https://docs.python.org/3/library/locale.html#locale.getlocale"><code>locale.getlocale()</code></a>
+function returns a two-element sequence of
+<code>[language_code, encoding]</code>, but each element can be <code>None</code> if the correct
+values cannot be determined. This will not happen since we explicitly set the
+locale above this line, but static type checkers can't infer that, so we assert that
+the variable is not <code>None</code> to make sure the next lines don't cause type checking errors.</p>
+<p>The linearmoney <a href="api_reference/linearmoney/data.html#locale"><code>locale</code></a> function takes
+a POSIX language and region tag (e.g. "en" and "us" for "en_US") and returns the
+formatting data for that locale, so we just pass in the language and region we
+obtained from the system locale, and we can then use this data for localizing
+to the locale of the current user in our main loop.</p>
+<p>All objects in <em>linearmoney</em> including datasources like the locale data
+created by the <a href="api_reference/linearmoney/data.html#locale"><code>locale</code></a>
+function are immutable, so we don't have to worry about passing around a
+global reference to a complex data structure.</p>
+<p>Now that we have the <code>system_locale</code> defined, we should have the following script:</p>
+<div class="language-python"><pre><span></span><code><span class="ch">#!/usr/bin/python</span>
+
+<span class="sd">&quot;&quot;&quot;Interactive commandline script for converting currencies.</span>
+
+<span class="sd">Converts &lt;amount&gt; of &lt;from_currency&gt; to &lt;to_currency&gt;</span>
+
+<span class="sd">Usage: [-h|--help] &lt;amount&gt; &lt;from_currency&gt; &lt;to_currency&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">!=</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;This is a standalone script and should not be imported.&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">locale</span> <span class="k">as</span> <span class="nn">posix_locale</span>
+
+<span class="kn">import</span> <span class="nn">linearmoney</span> <span class="k">as</span> <span class="nn">lm</span>
+
+<span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_MONETARY</span><span class="p">):</span>
+    <span class="c1"># Set the locale of the python session to the system locale.</span>
+    <span class="n">posix_locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">system_locale_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">assert</span> <span class="p">(</span>
+    <span class="n">system_locale_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="p">),</span> <span class="s2">&quot;We init the system locale above, so it should not be None.&quot;</span>
+<span class="n">language</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+
+<span class="n">system_locale</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">locale</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">request_rates</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Request the latest rates from theforexapi.com and</span>
+<span class="sd">    return them as a dict.&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fetching latest forex rates from theforexapi.com...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waiting 2 seconds to comply with api rate limits...&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Respect API rate limits.</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://theforexapi.com/api/latest&quot;</span>
+    <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+        <span class="n">rate_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">rate_dict</span>
+
+
+<span class="n">forex_vector</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">forex</span><span class="p">(</span><span class="n">request_rates</span><span class="p">())</span>
+<span class="n">currency_space</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">space</span><span class="p">(</span><span class="n">forex_vector</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">readline</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Currency Converter--&gt; &quot;</span><span class="p">)</span>
+    <span class="n">raw_args</span> <span class="o">=</span> <span class="n">readline</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>  <span class="c1"># [&lt;amount&gt;, &lt;from_currency&gt;, &lt;to_currency&gt;]</span>
+    <span class="n">asset_vector</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">asset</span><span class="p">(</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">raw_args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">currency_space</span><span class="p">)</span>
+    <span class="n">converted_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+        <span class="n">asset_vector</span><span class="p">,</span> <span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">forex_vector</span>
+    <span class="p">)</span>
+    <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>
+
+<p>If we run this with <code>python converter.py</code>, then we should see a couple of print
+statements about fetching forex rates and then the prompt
+<code>Currency Converter--&gt;</code> should come up.</p>
+<p>If we enter something like <code>10 usd jpy</code> into this prompt and press enter, then
+we should see the converted and formatted amount printed out.</p>
+<p>Assuming the above is working correctly, we now have a working commandline currency
+converter, but there is a problem; we have no error handling.
+If we enter something like: <code>"bad argument values"</code>, then our app crashes with a
+weird exception about <code>ARGUMENT</code> not being a part of currency space.</p>
+<p>Since this is a REPL-like commandline app, we don't want it to crash when we get an
+exception, and ideally, we would also have some helpful feedback if the user provides
+invalid input.</p>
+<p>Enter the standard library's
+<a href="https://docs.python.org/3/library/argparse.html"><code>argparse</code></a> module.</p>
+<h3 id="argparse">Argparse</h3>
+<p>Python's <code>argparse</code> module can be overwhelming if you've never used it
+before, so you don't need to understand all of the code in this section.
+All of the relevant objects and methods will be explained.</p>
+<p>To start with, we'll import the <code>argparse</code> module and create an <code>ArgumentParser</code>:</p>
+<div class="language-python"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">!=</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;This is a standalone script and should not be imported.&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">locale</span> <span class="k">as</span> <span class="nn">posix_locale</span>
+
+<span class="kn">import</span> <span class="nn">linearmoney</span> <span class="k">as</span> <span class="nn">lm</span>
+
+<span class="c1"># system_locale and request_rates setup</span>
+
+<span class="n">forex_vector</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">forex</span><span class="p">(</span><span class="n">request_rates</span><span class="p">())</span>
+<span class="n">currency_space</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">space</span><span class="p">(</span><span class="n">forex_vector</span><span class="p">)</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+    <span class="n">prog</span><span class="o">=</span><span class="s2">&quot;Currency Converter--&gt;&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Convert &lt;amount&gt; of &lt;from_currency&gt; to &lt;to_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="n">epilog</span><span class="o">=</span><span class="s2">&quot;Use ctrl+c to exit/quit.&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>ArgumentParser</code> instance will be used to read the user input and validate it
+as arguments while providing a standard help/man page for our commandline app.</p>
+<p>The <code>prog</code> argument is what will be displayed in the help/man page as the invocation
+for the usage examples. We set it to the text of our custom prompt to make the
+examples in the generated help match the interactive prompt.</p>
+<p>The <code>description</code> is like the first line of a Python docstring and gives a basic
+summary of the app.</p>
+<p>The <code>epilog</code> is an optional string that will be displayed after the rest of the generated
+help/man page. Since we don't have an explicit exit command that will be
+documented, we give an explanation of how to exit the application here.</p>
+<h3 id="parsing-args">Parsing Args</h3>
+<p>Now that we have an <code>ArgumentParser</code> instance, we can define our three arguments:</p>
+<div class="language-python"><pre><span></span><code><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+    <span class="n">prog</span><span class="o">=</span><span class="s2">&quot;Currency Converter--&gt;&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Convert &lt;amount&gt; of &lt;from_currency&gt; to &lt;to_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="n">epilog</span><span class="o">=</span><span class="s2">&quot;Use ctrl+c to exit/quit.&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;amount&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;amount&gt;&quot;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;The monetary value to convert from one currency to another.</span>
+<span class="s2">    Must be convertable to Python&#39;s decimal.Decimal type. E.g. 100, 100.0,</span>
+<span class="s2">    1E+2, etc...&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;from_currency&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;from_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 aplphabetic currency code</span>
+<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;to_currency&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;to_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 alphabetic currency code</span>
+<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>ArgumentParser.add_argument</code> method adds the metadata for an argument with
+optional help text to the parser.</p>
+<p>The <code>metavar</code> is how the argument will be displayed in usage examples in the
+generated help/man page.</p>
+<p>With the metadata for our commandline arguments added to the parser, we can now update
+our while loop to use the parser instead of a simple list for our arguments:</p>
+<div class="language-python"><pre><span></span><code><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">readline</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Currency Converter--&gt; &quot;</span><span class="p">)</span>
+    <span class="n">raw_args</span> <span class="o">=</span> <span class="n">readline</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">raw_args</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">SystemExit</span><span class="p">:</span>
+        <span class="c1"># We want to show the error, but not kill the interactive prompt.</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">asset_vector</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">asset</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">from_currency</span><span class="p">,</span> <span class="n">currency_space</span><span class="p">)</span>
+        <span class="n">converted_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+            <span class="n">asset_vector</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">,</span> <span class="n">forex_vector</span>
+        <span class="p">)</span>
+        <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>ArgumentParser.parse_args</code> method normally parses the arguments passed to the
+script on the commandline, but since we are parsing args in a loop, we can pass
+in the list of strings from the user input directly to the <code>parse_args</code> method, and
+it will parse them as if they were passed directly to the script.</p>
+<p>The standard behavior of a commandline app is to send an interrupt when
+something goes wrong, which will cause the script to exit and dump some kind of
+output, but we are running an interactive prompt, so we don't want our script to exit
+when it runs into an error, so we catch the <code>SystemExit</code> exception, which should be
+thrown by the <code>ArgumentParser</code> when it wants to indicate an exit interrupt should
+be sent.</p>
+<p>The members of <code>args</code> are the named arguments we defined with each call to <code>add_argument</code>
+previously, so we can access them by name.</p>
+<p>At this point, our <code>converter.py</code> should look like this:</p>
+<div class="language-python"><pre><span></span><code><span class="ch">#!/usr/bin/python</span>
+
+<span class="sd">&quot;&quot;&quot;Interactive commandline script for converting currencies.</span>
+
+<span class="sd">Converts &lt;amount&gt; of &lt;from_currency&gt; to &lt;to_currency&gt;</span>
+
+<span class="sd">Usage: [-h|--help] &lt;amount&gt; &lt;from_currency&gt; &lt;to_currency&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">!=</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;This is a standalone script and should not be imported.&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">locale</span> <span class="k">as</span> <span class="nn">posix_locale</span>
+
+<span class="kn">import</span> <span class="nn">linearmoney</span> <span class="k">as</span> <span class="nn">lm</span>
+
+<span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_MONETARY</span><span class="p">):</span>
+    <span class="c1"># Set the locale of the python session to the system locale.</span>
+    <span class="n">posix_locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">system_locale_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">assert</span> <span class="p">(</span>
+    <span class="n">system_locale_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="p">),</span> <span class="s2">&quot;We init the system locale above, so it should not be None.&quot;</span>
+<span class="n">language</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+
+<span class="n">system_locale</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">locale</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">request_rates</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Request the latest rates from theforexapi.com and</span>
+<span class="sd">    return them as a dict.&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fetching latest forex rates from theforexapi.com...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waiting 2 seconds to comply with api rate limits...&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Respect API rate limits.</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://theforexapi.com/api/latest&quot;</span>
+    <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+        <span class="n">rate_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">rate_dict</span>
+
+
+<span class="n">forex_vector</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">forex</span><span class="p">(</span><span class="n">request_rates</span><span class="p">())</span>
+<span class="n">currency_space</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">space</span><span class="p">(</span><span class="n">forex_vector</span><span class="p">)</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+    <span class="n">prog</span><span class="o">=</span><span class="s2">&quot;Currency Converter--&gt;&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Convert &lt;amount&gt; of &lt;from_currency&gt; to &lt;to_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="n">epilog</span><span class="o">=</span><span class="s2">&quot;Use ctrl+c to exit/quit.&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;amount&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;amount&gt;&quot;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;The monetary value to convert from one currency to another.</span>
+<span class="s2">    Must be convertable to Python&#39;s decimal.Decimal type. E.g. 100, 100.0,</span>
+<span class="s2">    1E+2, etc...&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;from_currency&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;from_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 aplphabetic currency code</span>
+<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;to_currency&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;to_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 alphabetic currency code</span>
+<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">readline</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Currency Converter--&gt; &quot;</span><span class="p">)</span>
+    <span class="n">raw_args</span> <span class="o">=</span> <span class="n">readline</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">raw_args</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">SystemExit</span><span class="p">:</span>
+        <span class="c1"># We want to show the error, but not kill the interactive prompt.</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">asset_vector</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">asset</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">from_currency</span><span class="p">,</span> <span class="n">currency_space</span><span class="p">)</span>
+        <span class="n">converted_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+            <span class="n">asset_vector</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">,</span> <span class="n">forex_vector</span>
+        <span class="p">)</span>
+        <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>
+
+<p>If we try running it as is, we can access the generated help/man page with the <code>-h</code> option
+flag, and we see that our app does not exit, even though the generated help says
+"show this help message and exit".</p>
+<p>The <code>-h</code> option flag prints the generated help text and sends the <code>SystemExit</code>
+exception, so our generated help doesn't quite match the behavior of our
+interactive prompt, but changing this is outside the scope of this
+tutorial, so we'll just ignore that minor inconsistency.</p>
+<p>Unfortunately, we still haven't provided any error handling, and if we give our
+script our <code>"bad argument values"</code>, it still crashes just like before.</p>
+<p>Let's fix that.</p>
+<h3 id="error-handling">Error handling</h3>
+<p>The <code>add_argument</code> method can take an optional <code>type</code> argument that is used when
+parsing arguments to coerce the type of the argument from the <code>str</code> that is provided
+on the commandline to the appropriate runtime type. The value of the <code>type</code> argument
+should therefore be a callable that takes in a string and returns a value of the
+desired type.</p>
+<p>Let's start with the <code>&lt;amount&gt;</code> argument:</p>
+<div class="language-python"><pre><span></span><code><span class="c1"># imports</span>
+<span class="kn">import</span> <span class="nn">decimal</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;amount&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;amount&gt;&quot;</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;The monetary value to convert from one currency to another.</span>
+<span class="s2">    Must be convertable to Python&#39;s decimal.Decimal type. E.g. 100, 100.0,</span>
+<span class="s2">    1E+2, etc...&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>We set the <code>type</code> to <code>decimal.Decimal</code> since that is a valid type for our <code>asset</code>
+function's <code>amount</code> argument that does not lose any information. E.g. we don't
+want to use something like <code>int</code> as that would destroy any sub-currency amounts we
+provide.</p>
+<p>If we make this change and then pass in our <code>"bad argument values"</code>, we'll see that
+the error has changed to <code>decimal.InvalidOperation</code>. This is because instead of simply
+exposing the value as-is in <code>args</code>, the <code>ArgumentParser.parse_args</code> method first calls
+the <code>decimal.Decimal</code> constructor with the value of the <code>&lt;amount&gt;</code> argument, which
+results in an exception since <code>"bad"</code> can't be converted to a decimal.</p>
+<p>What we want is to turn this exception into a <code>SystemExit</code> if we can't convert the
+<code>&lt;amount&gt;</code> to a decimal, but we also want some kind of feedback to be printed out so
+that the user knows that they provided an invalid value, so let's write a function
+that we can provide as the <code>type</code> argument for <code>&lt;amount&gt;</code>:</p>
+<div class="language-python"><pre><span></span><code><span class="k">def</span> <span class="nf">_error_decimal</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper function that validates input as a decimal-compatible value.&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">decimal</span><span class="o">.</span><span class="n">InvalidOperation</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentTypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid numeric string &#39;</span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+    <span class="n">prog</span><span class="o">=</span><span class="s2">&quot;Currency Converter--&gt;&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Convert &lt;amount&gt; of &lt;from_currency&gt; to &lt;to_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="n">epilog</span><span class="o">=</span><span class="s2">&quot;Use ctrl+c to exit/quit.&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;amount&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;amount&gt;&quot;</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="n">_error_decimal</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;The monetary value to convert from one currency to another.</span>
+<span class="s2">    Must be convertable to Python&#39;s decimal.Decimal type. E.g. 100, 100.0,</span>
+<span class="s2">    1E+2, etc...&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>_error_decimal</code> function raises <code>argparse.ArgumentTypeError</code>, which will result
+in the <code>parse_args</code> method printing the error message we provide to the exception before
+raising a <code>SystemExit</code> exception, so we will get both proper error feedback to the
+user, and we will not break our interactive prompt with an uncaught exception.</p>
+<p>This takes care of the first argument, but what about the other two?</p>
+<p>The <code>&lt;from_currency&gt;</code> and <code>&lt;to_currency&gt;</code> arguments are actually strings, but they need
+to be valid currency codes in our <code>currency_space</code>. Fortunately for us, the <code>add_argument</code>
+method takes another optional argument <code>choices</code>, which should be a
+<code>Sequence</code> of valid values for the argument.</p>
+<p>We can use our <code>currency_space</code> to define the valid values to avoid hard-coding any
+currencies in our application:</p>
+<div class="language-python"><pre><span></span><code><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;from_currency&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;from_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 aplphabetic currency code</span>
+<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;to_currency&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;to_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 alphabetic currency code</span>
+<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>axes</code> of our <code>currency_space</code> are of course the valid currency codes that we have
+forex rates for, so now, if we rerun with these changes, we'll see that passing in bad
+input for the <code>&lt;from_currency&gt;</code> or <code>&lt;to_currency&gt;</code> arguments, such as <code>"10 bad USD"</code> or
+<code>"10 USD bad"</code> gives an appropriate error message and doesn't crash our prompt.</p>
+<p>However, we have another problem. Now if we provide a lower-case currency code, it
+is considered invalid input, even if the currency code is supported by our app.
+This didn't happen when we were using the values directly because <em>linearmoney</em>
+forces currency codes to upper case whenever
+they are used as strings for convenience, but the <code>choices</code> option for <code>add_argument</code>
+compares strings literally and never passes them into a <em>linearmoney</em> function if
+they don't match. We can solve this by providing a <code>type</code> function to the
+<code>&lt;from_currency&gt;</code> and <code>&lt;to_currency&gt;</code> arguments that forces the argument to upper-case:</p>
+<div class="language-python"><pre><span></span><code><span class="k">def</span> <span class="nf">_upper_code</span><span class="p">(</span><span class="n">currency_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure the currency code is uppercase.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">currency_code</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;from_currency&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;from_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="n">_upper_code</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 aplphabetic currency code</span>
+<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;to_currency&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;to_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="n">_upper_code</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 alphabetic currency code</span>
+<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>At this point, our <code>converter.py</code> script should be complete, and you should be able
+to play around with it to convert different currencies and amounts as well as see
+how it handles various invalid inputs.</p>
+<h2 id="complete-script">Complete Script</h2>
+<div class="language-python"><pre><span></span><code><span class="ch">#!/usr/bin/python</span>
+
+<span class="sd">&quot;&quot;&quot;Interactive commandline script for converting currencies.</span>
+
+<span class="sd">Converts &lt;amount&gt; of &lt;from_currency&gt; to &lt;to_currency&gt;</span>
+
+<span class="sd">Usage: [-h|--help] &lt;amount&gt; &lt;from_currency&gt; &lt;to_currency&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">!=</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;This is a standalone script and should not be imported.&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">decimal</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">locale</span> <span class="k">as</span> <span class="nn">posix_locale</span>
+
+<span class="kn">import</span> <span class="nn">linearmoney</span> <span class="k">as</span> <span class="nn">lm</span>
+
+<span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_MONETARY</span><span class="p">):</span>
+    <span class="c1"># Set the locale of the python session to the system locale.</span>
+    <span class="n">posix_locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">system_locale_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">assert</span> <span class="p">(</span>
+    <span class="n">system_locale_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="p">),</span> <span class="s2">&quot;We init the system locale above, so it should not be None.&quot;</span>
+<span class="n">language</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+
+<span class="n">system_locale</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">locale</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">request_rates</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Request the latest rates from theforexapi.com and</span>
+<span class="sd">    return them as a dict.&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fetching latest forex rates from theforexapi.com...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waiting 2 seconds to comply with api rate limits...&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Respect API rate limits.</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://theforexapi.com/api/latest&quot;</span>
+    <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+        <span class="n">rate_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">rate_dict</span>
+
+
+<span class="n">forex_vector</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">forex</span><span class="p">(</span><span class="n">request_rates</span><span class="p">())</span>
+<span class="n">currency_space</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">space</span><span class="p">(</span><span class="n">forex_vector</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_upper_code</span><span class="p">(</span><span class="n">currency_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure the currency code is uppercase.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">currency_code</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">_error_decimal</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper function that validates input as a decimal-compatible value.&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">decimal</span><span class="o">.</span><span class="n">InvalidOperation</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentTypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid numeric string &#39;</span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+    <span class="n">prog</span><span class="o">=</span><span class="s2">&quot;Currency Converter--&gt;&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Convert &lt;amount&gt; of &lt;from_currency&gt; to &lt;to_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="n">epilog</span><span class="o">=</span><span class="s2">&quot;Use ctrl+c to exit/quit.&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;amount&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;amount&gt;&quot;</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="n">_error_decimal</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;The monetary value to convert from one currency to another.</span>
+<span class="s2">    Must be convertable to Python&#39;s decimal.Decimal type. E.g. 100, 100.0,</span>
+<span class="s2">    1E+2, etc...&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;from_currency&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;from_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="n">_upper_code</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 aplphabetic currency code</span>
+<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;to_currency&quot;</span><span class="p">,</span>
+    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;to_currency&gt;&quot;</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="n">_upper_code</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 alphabetic currency code</span>
+<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">readline</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Currency Converter--&gt; &quot;</span><span class="p">)</span>
+    <span class="n">raw_args</span> <span class="o">=</span> <span class="n">readline</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">raw_args</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">SystemExit</span><span class="p">:</span>
+        <span class="c1"># We want to show the error, but not kill the interactive prompt.</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">asset_vector</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">asset</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">from_currency</span><span class="p">,</span> <span class="n">currency_space</span><span class="p">)</span>
+        <span class="n">converted_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+            <span class="n">asset_vector</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">,</span> <span class="n">forex_vector</span>
+        <span class="p">)</span>
+        <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>In this tutorial, we learned how to use <em>linearmoney</em> to create forex and
+asset vectors, evaluate/convert monetary amounts as a specific currency, and
+format a numeric value using the local currency format.</p>
+<p>These functions can do a lot more than this though. To get a better idea of how to
+integrate linearmoney with an application, take a look at the api documentation for the
+<a href="api_reference/linearmoney/scalar.html#l10n"><code>l10n</code></a>,
+<a href="api_reference/linearmoney/data.html#currency"><code>currency</code></a>, and
+<a href="api_reference/linearmoney/data.html#locale"><code>locale</code></a> functions and change the
+output to display the currency in the international format, as a cash value, or using
+a custom format of your own creation.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+        <script src="js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js"></script>
+      
+    
+  </body>
+</html>
