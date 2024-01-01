@@ -89,7 +89,7 @@ class LocaleMap(TypedDict):
 
 @dataclass(eq=False, frozen=True)
 class LocaleData(EqualityByHashMixin):
-    """A [Datasource](/glossary.html#datasource) that provides formatting
+    """A [Datasource](/linearmoney/glossary.html#datasource) that provides formatting
     data for currency localization."""
 
     language: str
@@ -159,9 +159,10 @@ def locale(
 
     Args:
         language:
-            The language portion of the [locale tag](/glossary.html#locale-tag)
+            The language portion of the [locale tag](/linearmoney/glossary.html#locale-tag)
         region:
-            The region (territory) portion of the [locale tag](/glossary.html#locale-tag)
+            The region (territory) portion of the
+            [locale tag](/linearmoney/glossary.html#locale-tag)
         nformat:
             The number format to use. Should be a member of the `FormatType` string enum.
             The difference in format is generally only in negative numbers. E.g. -10 in
@@ -189,7 +190,7 @@ def locale(
     Raises:
         `linearmoney.exceptions.UnknownDataError`:
             If the cldr-json data that linearmoney utilizes does not have formatting
-            data for the [locale tag](/glossary.html#locale-tag) built from the
+            data for the [locale tag](/linearmoney/glossary.html#locale-tag) built from the
             `language` and `region` arguments.
         ValueError:
             If the `nformat` is not one of the supported string constants.
@@ -258,7 +259,7 @@ class CurrencyMap(TypedDict):
 
 @dataclass(eq=False, frozen=True)
 class CurrencyData(EqualityByHashMixin):
-    """A [Datasource](/glossary.html#datasource) that provides denominational
+    """A [Datasource](/linearmoney/glossary.html#datasource) that provides denominational
     data for currency rounding."""
 
     iso_code: str

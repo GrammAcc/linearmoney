@@ -16,7 +16,7 @@
     <nav class="pdoc">
         <label id="navtoggle" for="togglestate" class="pdoc-button"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke-linecap='round' stroke="currentColor" stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg></label>
         <input id="togglestate" type="checkbox" aria-hidden="true" tabindex="-1">
-        <div>    <a class="pdoc-button module-list-button" href="/">Documentation Home</a>
+        <div>    <a class="pdoc-button module-list-button" href="/linearmoney">Documentation Home</a>
     <wbr/>
                 <a class="pdoc-button module-list-button" href="../linearmoney.html">
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
@@ -354,7 +354,7 @@
 </span><span id="L-218"><a href="#L-218"><span class="linenos">218</span></a>
 </span><span id="L-219"><a href="#L-219"><span class="linenos">219</span></a>
 </span><span id="L-220"><a href="#L-220"><span class="linenos">220</span></a><span class="k">class</span> <span class="nc">ForexVector</span><span class="p">(</span><span class="n">MoneyVector</span><span class="p">):</span>
-</span><span id="L-221"><a href="#L-221"><span class="linenos">221</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A [forex vector](/glossary.html#forex-vector) in the</span>
+</span><span id="L-221"><a href="#L-221"><span class="linenos">221</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A [forex vector](/linearmoney/glossary.html#forex-vector) in the</span>
 </span><span id="L-222"><a href="#L-222"><span class="linenos">222</span></a><span class="sd">    [linear money model](/linear_money_model.html).&quot;&quot;&quot;</span>
 </span><span id="L-223"><a href="#L-223"><span class="linenos">223</span></a>
 </span><span id="L-224"><a href="#L-224"><span class="linenos">224</span></a>    <span class="nd">@cache</span><span class="o">.</span><span class="n">cached</span><span class="p">()</span>
@@ -411,7 +411,7 @@
 </span><span id="L-275"><a href="#L-275"><span class="linenos">275</span></a><span class="k">def</span> <span class="nf">asset</span><span class="p">(</span>
 </span><span id="L-276"><a href="#L-276"><span class="linenos">276</span></a>    <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">,</span> <span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">currency_space</span><span class="p">:</span> <span class="n">CurrencySpace</span>
 </span><span id="L-277"><a href="#L-277"><span class="linenos">277</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MoneyVector</span><span class="p">:</span>
-</span><span id="L-278"><a href="#L-278"><span class="linenos">278</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a new [*Asset Vector*](/glossary.html#asset-vector) in `currency_space`</span>
+</span><span id="L-278"><a href="#L-278"><span class="linenos">278</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a new [*Asset Vector*](/linearmoney/glossary.html#asset-vector) in `currency_space`</span>
 </span><span id="L-279"><a href="#L-279"><span class="linenos">279</span></a><span class="sd">    with `amount` of `iso_code` as it&#39;s only non-zero component.</span>
 </span><span id="L-280"><a href="#L-280"><span class="linenos">280</span></a>
 </span><span id="L-281"><a href="#L-281"><span class="linenos">281</span></a><span class="sd">    Raises:</span>
@@ -603,7 +603,7 @@
 </span><span id="L-467"><a href="#L-467"><span class="linenos">467</span></a><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span>
 </span><span id="L-468"><a href="#L-468"><span class="linenos">468</span></a>    <span class="n">asset_vec</span><span class="p">:</span> <span class="n">MoneyVector</span><span class="p">,</span> <span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">forex_vec</span><span class="p">:</span> <span class="n">ForexVector</span>
 </span><span id="L-469"><a href="#L-469"><span class="linenos">469</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">:</span>
-</span><span id="L-470"><a href="#L-470"><span class="linenos">470</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;[Evaluate](/glossary.html#evaluation) `asset_vec` to `iso_code` using rates</span>
+</span><span id="L-470"><a href="#L-470"><span class="linenos">470</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;[Evaluate](/linearmoney/glossary.html#evaluation) `asset_vec` to `iso_code` using rates</span>
 </span><span id="L-471"><a href="#L-471"><span class="linenos">471</span></a><span class="sd">    defined by `forex_vec`.&quot;&quot;&quot;</span>
 </span><span id="L-472"><a href="#L-472"><span class="linenos">472</span></a>
 </span><span id="L-473"><a href="#L-473"><span class="linenos">473</span></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">asset_vec</span><span class="p">,</span> <span class="n">gamma</span><span class="p">(</span><span class="n">forex_vec</span><span class="p">,</span> <span class="n">iso_code</span><span class="p">))</span>
@@ -618,10 +618,10 @@
 </span><span id="L-482"><a href="#L-482"><span class="linenos">482</span></a><span class="k">def</span> <span class="nf">convert</span><span class="p">(</span>
 </span><span id="L-483"><a href="#L-483"><span class="linenos">483</span></a>    <span class="n">asset_vec</span><span class="p">:</span> <span class="n">MoneyVector</span><span class="p">,</span> <span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">forex_vec</span><span class="p">:</span> <span class="n">ForexVector</span>
 </span><span id="L-484"><a href="#L-484"><span class="linenos">484</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MoneyVector</span><span class="p">:</span>
-</span><span id="L-485"><a href="#L-485"><span class="linenos">485</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;[Convert](/glossary.html#conversion) `asset_vec` to `iso_code` using the rates</span>
+</span><span id="L-485"><a href="#L-485"><span class="linenos">485</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;[Convert](/linearmoney/glossary.html#conversion) `asset_vec` to `iso_code` using the rates</span>
 </span><span id="L-486"><a href="#L-486"><span class="linenos">486</span></a><span class="sd">    defined by `forex_vec`.</span>
 </span><span id="L-487"><a href="#L-487"><span class="linenos">487</span></a>
-</span><span id="L-488"><a href="#L-488"><span class="linenos">488</span></a><span class="sd">    Returns a [*Rudimentary Asset*](/glossary.html#rudimentary-asset).</span>
+</span><span id="L-488"><a href="#L-488"><span class="linenos">488</span></a><span class="sd">    Returns a [*Rudimentary Asset*](/linearmoney/glossary.html#rudimentary-asset).</span>
 </span><span id="L-489"><a href="#L-489"><span class="linenos">489</span></a><span class="sd">    &quot;&quot;&quot;</span>
 </span><span id="L-490"><a href="#L-490"><span class="linenos">490</span></a>
 </span><span id="L-491"><a href="#L-491"><span class="linenos">491</span></a>    <span class="k">return</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">asset_vec</span><span class="p">,</span> <span class="n">iso_code</span><span class="p">,</span> <span class="n">forex_vec</span><span class="p">)</span> <span class="o">*</span> <span class="n">basis_vector</span><span class="p">(</span>
@@ -694,7 +694,7 @@
 </span><span id="asset-276"><a href="#asset-276"><span class="linenos">276</span></a><span class="k">def</span> <span class="nf">asset</span><span class="p">(</span>
 </span><span id="asset-277"><a href="#asset-277"><span class="linenos">277</span></a>    <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">,</span> <span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">currency_space</span><span class="p">:</span> <span class="n">CurrencySpace</span>
 </span><span id="asset-278"><a href="#asset-278"><span class="linenos">278</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MoneyVector</span><span class="p">:</span>
-</span><span id="asset-279"><a href="#asset-279"><span class="linenos">279</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a new [*Asset Vector*](/glossary.html#asset-vector) in `currency_space`</span>
+</span><span id="asset-279"><a href="#asset-279"><span class="linenos">279</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a new [*Asset Vector*](/linearmoney/glossary.html#asset-vector) in `currency_space`</span>
 </span><span id="asset-280"><a href="#asset-280"><span class="linenos">280</span></a><span class="sd">    with `amount` of `iso_code` as it&#39;s only non-zero component.</span>
 </span><span id="asset-281"><a href="#asset-281"><span class="linenos">281</span></a>
 </span><span id="asset-282"><a href="#asset-282"><span class="linenos">282</span></a><span class="sd">    Raises:</span>
@@ -717,7 +717,7 @@
 </span></pre></div>
 
 
-            <div class="docstring"><p>Create a new <a href="/glossary.html#asset-vector"><em>Asset Vector</em></a> in <code>currency_space</code>
+            <div class="docstring"><p>Create a new <a href="/linearmoney/glossary.html#asset-vector"><em>Asset Vector</em></a> in <code>currency_space</code>
 with <code>amount</code> of <code>iso_code</code> as it's only non-zero component.</p>
 
 <h6 id="raises">Raises:</h6>
@@ -1065,7 +1065,7 @@ number.</li>
 </span><span id="evaluate-468"><a href="#evaluate-468"><span class="linenos">468</span></a><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span>
 </span><span id="evaluate-469"><a href="#evaluate-469"><span class="linenos">469</span></a>    <span class="n">asset_vec</span><span class="p">:</span> <span class="n">MoneyVector</span><span class="p">,</span> <span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">forex_vec</span><span class="p">:</span> <span class="n">ForexVector</span>
 </span><span id="evaluate-470"><a href="#evaluate-470"><span class="linenos">470</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">:</span>
-</span><span id="evaluate-471"><a href="#evaluate-471"><span class="linenos">471</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;[Evaluate](/glossary.html#evaluation) `asset_vec` to `iso_code` using rates</span>
+</span><span id="evaluate-471"><a href="#evaluate-471"><span class="linenos">471</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;[Evaluate](/linearmoney/glossary.html#evaluation) `asset_vec` to `iso_code` using rates</span>
 </span><span id="evaluate-472"><a href="#evaluate-472"><span class="linenos">472</span></a><span class="sd">    defined by `forex_vec`.&quot;&quot;&quot;</span>
 </span><span id="evaluate-473"><a href="#evaluate-473"><span class="linenos">473</span></a>
 </span><span id="evaluate-474"><a href="#evaluate-474"><span class="linenos">474</span></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">asset_vec</span><span class="p">,</span> <span class="n">gamma</span><span class="p">(</span><span class="n">forex_vec</span><span class="p">,</span> <span class="n">iso_code</span><span class="p">))</span>
@@ -1077,7 +1077,7 @@ number.</li>
 </span></pre></div>
 
 
-            <div class="docstring"><p><a href="/glossary.html#evaluation">Evaluate</a> <code>asset_vec</code> to <code>iso_code</code> using rates
+            <div class="docstring"><p><a href="/linearmoney/glossary.html#evaluation">Evaluate</a> <code>asset_vec</code> to <code>iso_code</code> using rates
 defined by <code>forex_vec</code>.</p>
 </div>
 
@@ -1099,10 +1099,10 @@ defined by <code>forex_vec</code>.</p>
 </span><span id="convert-483"><a href="#convert-483"><span class="linenos">483</span></a><span class="k">def</span> <span class="nf">convert</span><span class="p">(</span>
 </span><span id="convert-484"><a href="#convert-484"><span class="linenos">484</span></a>    <span class="n">asset_vec</span><span class="p">:</span> <span class="n">MoneyVector</span><span class="p">,</span> <span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">forex_vec</span><span class="p">:</span> <span class="n">ForexVector</span>
 </span><span id="convert-485"><a href="#convert-485"><span class="linenos">485</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MoneyVector</span><span class="p">:</span>
-</span><span id="convert-486"><a href="#convert-486"><span class="linenos">486</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;[Convert](/glossary.html#conversion) `asset_vec` to `iso_code` using the rates</span>
+</span><span id="convert-486"><a href="#convert-486"><span class="linenos">486</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;[Convert](/linearmoney/glossary.html#conversion) `asset_vec` to `iso_code` using the rates</span>
 </span><span id="convert-487"><a href="#convert-487"><span class="linenos">487</span></a><span class="sd">    defined by `forex_vec`.</span>
 </span><span id="convert-488"><a href="#convert-488"><span class="linenos">488</span></a>
-</span><span id="convert-489"><a href="#convert-489"><span class="linenos">489</span></a><span class="sd">    Returns a [*Rudimentary Asset*](/glossary.html#rudimentary-asset).</span>
+</span><span id="convert-489"><a href="#convert-489"><span class="linenos">489</span></a><span class="sd">    Returns a [*Rudimentary Asset*](/linearmoney/glossary.html#rudimentary-asset).</span>
 </span><span id="convert-490"><a href="#convert-490"><span class="linenos">490</span></a><span class="sd">    &quot;&quot;&quot;</span>
 </span><span id="convert-491"><a href="#convert-491"><span class="linenos">491</span></a>
 </span><span id="convert-492"><a href="#convert-492"><span class="linenos">492</span></a>    <span class="k">return</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">asset_vec</span><span class="p">,</span> <span class="n">iso_code</span><span class="p">,</span> <span class="n">forex_vec</span><span class="p">)</span> <span class="o">*</span> <span class="n">basis_vector</span><span class="p">(</span>
@@ -1111,10 +1111,10 @@ defined by <code>forex_vec</code>.</p>
 </span></pre></div>
 
 
-            <div class="docstring"><p><a href="/glossary.html#conversion">Convert</a> <code>asset_vec</code> to <code>iso_code</code> using the rates
+            <div class="docstring"><p><a href="/linearmoney/glossary.html#conversion">Convert</a> <code>asset_vec</code> to <code>iso_code</code> using the rates
 defined by <code>forex_vec</code>.</p>
 
-<p>Returns a <a href="/glossary.html#rudimentary-asset"><em>Rudimentary Asset</em></a>.</p>
+<p>Returns a <a href="/linearmoney/glossary.html#rudimentary-asset"><em>Rudimentary Asset</em></a>.</p>
 </div>
 
 
@@ -1484,7 +1484,7 @@ currency space.</li>
     </div>
     <a class="headerlink" href="#ForexVector"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="ForexVector-221"><a href="#ForexVector-221"><span class="linenos">221</span></a><span class="k">class</span> <span class="nc">ForexVector</span><span class="p">(</span><span class="n">MoneyVector</span><span class="p">):</span>
-</span><span id="ForexVector-222"><a href="#ForexVector-222"><span class="linenos">222</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A [forex vector](/glossary.html#forex-vector) in the</span>
+</span><span id="ForexVector-222"><a href="#ForexVector-222"><span class="linenos">222</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A [forex vector](/linearmoney/glossary.html#forex-vector) in the</span>
 </span><span id="ForexVector-223"><a href="#ForexVector-223"><span class="linenos">223</span></a><span class="sd">    [linear money model](/linear_money_model.html).&quot;&quot;&quot;</span>
 </span><span id="ForexVector-224"><a href="#ForexVector-224"><span class="linenos">224</span></a>
 </span><span id="ForexVector-225"><a href="#ForexVector-225"><span class="linenos">225</span></a>    <span class="nd">@cache</span><span class="o">.</span><span class="n">cached</span><span class="p">()</span>
@@ -1493,7 +1493,7 @@ currency space.</li>
 </span></pre></div>
 
 
-            <div class="docstring"><p>A <a href="/glossary.html#forex-vector">forex vector</a> in the
+            <div class="docstring"><p>A <a href="/linearmoney/glossary.html#forex-vector">forex vector</a> in the
 <a href="/linear_money_model.html">linear money model</a>.</p>
 </div>
 
