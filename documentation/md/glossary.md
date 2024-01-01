@@ -2,7 +2,7 @@
 
 
 This is a quick reference for terms used throughout the linearmoney source and docs.
-[documentation](/) and 
+[documentation](index.md) and 
 [source code](https://github.com/GrammAcc/linearmoney/).
 
 ---

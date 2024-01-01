@@ -218,7 +218,7 @@ class MoneyVector(ImmutableDeduplicationMixin, EqualityByHashMixin):
 
 
 class ForexVector(MoneyVector):
-    """A [forex vector](/glossary.html#forex-vector) in the
+    """A [forex vector](/linearmoney/glossary.html#forex-vector) in the
     [linear money model](/linear_money_model.html)."""
 
     @cache.cached()
@@ -275,7 +275,7 @@ def space(vec: MoneyVector) -> CurrencySpace:
 def asset(
     amount: int | float | decimal.Decimal, iso_code: str, currency_space: CurrencySpace
 ) -> MoneyVector:
-    """Create a new [*Asset Vector*](/glossary.html#asset-vector) in `currency_space`
+    """Create a new [*Asset Vector*](/linearmoney/glossary.html#asset-vector) in `currency_space`
     with `amount` of `iso_code` as it's only non-zero component.
 
     Raises:
@@ -467,7 +467,7 @@ _EVALUATION_QUANTIZER = decimal.Decimal("10") ** decimal.Decimal("-12")
 def evaluate(
     asset_vec: MoneyVector, iso_code: str, forex_vec: ForexVector
 ) -> decimal.Decimal:
-    """[Evaluate](/glossary.html#evaluation) `asset_vec` to `iso_code` using rates
+    """[Evaluate](/linearmoney/glossary.html#evaluation) `asset_vec` to `iso_code` using rates
     defined by `forex_vec`."""
 
     result = dot(asset_vec, gamma(forex_vec, iso_code))
@@ -482,10 +482,10 @@ def evaluate(
 def convert(
     asset_vec: MoneyVector, iso_code: str, forex_vec: ForexVector
 ) -> MoneyVector:
-    """[Convert](/glossary.html#conversion) `asset_vec` to `iso_code` using the rates
+    """[Convert](/linearmoney/glossary.html#conversion) `asset_vec` to `iso_code` using the rates
     defined by `forex_vec`.
 
-    Returns a [*Rudimentary Asset*](/glossary.html#rudimentary-asset).
+    Returns a [*Rudimentary Asset*](/linearmoney/glossary.html#rudimentary-asset).
     """
 
     return evaluate(asset_vec, iso_code, forex_vec) * basis_vector(
