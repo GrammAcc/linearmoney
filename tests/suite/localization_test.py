@@ -181,8 +181,10 @@ def fixt_negative_l10n_asset(fixt_space):
 def test_basic_l10n(locale, iso_code, asset, expected, fixt_forex_usd):
     """Basic localization functionality."""
 
-    decimal_val = lm.vector.evaluate(asset, iso_code, fixt_forex_usd)
-    assert lm.scalar.l10n(decimal_val, lm.data.currency(iso_code), locale) == expected
+    val = lm.vector.evaluate(asset, iso_code, fixt_forex_usd)
+    currency = lm.data.currency(iso_code)
+    rounded_val = lm.scalar.roundas(val, currency)
+    assert lm.scalar.l10n(rounded_val, currency, locale) == expected
 
 
 @parametrize_cases(
@@ -253,13 +255,10 @@ def test_basic_l10n(locale, iso_code, asset, expected, fixt_forex_usd):
 def test_l10n_international(locale, iso_code, asset, expected, fixt_forex_usd):
     """International format."""
 
-    decimal_val = lm.vector.evaluate(asset, iso_code, fixt_forex_usd)
-    assert (
-        lm.scalar.l10n(
-            decimal_val, lm.data.currency(iso_code), locale, international=True
-        )
-        == expected
-    )
+    val = lm.vector.evaluate(asset, iso_code, fixt_forex_usd)
+    currency = lm.data.currency(iso_code)
+    rounded_val = lm.scalar.roundas(val, currency)
+    assert lm.scalar.l10n(rounded_val, currency, locale, international=True) == expected
 
 
 @parametrize_cases(
@@ -368,9 +367,12 @@ def test_l10n_with_formatting_overrides(
 ):
     """Localization with overriden formatting data."""
 
+    iso_code = "usd"
     lc = lm.data.locale("en", "us", **overrides)
-    decimal_val = lm.vector.evaluate(fixt_negative_l10n_asset, "usd", fixt_forex_usd)
-    assert lm.scalar.l10n(decimal_val, lm.data.currency("usd"), lc) == expected
+    val = lm.vector.evaluate(fixt_negative_l10n_asset, iso_code, fixt_forex_usd)
+    currency = lm.data.currency(iso_code)
+    rounded_val = lm.scalar.roundas(val, currency)
+    assert lm.scalar.l10n(rounded_val, currency, lc) == expected
 
 
 def test_l10n_non_ascii_format(
@@ -383,16 +385,16 @@ def test_l10n_non_ascii_format(
     locales that use non-ASCII characters in their formatting data."""
 
     lc = lm.data.locale("fr", "fr")
-    decimal_val_eur = lm.vector.evaluate(
-        fixt_positive_l10n_asset, "eur", fixt_forex_usd
-    )
-    assert lm.scalar.l10n(decimal_val_eur, lm.data.currency("eur"), lc) == "".join(
+    val_eur = lm.vector.evaluate(fixt_positive_l10n_asset, "eur", fixt_forex_usd)
+    curr_eur = lm.data.currency("eur")
+    rounded_val_eur = lm.scalar.roundas(val_eur, curr_eur)
+    assert lm.scalar.l10n(rounded_val_eur, curr_eur, lc) == "".join(
         ["4", fixt_french_thousands_space, "000,00", fixt_euro_symbol]
     )
-    decimal_val_usd = lm.vector.evaluate(
-        fixt_positive_l10n_asset, "usd", fixt_forex_usd
-    )
-    assert lm.scalar.l10n(decimal_val_usd, lm.data.currency("usd"), lc) == "".join(
+    val_usd = lm.vector.evaluate(fixt_positive_l10n_asset, "usd", fixt_forex_usd)
+    curr_usd = lm.data.currency("usd")
+    rounded_val_usd = lm.scalar.roundas(val_usd, curr_usd)
+    assert lm.scalar.l10n(rounded_val_usd, curr_usd, lc) == "".join(
         ["10", fixt_french_thousands_space, "000,00$US"]
     )
 
@@ -404,8 +406,10 @@ def test_l10n_multiple_groupings(fixt_indian_rupee_symbol, fixt_space, fixt_fore
 
     lc = lm.data.locale("hi", "in")
     inr = lm.vector.asset("1000000000", "inr", fixt_space)
-    decimal_val = lm.vector.evaluate(inr, "inr", fixt_forex_usd)
-    assert lm.scalar.l10n(decimal_val, lm.data.currency("inr"), lc) == "".join(
+    val = lm.vector.evaluate(inr, "inr", fixt_forex_usd)
+    currency = lm.data.currency("inr")
+    rounded_val = lm.scalar.roundas(val, currency)
+    assert lm.scalar.l10n(rounded_val, currency, lc) == "".join(
         [fixt_indian_rupee_symbol, "1,00,00,00,000.00"]
     )
 
@@ -419,8 +423,10 @@ def test_l10n_multiple_groupings_small_number(
 
     lc = lm.data.locale("hi", "in")
     inr = lm.vector.asset("1000", "inr", fixt_space)
-    decimal_val = lm.vector.evaluate(inr, "inr", fixt_forex_usd)
-    assert lm.scalar.l10n(decimal_val, lm.data.currency("inr"), lc) == "".join(
+    val = lm.vector.evaluate(inr, "inr", fixt_forex_usd)
+    currency = lm.data.currency("inr")
+    rounded_val = lm.scalar.roundas(val, currency)
+    assert lm.scalar.l10n(rounded_val, currency, lc) == "".join(
         [fixt_indian_rupee_symbol, "1,000.00"]
     )
 
@@ -431,6 +437,21 @@ def test_l10n_currency_with_None_symbol(fixt_space, fixt_forex_usd):
     result as if the `international` keyword argument had been passed as True."""
 
     lc = lm.data.locale("en", "us", currency_symbols={"usd": None})
-    usd = lm.vector.asset("10", "usd", fixt_space)
-    decimal_val = lm.vector.evaluate(usd, "usd", fixt_forex_usd)
-    assert lm.scalar.l10n(decimal_val, lm.data.currency("usd"), lc) == "USD 10.00"
+    sut = lm.vector.asset("10", "usd", fixt_space)
+    val = lm.vector.evaluate(sut, "usd", fixt_forex_usd)
+    currency = lm.data.currency("usd")
+    rounded_val = lm.scalar.roundas(val, currency)
+    assert lm.scalar.l10n(rounded_val, currency, lc) == "USD 10.00"
+
+
+def test_l10n_does_not_group_decimal_portion(fixt_space, fixt_forex_usd):
+    """Ensure that the `l10n` function does not adding grouping separators
+    to the decimal portion of the `amount` argument if it is longer than the
+    grouping value for the locale."""
+
+    lc = lm.data.locale("en", "us")  # Groups every three digits with a comma.
+    sut = lm.vector.asset(1000000.111111111111, "usd", fixt_space)
+    val = lm.vector.evaluate(sut, "usd", fixt_forex_usd)
+    localized_val = lm.scalar.l10n(val, lm.data.currency("usd"), lc)
+    integral, fractional = localized_val.split(".")
+    assert "," not in fractional

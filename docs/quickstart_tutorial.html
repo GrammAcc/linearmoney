@@ -778,7 +778,8 @@ Now let's use them to actually convert the amount:</p>
         <span class="n">asset_vector</span><span class="p">,</span> <span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">forex_vector</span>
     <span class="p">)</span>
     <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+    <span class="n">rounded_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">roundas</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
@@ -823,13 +824,18 @@ just call <code>evaluate</code> to get the value in the currency we want at that
 time, and it Just Works &trade;. The same goes for <em>converting</em> assets with
 <a href="api_reference/linearmoney/vector.html#convert"><code>convert</code></a>.</p>
 <div class="language-python"><pre><span></span><code>    <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+    <span class="n">rounded_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">roundas</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
 <p>The <a href="api_reference/linearmoney/scalar.html#l10n"><code>l10n</code></a>
-function formats a decimal using the correct rounding for the provided currency
-and the local currency representation for the provided locale. Both the locale
+function formats a decimal using the local currency representation for the
+provided locale.
+The <a href="api_reference/linearmoney/scalar.html#roundas"><code>roundas</code></a> function rounds
+a decimal value based on the provided currency data. We round before localizing to
+ensure that the string returned by the <code>l10n</code> function is correctly formatted with the
+rounded value. Both the locale
 and the currency are <a href="glossary.html#datasource"><em>Datasources</em></a>, and we have
 to construct them using the corresponding factory functions.</p>
 <p>The <a href="api_reference/linearmoney/data.html#currency"><code>currency</code></a>
@@ -947,7 +953,8 @@ global reference to a complex data structure.</p>
         <span class="n">asset_vector</span><span class="p">,</span> <span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">forex_vector</span>
     <span class="p">)</span>
     <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+    <span class="n">rounded_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">roundas</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
@@ -1055,7 +1062,8 @@ our while loop to use the parser instead of a simple list for our arguments:</p>
             <span class="n">asset_vector</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">,</span> <span class="n">forex_vector</span>
         <span class="p">)</span>
         <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+        <span class="n">rounded_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">roundas</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
@@ -1162,7 +1170,8 @@ previously, so we can access them by name.</p>
             <span class="n">asset_vector</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">,</span> <span class="n">forex_vector</span>
         <span class="p">)</span>
         <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+        <span class="n">rounded_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">roundas</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
@@ -1416,7 +1425,8 @@ how it handles various invalid inputs.</p>
             <span class="n">asset_vector</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">,</span> <span class="n">forex_vector</span>
         <span class="p">)</span>
         <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+        <span class="n">rounded_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">roundas</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
@@ -1427,6 +1437,7 @@ format a numeric value using the local currency format.</p>
 <p>These functions can do a lot more than this though. To get a better idea of how to
 integrate linearmoney with an application, take a look at the api documentation for the
 <a href="api_reference/linearmoney/scalar.html#l10n"><code>l10n</code></a>,
+<a href="api_reference/linearmoney/scalar.html#roundas"><code>roundas</code></a>,
 <a href="api_reference/linearmoney/data.html#currency"><code>currency</code></a>, and
 <a href="api_reference/linearmoney/data.html#locale"><code>locale</code></a> functions and change the
 output to display the currency in the international format, as a cash value, or using
