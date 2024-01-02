@@ -8,7 +8,11 @@ Full Documentation: https://grammacc.github.io/linearmoney
 
 License: [MIT](LICENSE)
 
-This project uses [semantic versioning](https://semver.org).
+This project uses [semantic versioning](https://semver.org). However, this
+is a pre-release piece of software, so until the first stable release, minor versions
+may contain breaking changes. Version 1.0.0 will mark the first stable release, at
+which point the regular rules of semver will apply and backwards-incompatible changes
+will only be introduced in major versions.
 
 ## Description
 
@@ -39,19 +43,7 @@ the [Linear Money Model](https://grammacc.github.io/linearmoney/linear_money_mod
 linearmoney uses the amazing [Unicode CLDR-JSON](https://github.com/unicode-org/cldr-json)
 data to provide data-driven interfaces for currency rounding, formatting, and localization.
 
-### Disclaimer
-
-This is a pre-release piece of software. The library is stable and well-tested, but
-some breaking changes will occur before the first stable release.
-Please keep this in mind if choosing to use this library in production.
-Version 1.0.0 will mark the first stable release.
-
 ## Installation
-
-> [!IMPORTANT]
-> PyPi is not allowing new user registration at this time, so this package is not
-> available on the package index yet.
-> For now, the package can only be built from source.
 
 linearmoney requires Python >= 3.12
 
@@ -79,7 +71,6 @@ pip install path/to/cloned/repo
 ```
 
 ## Basic Usage
-
 
 ```pycon
 >>> import linearmoney as lm
