@@ -178,7 +178,8 @@ while True:
         asset_vector, raw_args[2], forex_vector
     )
     to_currency = lm.data.currency(raw_args[2])
-    result = lm.scalar.l10n(converted_value, to_currency, system_locale)
+    rounded_value = lm.scalar.roundas(converted_value, to_currency)
+    result = lm.scalar.l10n(rounded_value, to_currency, system_locale)
     print(result)
 ```
 
@@ -231,13 +232,18 @@ time, and it Just Works &trade;. The same goes for *converting* assets with
 
 ```python
     to_currency = lm.data.currency(raw_args[2])
-    result = lm.scalar.l10n(converted_value, to_currency, system_locale)
+    rounded_value = lm.scalar.roundas(converted_value, to_currency)
+    result = lm.scalar.l10n(rounded_value, to_currency, system_locale)
     print(result)
 ```
 
 The [`l10n`](api_reference/linearmoney/scalar.html#l10n)
-function formats a decimal using the correct rounding for the provided currency
-and the local currency representation for the provided locale. Both the locale
+function formats a decimal using the local currency representation for the
+provided locale.
+The [`roundas`](api_reference/linearmoney/scalar.html#roundas) function rounds
+a decimal value based on the provided currency data. We round before localizing to
+ensure that the string returned by the `l10n` function is correctly formatted with the
+rounded value. Both the locale
 and the currency are [*Datasources*](glossary.md#datasource), and we have
 to construct them using the corresponding factory functions.
 
@@ -367,7 +373,8 @@ while True:
         asset_vector, raw_args[2], forex_vector
     )
     to_currency = lm.data.currency(raw_args[2])
-    result = lm.scalar.l10n(converted_value, to_currency, system_locale)
+    rounded_value = lm.scalar.roundas(converted_value, to_currency)
+    result = lm.scalar.l10n(rounded_value, to_currency, system_locale)
     print(result)
 ```
 
@@ -495,7 +502,8 @@ while True:
             asset_vector, args.to_currency, forex_vector
         )
         to_currency = lm.data.currency(args.to_currency)
-        result = lm.scalar.l10n(converted_value, to_currency, system_locale)
+        rounded_value = lm.scalar.roundas(converted_value, to_currency)
+        result = lm.scalar.l10n(rounded_value, to_currency, system_locale)
         print(result)
 ```
 
@@ -607,7 +615,8 @@ while True:
             asset_vector, args.to_currency, forex_vector
         )
         to_currency = lm.data.currency(args.to_currency)
-        result = lm.scalar.l10n(converted_value, to_currency, system_locale)
+        rounded_value = lm.scalar.roundas(converted_value, to_currency)
+        result = lm.scalar.l10n(rounded_value, to_currency, system_locale)
         print(result)
 ```
 
@@ -885,7 +894,8 @@ while True:
             asset_vector, args.to_currency, forex_vector
         )
         to_currency = lm.data.currency(args.to_currency)
-        result = lm.scalar.l10n(converted_value, to_currency, system_locale)
+        rounded_value = lm.scalar.roundas(converted_value, to_currency)
+        result = lm.scalar.l10n(rounded_value, to_currency, system_locale)
         print(result)
 ```
 
@@ -898,6 +908,7 @@ format a numeric value using the local currency format.
 These functions can do a lot more than this though. To get a better idea of how to
 integrate linearmoney with an application, take a look at the api documentation for the
 [`l10n`](api_reference/linearmoney/scalar.html#l10n),
+[`roundas`](api_reference/linearmoney/scalar.html#roundas),
 [`currency`](api_reference/linearmoney/data.html#currency), and
 [`locale`](api_reference/linearmoney/data.html#locale) functions and change the
 output to display the currency in the international format, as a cash value, or using

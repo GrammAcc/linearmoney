@@ -80,15 +80,16 @@ pip install path/to/cloned/repo
 
 ## Basic Usage
 
+
 ```pycon
 >>> import linearmoney as lm
->>> fo = lm.vector.forex({"base": "usd", "rates": {"jpy": 100}})
+>>> fo = lm.vector.forex({"base": "usd", "rates": {"jpy": 100}})  # 1 USD -> 100 JPY
 >>> sp = lm.vector.space(fo)
 >>> cart = []
->>> milk_price = lm.vector.asset(4.32, 'usd', sp)
->>> cart.append(milk_price)
->>> eggs_price = lm.vector.asset(5.45, 'usd', sp)
->>> cart.append(eggs_price)
+>>> local_milk_price = lm.vector.asset(4.32, "usd", sp)
+>>> cart.append(local_milk_price)
+>>> foreign_eggs_price = lm.vector.asset(545, "jpy", sp)
+>>> cart.append(foreign_eggs_price)
 >>> sales_tax = 0.095
 >>> subtotal = sum(cart)
 >>> total = subtotal + (subtotal * sales_tax)
@@ -96,13 +97,16 @@ pip install path/to/cloned/repo
 >>> total_jpy = lm.vector.evaluate(total, "jpy", fo)
 >>> usd = lm.data.currency("usd")
 >>> jpy = lm.data.currency("jpy")
+>>> rounded_total_usd = lm.scalar.roundas(total_usd, usd)
+>>> rounded_total_jpy = lm.scalar.roundas(total_jpy, jpy)
 >>> en_US = lm.data.locale("en", "us")
->>> localized_total_usd = lm.scalar.l10n(total_usd, usd, en_US)
->>> localized_total_jpy = lm.scalar.l10n(total_jpy, jpy, en_US)
+>>> localized_total_usd = lm.scalar.l10n(rounded_total_usd, usd, en_US)
+>>> localized_total_jpy = lm.scalar.l10n(rounded_total_jpy, jpy, en_US)
 >>> print(localized_total_usd)
 $10.70
 >>> print(localized_total_jpy)
 ¥1,070
+
 ```
 
 linearymoney uses a functional/procedural style where all objects are immutable, so

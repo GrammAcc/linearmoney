@@ -249,7 +249,6 @@ def l10n(
     currency: CurrencyData,
     locale: LocaleData,
     *,
-    cash: bool = False,
     international: bool = False,
 ) -> str:
     """Localize `amount` to a currency-formatted string based on the `locale` and
@@ -257,18 +256,13 @@ def l10n(
 
     Args:
         amount:
-            The decimal value to format. This value will be rounded based on the
-            `currency` data and `cash` boolean argument just like a call to `roundas`.
+            The decimal value to format. This will usually be a rounded decimal value
+            resulting from a call to `roundas` or `roundto`, but it doesn't have to be.
         currency:
             The `linearmoney.data.CurrencyData`
             of the currency that the `amount` represents.
-            This will be passed through to the `roundas` function to round the
-            `amount` before formatting the result and it determines the currency
-            of the amount for formatting purposes.
         locale:
             The `linearmoney.data.LocaleData` to use for formatting the result.
-        cash:
-            Keyword-only argument. Passed through to the `roundas` function.
         international:
             Keyword-only argument. If False (default), then use the currency symbol for
             the target currency in the result and respect the `symbol_space` value of
@@ -282,23 +276,27 @@ def l10n(
         >>> import linearmoney as lm
         >>> fv = lm.vector.forex({"base": "cad", "rates": {"eur": 2}})  # 1 CAD -> 2 EUR
         >>> av = lm.vector.asset(10.067777, "cad", lm.vector.space(fv))
-        >>> lc_en = lm.data.locale("en", "us")  # English-United States
-        >>> curr_cad = lm.data.currency("cad")
-        >>> val_cad = lm.vector.evaluate(av, "cad", fv)
-        >>> lm.scalar.l10n(val_cad, curr_cad, lc_en)
+        >>> en_US = lm.data.locale("en", "us")  # English-United States
+        >>> cad = lm.data.currency("cad")
+        >>> val = lm.vector.evaluate(av, "cad", fv)
+        >>> rounded_val = lm.scalar.roundas(val, cad)
+        >>> lm.scalar.l10n(rounded_val, cad, en_US)
         'CA$10.07'
-        >>> lm.scalar.l10n(val_cad, curr_cad, lc_en, cash=True)
+        >>> cash_rounded_val = lm.scalar.roundas(val, cad, cash=True)
+        >>> lm.scalar.l10n(cash_rounded_val, cad, en_US)
         'CA$10.05'
-        >>> lm.scalar.l10n(val_cad, curr_cad, lc_en, international=True)
+        >>> lm.scalar.l10n(rounded_val, cad, en_US, international=True)
         'CAD 10.07'
-        >>> lc_fr = lm.data.locale("fr", "fr")  # French-France
-        >>> curr_eur = lm.data.currency("eur")
-        >>> val_eur = lm.vector.evaluate(av, "eur", fv)
-        >>> lm.scalar.l10n(val_eur, curr_eur, lc_fr)
+        >>> fr_FR = lm.data.locale("fr", "fr")  # French-France
+        >>> eur = lm.data.currency("eur")
+        >>> val = lm.vector.evaluate(av, "eur", fv)
+        >>> rounded_val = lm.scalar.roundas(val, eur)
+        >>> lm.scalar.l10n(rounded_val, eur, fr_FR)
         '20,14€'
-        >>> lm.scalar.l10n(val_eur, curr_eur, lc_fr, cash=True)
+        >>> cash_rounded_val = lm.scalar.roundas(val, eur, cash=True)
+        >>> lm.scalar.l10n(cash_rounded_val, eur, fr_FR)
         '20,14€'
-        >>> lm.scalar.l10n(val_eur, curr_eur, lc_fr, international=True)
+        >>> lm.scalar.l10n(rounded_val, eur, fr_FR, international=True)
         '20,14 EUR'
     """
 
@@ -306,9 +304,7 @@ def l10n(
 
     iso_code = currency.iso_code
 
-    rounded_amount = roundas(amount, currency, cash=cash)
-
-    _sign = "positive" if rounded_amount >= 0 else "negative"
+    _sign = "positive" if amount >= 0 else "negative"
 
     lc_data = locale.data
 
@@ -346,12 +342,12 @@ def l10n(
         join_list = [
             currency_symbol,
             " ",
-            _format_grouping(rounded_amount, locale),
+            _format_grouping(amount, locale),
         ]
     else:
         join_list = [
             currency_symbol,
-            _format_grouping(rounded_amount, locale),
+            _format_grouping(amount, locale),
         ]
 
     if not symbol_before:
