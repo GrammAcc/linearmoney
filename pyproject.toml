@@ -7,6 +7,7 @@ maintainers = ["GrammAcc <grammaticallyacceptable@grammacc.dev>"]
 license = "MIT"
 readme = "README.md"
 keywords = ["money", "framework", "currency", "forex", "fintech"]
+classifiers = ["Development Status :: 3 - Alpha"]
 repository = "https://github.com/GrammAcc/linearmoney"
 documentation = "https://grammacc.github.io/linearmoney"
 include = ["*.json", "py.typed"]
