@@ -53,6 +53,7 @@ Version 1.0.0 will mark the first stable release.
 > available on the package index yet.
 > For now, the package can only be built from source.
 
+linearmoney requires Python >= 3.12
 
 From PyPi:
 
@@ -65,8 +66,16 @@ From source:
 ```bash
 git clone https://github.com/GrammAcc/linearmoney
 cd linearmoney
-poetry shell
-poetry install
+poetry build
+```
+
+See the [poetry installation](https://python-poetry.org/docs/#installation) docs if
+you don't have poetry installed yet.
+
+Then to install (virtual environment recommended):
+
+```bash
+pip install path/to/cloned/repo
 ```
 
 ## Basic Usage
