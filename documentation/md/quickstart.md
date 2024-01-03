@@ -2,7 +2,7 @@
 
 
 In this quick start guide, we'll make a simple commandline currency converter.
-Knowledge of commandline applications is not required to complete 
+Knowledge of commandline application development is not required to complete 
 this tutorial. However, a basic understanding of Python and running Python 
 scripts is assumed. It should take about 30 minutes to complete.
 
@@ -467,14 +467,14 @@ parser.add_argument(
     "from_currency",
     metavar="<from_currency>",
     help=f"""The case-insensitive ISO 4217 aplphabetic currency code
-    of the <amount>. Accepted values: {currency_space.axes}.""",
+    of the <amount>. Accepted values: {currency_space.currencies}.""",
 )
 
 parser.add_argument(
     "to_currency",
     metavar="<to_currency>",
     help=f"""The case-insensitive ISO 4217 alphabetic currency code
-    to convert the <amount> to. Accepted values: {currency_space.axes}.""",
+    to convert the <amount> to. Accepted values: {currency_space.currencies}.""",
 )
 ```
 
@@ -592,14 +592,14 @@ parser.add_argument(
     "from_currency",
     metavar="<from_currency>",
     help=f"""The case-insensitive ISO 4217 aplphabetic currency code
-    of the <amount>. Accepted values: {currency_space.axes}.""",
+    of the <amount>. Accepted values: {currency_space.currencies}.""",
 )
 
 parser.add_argument(
     "to_currency",
     metavar="<to_currency>",
     help=f"""The case-insensitive ISO 4217 alphabetic currency code
-    to convert the <amount> to. Accepted values: {currency_space.axes}.""",
+    to convert the <amount> to. Accepted values: {currency_space.currencies}.""",
 )
 while True:
     readline = input("Currency Converter--> ")
@@ -720,21 +720,22 @@ currencies in our application:
 parser.add_argument(
     "from_currency",
     metavar="<from_currency>",
-    choices=currency_space.axes,
+    choices=currency_space.currencies,
     help=f"""The case-insensitive ISO 4217 aplphabetic currency code
-    of the <amount>. Accepted values: {currency_space.axes}.""",
+    of the <amount>. Accepted values: {currency_space.currencies}.""",
 )
 
 parser.add_argument(
     "to_currency",
     metavar="<to_currency>",
-    choices=currency_space.axes,
+    choices=currency_space.currencies,
     help=f"""The case-insensitive ISO 4217 alphabetic currency code
-    to convert the <amount> to. Accepted values: {currency_space.axes}.""",
+    to convert the <amount> to. Accepted values: {currency_space.currencies}.""",
 )
 ```
 
-The `axes` of our `currency_space` are of course the valid currency codes that we have
+The [`currencies`](api_reference/linearmoney/vector.html#CurrencySpace.currencies)
+of our `currency_space` are of course the valid currency codes that we have
 forex rates for, so now, if we rerun with these changes, we'll see that passing in bad
 input for the `<from_currency>` or `<to_currency>` arguments, such as `"10 bad USD"` or
 `"10 USD bad"` gives an appropriate error message and doesn't crash our prompt.
@@ -759,18 +760,18 @@ parser.add_argument(
     "from_currency",
     metavar="<from_currency>",
     type=_upper_code,
-    choices=currency_space.axes,
+    choices=currency_space.currencies,
     help=f"""The case-insensitive ISO 4217 aplphabetic currency code
-    of the <amount>. Accepted values: {currency_space.axes}.""",
+    of the <amount>. Accepted values: {currency_space.currencies}.""",
 )
 
 parser.add_argument(
     "to_currency",
     metavar="<to_currency>",
     type=_upper_code,
-    choices=currency_space.axes,
+    choices=currency_space.currencies,
     help=f"""The case-insensitive ISO 4217 alphabetic currency code
-    to convert the <amount> to. Accepted values: {currency_space.axes}.""",
+    to convert the <amount> to. Accepted values: {currency_space.currencies}.""",
 )
 ```
 
@@ -866,18 +867,18 @@ parser.add_argument(
     "from_currency",
     metavar="<from_currency>",
     type=_upper_code,
-    choices=currency_space.axes,
+    choices=currency_space.currencies,
     help=f"""The case-insensitive ISO 4217 aplphabetic currency code
-    of the <amount>. Accepted values: {currency_space.axes}.""",
+    of the <amount>. Accepted values: {currency_space.currencies}.""",
 )
 
 parser.add_argument(
     "to_currency",
     metavar="<to_currency>",
     type=_upper_code,
-    choices=currency_space.axes,
+    choices=currency_space.currencies,
     help=f"""The case-insensitive ISO 4217 alphabetic currency code
-    to convert the <amount> to. Accepted values: {currency_space.axes}.""",
+    to convert the <amount> to. Accepted values: {currency_space.currencies}.""",
 )
 
 while True:

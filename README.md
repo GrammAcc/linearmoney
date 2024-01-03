@@ -4,6 +4,8 @@ Full multi-currency support for python.
 
 ---
 
+Quickstart Tutorial: https://grammacc.github.io/linearmoney/quickstart.html
+
 Full Documentation: https://grammacc.github.io/linearmoney
 
 License: [MIT](LICENSE)

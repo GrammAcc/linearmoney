@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://grammacc.github.io/linearmoney/quickstart_tutorial.html">
+        <link rel="canonical" href="https://grammacc.github.io/linearmoney/quickstart.html">
       
       
         <link rel="prev" href="index.html">
@@ -274,7 +274,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="quickstart_tutorial.html" class="md-nav__link md-nav__link--active">
+      <a href="quickstart.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -635,7 +635,7 @@
 
 <h1 id="quickstart-tutorial">Quickstart Tutorial</h1>
 <p>In this quick start guide, we'll make a simple commandline currency converter.
-Knowledge of commandline applications is not required to complete 
+Knowledge of commandline application development is not required to complete 
 this tutorial. However, a basic understanding of Python and running Python 
 scripts is assumed. It should take about 30 minutes to complete.</p>
 <p>By the end of this tutorial, you should know how to:</p>
@@ -1031,14 +1031,14 @@ documented, we give an explanation of how to exit the application here.</p>
     <span class="s2">&quot;from_currency&quot;</span><span class="p">,</span>
     <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;from_currency&gt;&quot;</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 aplphabetic currency code</span>
-<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
     <span class="s2">&quot;to_currency&quot;</span><span class="p">,</span>
     <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;to_currency&gt;&quot;</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 alphabetic currency code</span>
-<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -1147,14 +1147,14 @@ previously, so we can access them by name.</p>
     <span class="s2">&quot;from_currency&quot;</span><span class="p">,</span>
     <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;from_currency&gt;&quot;</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 aplphabetic currency code</span>
-<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
     <span class="s2">&quot;to_currency&quot;</span><span class="p">,</span>
     <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;to_currency&gt;&quot;</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 alphabetic currency code</span>
-<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">readline</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Currency Converter--&gt; &quot;</span><span class="p">)</span>
@@ -1257,21 +1257,22 @@ currencies in our application:</p>
 <div class="language-python"><pre><span></span><code><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
     <span class="s2">&quot;from_currency&quot;</span><span class="p">,</span>
     <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;from_currency&gt;&quot;</span><span class="p">,</span>
-    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 aplphabetic currency code</span>
-<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
     <span class="s2">&quot;to_currency&quot;</span><span class="p">,</span>
     <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;to_currency&gt;&quot;</span><span class="p">,</span>
-    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 alphabetic currency code</span>
-<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 
-<p>The <code>axes</code> of our <code>currency_space</code> are of course the valid currency codes that we have
+<p>The <a href="api_reference/linearmoney/vector.html#CurrencySpace.currencies"><code>currencies</code></a>
+of our <code>currency_space</code> are of course the valid currency codes that we have
 forex rates for, so now, if we rerun with these changes, we'll see that passing in bad
 input for the <code>&lt;from_currency&gt;</code> or <code>&lt;to_currency&gt;</code> arguments, such as <code>"10 bad USD"</code> or
 <code>"10 USD bad"</code> gives an appropriate error message and doesn't crash our prompt.</p>
@@ -1293,18 +1294,18 @@ they don't match. We can solve this by providing a <code>type</code> function to
     <span class="s2">&quot;from_currency&quot;</span><span class="p">,</span>
     <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;from_currency&gt;&quot;</span><span class="p">,</span>
     <span class="nb">type</span><span class="o">=</span><span class="n">_upper_code</span><span class="p">,</span>
-    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 aplphabetic currency code</span>
-<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
     <span class="s2">&quot;to_currency&quot;</span><span class="p">,</span>
     <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;to_currency&gt;&quot;</span><span class="p">,</span>
     <span class="nb">type</span><span class="o">=</span><span class="n">_upper_code</span><span class="p">,</span>
-    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 alphabetic currency code</span>
-<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -1397,18 +1398,18 @@ how it handles various invalid inputs.</p>
     <span class="s2">&quot;from_currency&quot;</span><span class="p">,</span>
     <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;from_currency&gt;&quot;</span><span class="p">,</span>
     <span class="nb">type</span><span class="o">=</span><span class="n">_upper_code</span><span class="p">,</span>
-    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 aplphabetic currency code</span>
-<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">    of the &lt;amount&gt;. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
     <span class="s2">&quot;to_currency&quot;</span><span class="p">,</span>
     <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&lt;to_currency&gt;&quot;</span><span class="p">,</span>
     <span class="nb">type</span><span class="o">=</span><span class="n">_upper_code</span><span class="p">,</span>
-    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;The case-insensitive ISO 4217 alphabetic currency code</span>
-<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">    to convert the &lt;amount&gt; to. Accepted values: </span><span class="si">{</span><span class="n">currency_space</span><span class="o">.</span><span class="n">currencies</span><span class="si">}</span><span class="s2">.&quot;&quot;&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
