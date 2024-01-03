@@ -779,7 +779,7 @@ Now let's use them to actually convert the amount:</p>
     <span class="p">)</span>
     <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
     <span class="n">rounded_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">roundas</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">system_locale</span><span class="p">())</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
@@ -825,7 +825,7 @@ time, and it Just Works &trade;. The same goes for <em>converting</em> assets wi
 <a href="api_reference/linearmoney/vector.html#convert"><code>convert</code></a>.</p>
 <div class="language-python"><pre><span></span><code>    <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
     <span class="n">rounded_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">roundas</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">system_locale</span><span class="p">())</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
@@ -843,60 +843,23 @@ function takes an ISO 4217 currency code (e.g. "USD") and returns the rounding d
 corresponding currency, so we call it with the <code>&lt;to_currency&gt;</code> in order to get the
 correct rounding data for our <code>converted_amount</code> before formatting with the current
 system locale.</p>
-<p>The <code>system_locale</code> variable used here has not been defined yet, but it's also not
-dependent on the user's input, so we can define it at the script-level.</p>
-<p>We'll use the standard library's
-<a href="https://docs.python.org/3/library/locale.html"><code>locale</code></a>
-module to get the locale of the running
-machine and set the locale of the running Python process if it hasn't already been set:</p>
-<div class="language-python"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">!=</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;This is a standalone script and should not be imported.&quot;</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">urllib.request</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">locale</span> <span class="k">as</span> <span class="nn">posix_locale</span>
-
-<span class="kn">import</span> <span class="nn">linearmoney</span> <span class="k">as</span> <span class="nn">lm</span>
-
-<span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_MONETARY</span><span class="p">):</span>
-    <span class="c1"># Set the locale of the python session to the system locale.</span>
-    <span class="n">posix_locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-
-<span class="n">system_locale_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">assert</span> <span class="p">(</span>
-    <span class="n">system_locale_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="p">),</span> <span class="s2">&quot;We init the system locale above, so it should not be None.&quot;</span>
-<span class="n">language</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
-
-<span class="n">system_locale</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">locale</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
-</code></pre></div>
-
-<p>We import the stdlib <code>locale</code> module as <code>posix_locale</code> to avoid any
-potential name collisions, and we use it to set the locale for the current
-Python process to the locale of the running system only if it has not already been set.</p>
-<p>The stdlib <code>locale</code> module is a bit tricky to work with
-(this is one of the reasons <em>linearmoney</em> has its own locale system), and we generally
-don't want to set the locale if another module has already set the locale for this
-Python process, so we only set the locale to the system locale if the current
-locale for the Python process is <code>None</code>.</p>
-<p>The <code>assert</code> statement is just to make static type checkers happy since the stdlib
-<a href="https://docs.python.org/3/library/locale.html#locale.getlocale"><code>locale.getlocale()</code></a>
-function returns a two-element sequence of
-<code>[language_code, encoding]</code>, but each element can be <code>None</code> if the correct
-values cannot be determined. This will not happen since we explicitly set the
-locale above this line, but static type checkers can't infer that, so we assert that
-the variable is not <code>None</code> to make sure the next lines don't cause type checking errors.</p>
-<p>The linearmoney <a href="api_reference/linearmoney/data.html#locale"><code>locale</code></a> function takes
-a POSIX language and region tag (e.g. "en" and "us" for "en_US") and returns the
-formatting data for that locale, so we just pass in the language and region we
-obtained from the system locale, and we can then use this data for localizing
-to the locale of the current user in our main loop.</p>
-<p>All objects in <em>linearmoney</em> including datasources like the locale data
-created by the <a href="api_reference/linearmoney/data.html#locale"><code>locale</code></a>
-function are immutable, so we don't have to worry about passing around a
-global reference to a complex data structure.</p>
-<p>Now that we have the <code>system_locale</code> defined, we should have the following script:</p>
+<p>The <a href="api_reference/linearmoney/data.html#system_locale"><code>system_locale</code></a> function
+provides the locale data for the POSIX locale of the running Python process.</p>
+<p>linearmoney provides a threadsafe <a href="api_reference/linearmoney/data.html#locale"><code>locale</code></a>
+function that returns the locale data for the provided language-region combination, and
+it allows overriding the individual properties of the returned data, so it can be
+used to create custom currency formats and is very useful in modern distributed systems
+and web applications where the executing environment is often not in the same
+locale as the user of the application, but in the case of a local application
+such as our currency
+converter script, we usually want to just use the locale of the running system without
+needing to provide any configuration or other data to determine the correct locale.
+linearmoney provides the <code>system_locale</code> helper function for this exact use-case, so
+instead of writing code to read the system locale with the stdlib or through some other
+means and then passing that into the <code>locale</code> function to get a
+<a href="api_reference/linearmoney/data.html#LocaleData"><code>LocaleData</code></a> instance usable by the
+library, we just call <code>system_locale</code>, and we're good to go.</p>
+<p>At this point, we should have the following script:</p>
 <div class="language-python"><pre><span></span><code><span class="ch">#!/usr/bin/python</span>
 
 <span class="sd">&quot;&quot;&quot;Interactive commandline script for converting currencies.</span>
@@ -912,21 +875,8 @@ global reference to a complex data structure.</p>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">locale</span> <span class="k">as</span> <span class="nn">posix_locale</span>
 
 <span class="kn">import</span> <span class="nn">linearmoney</span> <span class="k">as</span> <span class="nn">lm</span>
-
-<span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_MONETARY</span><span class="p">):</span>
-    <span class="c1"># Set the locale of the python session to the system locale.</span>
-    <span class="n">posix_locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-
-<span class="n">system_locale_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">assert</span> <span class="p">(</span>
-    <span class="n">system_locale_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="p">),</span> <span class="s2">&quot;We init the system locale above, so it should not be None.&quot;</span>
-<span class="n">language</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
-
-<span class="n">system_locale</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">locale</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">request_rates</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
@@ -954,7 +904,7 @@ global reference to a complex data structure.</p>
     <span class="p">)</span>
     <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">raw_args</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
     <span class="n">rounded_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">roundas</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">system_locale</span><span class="p">())</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
@@ -985,11 +935,8 @@ All of the relevant objects and methods will be explained.</p>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">locale</span> <span class="k">as</span> <span class="nn">posix_locale</span>
 
 <span class="kn">import</span> <span class="nn">linearmoney</span> <span class="k">as</span> <span class="nn">lm</span>
-
-<span class="c1"># system_locale and request_rates setup</span>
 
 <span class="n">forex_vector</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">forex</span><span class="p">(</span><span class="n">request_rates</span><span class="p">())</span>
 <span class="n">currency_space</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">space</span><span class="p">(</span><span class="n">forex_vector</span><span class="p">)</span>
@@ -1063,7 +1010,7 @@ our while loop to use the parser instead of a simple list for our arguments:</p>
         <span class="p">)</span>
         <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">)</span>
         <span class="n">rounded_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">roundas</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">system_locale</span><span class="p">())</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
@@ -1096,21 +1043,8 @@ previously, so we can access them by name.</p>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">locale</span> <span class="k">as</span> <span class="nn">posix_locale</span>
 
 <span class="kn">import</span> <span class="nn">linearmoney</span> <span class="k">as</span> <span class="nn">lm</span>
-
-<span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_MONETARY</span><span class="p">):</span>
-    <span class="c1"># Set the locale of the python session to the system locale.</span>
-    <span class="n">posix_locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-
-<span class="n">system_locale_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">assert</span> <span class="p">(</span>
-    <span class="n">system_locale_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="p">),</span> <span class="s2">&quot;We init the system locale above, so it should not be None.&quot;</span>
-<span class="n">language</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
-
-<span class="n">system_locale</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">locale</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">request_rates</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
@@ -1171,7 +1105,7 @@ previously, so we can access them by name.</p>
         <span class="p">)</span>
         <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">)</span>
         <span class="n">rounded_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">roundas</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">system_locale</span><span class="p">())</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
@@ -1330,21 +1264,8 @@ how it handles various invalid inputs.</p>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">locale</span> <span class="k">as</span> <span class="nn">posix_locale</span>
 
 <span class="kn">import</span> <span class="nn">linearmoney</span> <span class="k">as</span> <span class="nn">lm</span>
-
-<span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_MONETARY</span><span class="p">):</span>
-    <span class="c1"># Set the locale of the python session to the system locale.</span>
-    <span class="n">posix_locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">posix_locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-
-<span class="n">system_locale_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">assert</span> <span class="p">(</span>
-    <span class="n">system_locale_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="p">),</span> <span class="s2">&quot;We init the system locale above, so it should not be None.&quot;</span>
-<span class="n">language</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
-
-<span class="n">system_locale</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">locale</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">request_rates</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
@@ -1427,7 +1348,7 @@ how it handles various invalid inputs.</p>
         <span class="p">)</span>
         <span class="n">to_currency</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">to_currency</span><span class="p">)</span>
         <span class="n">rounded_value</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">roundas</span><span class="p">(</span><span class="n">converted_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">system_locale</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">scalar</span><span class="o">.</span><span class="n">l10n</span><span class="p">(</span><span class="n">rounded_value</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">system_locale</span><span class="p">())</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 

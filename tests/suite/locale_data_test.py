@@ -1,3 +1,5 @@
+import locale as posix_locale
+
 import pytest
 
 from pytest_parametrize_cases import parametrize_cases, Case
@@ -192,3 +194,25 @@ def test_with_custom_language_or_region(language, region):
 
     with pytest.raises(UnknownDataError):
         lm.data.locale(language, region)
+
+
+def test_system_locale_basic_usage():
+    """Ensure the `system_locale` gives the locale of the running Python process."""
+
+    system_locale_string = posix_locale.getlocale()[0]
+    assert system_locale_string == lm.data.system_locale().tag
+
+
+def test_system_locale_after_update():
+    """Ensure the `system_locale` gives the correct locale
+    if the POSIX locale is updated using the stdlib."""
+
+    system_locale_string = posix_locale.getlocale()[0]
+    assert system_locale_string == lm.data.system_locale().tag
+
+    if system_locale_string == "ja_JP":
+        posix_locale.setlocale(posix_locale.LC_ALL, "en_US.UTF-8")
+        assert lm.data.system_locale().tag == "en_US"
+    else:
+        posix_locale.setlocale(posix_locale.LC_ALL, "ja_JP.UTF-8")
+        assert lm.data.system_locale().tag == "ja_JP"

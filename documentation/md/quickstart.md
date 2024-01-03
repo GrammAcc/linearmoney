@@ -179,7 +179,7 @@ while True:
     )
     to_currency = lm.data.currency(raw_args[2])
     rounded_value = lm.scalar.roundas(converted_value, to_currency)
-    result = lm.scalar.l10n(rounded_value, to_currency, system_locale)
+    result = lm.scalar.l10n(rounded_value, to_currency, lm.data.system_locale())
     print(result)
 ```
 
@@ -233,7 +233,7 @@ time, and it Just Works &trade;. The same goes for *converting* assets with
 ```python
     to_currency = lm.data.currency(raw_args[2])
     rounded_value = lm.scalar.roundas(converted_value, to_currency)
-    result = lm.scalar.l10n(rounded_value, to_currency, system_locale)
+    result = lm.scalar.l10n(rounded_value, to_currency, lm.data.system_locale())
     print(result)
 ```
 
@@ -253,68 +253,25 @@ corresponding currency, so we call it with the `<to_currency>` in order to get t
 correct rounding data for our `converted_amount` before formatting with the current
 system locale.
 
-The `system_locale` variable used here has not been defined yet, but it's also not
-dependent on the user's input, so we can define it at the script-level.
+The [`system_locale`](api_reference/linearmoney/data.html#system_locale) function
+provides the locale data for the POSIX locale of the running Python process.
 
-We'll use the standard library's
-[`locale`](https://docs.python.org/3/library/locale.html)
-module to get the locale of the running
-machine and set the locale of the running Python process if it hasn't already been set:
+linearmoney provides a threadsafe [`locale`](api_reference/linearmoney/data.html#locale)
+function that returns the locale data for the provided language-region combination, and
+it allows overriding the individual properties of the returned data, so it can be
+used to create custom currency formats and is very useful in modern distributed systems
+and web applications where the executing environment is often not in the same
+locale as the user of the application, but in the case of a local application
+such as our currency
+converter script, we usually want to just use the locale of the running system without
+needing to provide any configuration or other data to determine the correct locale.
+linearmoney provides the `system_locale` helper function for this exact use-case, so
+instead of writing code to read the system locale with the stdlib or through some other
+means and then passing that into the `locale` function to get a
+[`LocaleData`](api_reference/linearmoney/data.html#LocaleData) instance usable by the
+library, we just call `system_locale`, and we're good to go.
 
-```python
-if __name__ != "__main__":
-    raise ImportError("This is a standalone script and should not be imported.")
-
-import time
-import urllib.request
-import json
-import locale as posix_locale
-
-import linearmoney as lm
-
-if None in posix_locale.getlocale(posix_locale.LC_MONETARY):
-    # Set the locale of the python session to the system locale.
-    posix_locale.setlocale(posix_locale.LC_ALL, "")
-
-system_locale_string: str | None = posix_locale.getlocale()[0]
-assert (
-    system_locale_string is not None
-), "We init the system locale above, so it should not be None."
-language, region = system_locale_string.split("_")
-
-system_locale = lm.data.locale(language, region)
-```
-
-We import the stdlib `locale` module as `posix_locale` to avoid any
-potential name collisions, and we use it to set the locale for the current
-Python process to the locale of the running system only if it has not already been set.
-
-The stdlib `locale` module is a bit tricky to work with
-(this is one of the reasons *linearmoney* has its own locale system), and we generally
-don't want to set the locale if another module has already set the locale for this
-Python process, so we only set the locale to the system locale if the current
-locale for the Python process is `None`.
-
-The `assert` statement is just to make static type checkers happy since the stdlib
-[`locale.getlocale()`](https://docs.python.org/3/library/locale.html#locale.getlocale)
-function returns a two-element sequence of
-`[language_code, encoding]`, but each element can be `None` if the correct
-values cannot be determined. This will not happen since we explicitly set the
-locale above this line, but static type checkers can't infer that, so we assert that
-the variable is not `None` to make sure the next lines don't cause type checking errors.
-
-The linearmoney [`locale`](api_reference/linearmoney/data.html#locale) function takes
-a POSIX language and region tag (e.g. "en" and "us" for "en_US") and returns the
-formatting data for that locale, so we just pass in the language and region we
-obtained from the system locale, and we can then use this data for localizing
-to the locale of the current user in our main loop.
-
-All objects in *linearmoney* including datasources like the locale data
-created by the [`locale`](api_reference/linearmoney/data.html#locale)
-function are immutable, so we don't have to worry about passing around a
-global reference to a complex data structure.
-
-Now that we have the `system_locale` defined, we should have the following script:
+At this point, we should have the following script:
 
 ```python
 #!/usr/bin/python
@@ -332,21 +289,8 @@ if __name__ != "__main__":
 import time
 import urllib.request
 import json
-import locale as posix_locale
 
 import linearmoney as lm
-
-if None in posix_locale.getlocale(posix_locale.LC_MONETARY):
-    # Set the locale of the python session to the system locale.
-    posix_locale.setlocale(posix_locale.LC_ALL, "")
-
-system_locale_string: str | None = posix_locale.getlocale()[0]
-assert (
-    system_locale_string is not None
-), "We init the system locale above, so it should not be None."
-language, region = system_locale_string.split("_")
-
-system_locale = lm.data.locale(language, region)
 
 
 def request_rates() -> dict:
@@ -374,7 +318,7 @@ while True:
     )
     to_currency = lm.data.currency(raw_args[2])
     rounded_value = lm.scalar.roundas(converted_value, to_currency)
-    result = lm.scalar.l10n(rounded_value, to_currency, system_locale)
+    result = lm.scalar.l10n(rounded_value, to_currency, lm.data.system_locale())
     print(result)
 ```
 
@@ -414,11 +358,8 @@ import argparse
 import time
 import urllib.request
 import json
-import locale as posix_locale
 
 import linearmoney as lm
-
-# system_locale and request_rates setup
 
 forex_vector = lm.vector.forex(request_rates())
 currency_space = lm.vector.space(forex_vector)
@@ -503,7 +444,7 @@ while True:
         )
         to_currency = lm.data.currency(args.to_currency)
         rounded_value = lm.scalar.roundas(converted_value, to_currency)
-        result = lm.scalar.l10n(rounded_value, to_currency, system_locale)
+        result = lm.scalar.l10n(rounded_value, to_currency, lm.data.system_locale())
         print(result)
 ```
 
@@ -541,21 +482,8 @@ import argparse
 import time
 import urllib.request
 import json
-import locale as posix_locale
 
 import linearmoney as lm
-
-if None in posix_locale.getlocale(posix_locale.LC_MONETARY):
-    # Set the locale of the python session to the system locale.
-    posix_locale.setlocale(posix_locale.LC_ALL, "")
-
-system_locale_string: str | None = posix_locale.getlocale()[0]
-assert (
-    system_locale_string is not None
-), "We init the system locale above, so it should not be None."
-language, region = system_locale_string.split("_")
-
-system_locale = lm.data.locale(language, region)
 
 
 def request_rates() -> dict:
@@ -616,7 +544,7 @@ while True:
         )
         to_currency = lm.data.currency(args.to_currency)
         rounded_value = lm.scalar.roundas(converted_value, to_currency)
-        result = lm.scalar.l10n(rounded_value, to_currency, system_locale)
+        result = lm.scalar.l10n(rounded_value, to_currency, lm.data.system_locale())
         print(result)
 ```
 
@@ -799,21 +727,8 @@ import argparse
 import time
 import urllib.request
 import json
-import locale as posix_locale
 
 import linearmoney as lm
-
-if None in posix_locale.getlocale(posix_locale.LC_MONETARY):
-    # Set the locale of the python session to the system locale.
-    posix_locale.setlocale(posix_locale.LC_ALL, "")
-
-system_locale_string: str | None = posix_locale.getlocale()[0]
-assert (
-    system_locale_string is not None
-), "We init the system locale above, so it should not be None."
-language, region = system_locale_string.split("_")
-
-system_locale = lm.data.locale(language, region)
 
 
 def request_rates() -> dict:
@@ -896,7 +811,7 @@ while True:
         )
         to_currency = lm.data.currency(args.to_currency)
         rounded_value = lm.scalar.roundas(converted_value, to_currency)
-        result = lm.scalar.l10n(rounded_value, to_currency, system_locale)
+        result = lm.scalar.l10n(rounded_value, to_currency, lm.data.system_locale())
         print(result)
 ```
 
