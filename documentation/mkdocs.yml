@@ -10,7 +10,7 @@ use_directory_urls: false
 nav:
     - Home: index.md
     - User Guide:
-        - Quickstart: quickstart_tutorial.md
+        - Quickstart: quickstart.md
         - Recipes: recipes.md
         - Glossary: glossary.md
         - FAQ: FAQ.md

@@ -504,10 +504,6 @@ def store(vec: MoneyVector) -> str:
     return ":".join(component_list)
 
 
-# TypeVar needed for typechecking subclasses returned in place of base class.
-# V = TypeVar("V", bound="MoneyVector")
-
-
 @cache.cached()
 def restore(serial_str: str) -> MoneyVector:
     """Recreate a `MoneyVector` from a serialized string.
