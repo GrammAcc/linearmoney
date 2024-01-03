@@ -135,7 +135,7 @@ linearmoney library's state model.
 
 ## Datasource
 
-Datasources are Frozen Dataclasses that define a store of data used by the
+Datasources are Frozen dataclasses that define a store of data used by the
 linearmoney library for data-driven functional APIs. For example, formatting
 data used for localization.
 

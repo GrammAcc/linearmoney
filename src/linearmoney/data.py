@@ -2,6 +2,7 @@ from __future__ import annotations
 
 __all__ = [
     "locale",
+    "system_locale",
     "currency",
     "FormatType",
     "DataMap",
@@ -16,6 +17,7 @@ import enum
 from collections.abc import MutableMapping, Mapping
 from typing import TypedDict, Any, cast
 from dataclasses import dataclass
+import locale as posix_locale
 
 from linearmoney import cache, resources
 from linearmoney.mixins import ImmutableDeduplicationMixin, EqualityByHashMixin
@@ -99,7 +101,20 @@ class LocaleData(EqualityByHashMixin):
 
     @property
     def id(self) -> tuple[str, str, FormatType]:
+        """Identifies the locale, but not necessarily the unique data of the locale.
+
+        Represents the positional arguments used to create this instance.
+        See [Datasources](/linearmoney/glossary.html#datasource) in the glossary
+        for more details.
+        """
+
         return (self.language, self.region, self.nformat)
+
+    @property
+    def tag(self) -> str:
+        """The [`Locale Tag`](/linearmoney/glossary.html#locale-tag) for this locale."""
+
+        return "_".join([self.language, self.region])
 
     def __hash__(self) -> int:
         return hash((self.id, self.data))
@@ -241,6 +256,31 @@ Locale data not available under number format {nformat}"
         )
 
 
+# Set up system locale.
+if None in posix_locale.getlocale(posix_locale.LC_MONETARY):
+    # Set the locale of the python session to the running system locale.
+    posix_locale.setlocale(posix_locale.LC_ALL, "")
+
+
+def system_locale() -> LocaleData:
+    """The `LocaleData` of the current POSIX locale of the running
+    Python process.
+
+    This is useful for local applications such as commandline scripts
+    and desktop apps since those applications usually don't need to support
+    multiple locales, but the developer doesn't always know the locale of the
+    end user's environment.
+    """
+
+    system_locale_string: str | None = posix_locale.getlocale()[0]
+    assert (
+        system_locale_string is not None
+    ), "We init the system locale above, so it should not be None."
+    language, region = system_locale_string.split("_")
+
+    return locale(language, region)
+
+
 class CurrencyMap(TypedDict):
     """Represents the structure of denominational/rounding data for currencies.
 
@@ -267,6 +307,13 @@ class CurrencyData(EqualityByHashMixin):
 
     @property
     def id(self) -> tuple[str]:
+        """Identifies the currency, but not necessarily the unique data of the currency.
+
+        Represents the positional arguments used to create this instance.
+        See [Datasources](/linearmoney/glossary.html#datasource) in the glossary
+        for more details.
+        """
+
         return (self.iso_code,)
 
     def __hash__(self) -> int:
