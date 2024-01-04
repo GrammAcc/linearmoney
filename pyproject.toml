@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "linearmoney"
-version = "0.1.0"
+version = "0.1.1"
 description = "Full multi-currency support for python."
 authors = ["GrammAcc <grammaticallyacceptable@grammacc.dev>"]
 maintainers = ["GrammAcc <grammaticallyacceptable@grammacc.dev>"]
