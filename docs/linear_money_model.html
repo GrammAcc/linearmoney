@@ -422,21 +422,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="The Dilemma">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#disclaimer" class="md-nav__link">
-    <span class="md-ellipsis">
-      Disclaimer
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -641,21 +626,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="The Dilemma">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#disclaimer" class="md-nav__link">
-    <span class="md-ellipsis">
-      Disclaimer
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -788,6 +758,11 @@
 
 
 <h1 id="a-linear-algebraic-model-for-monetary-data">A Linear-Algebraic Model for Monetary Data</h1>
+<p>Published: 01-Jan-2024
+<br/>
+Update: 05-Jan-2024 - Style and Structure.</p>
+<p>View the update history for this article on
+<a href="https://github.com/GrammAcc/linearmoney/commits/main/documentation/md/linear_money_model.md">GitHub</a>.</p>
 <h2 id="author">Author</h2>
 <p>Dalton Lang
 <br/>
@@ -797,35 +772,47 @@
 than it should be, particularly when developing modern multi-currency applications
 for international users. The root cause of this is a fundamental misunderstanding
 of the mathematical properties of money among programmers, which stems from a lack of a
-formal mathematical definition of money itself. In this article, I attempt to
+formal mathematical definition of money itself. In this article, I will attempt to
 extrapolate the mathematical properties of money from its functional properties in
 order to make it easier to work with money programmatically and to be able to more
 reliably prove the correctness of financial calculations in general.</p>
-<p>I start by defining the specific problem in detail and identifying the common
-characteristics of the typical implementation of money in financial applications and
-why the current standard doesn't solve the problem entirely. I then develop a purely
-mathematical model for working with monetary data, but I do so in a gradual way
-so as to communicate the purpose of each piece of the model and make the final
-iteration more intelligible and also to inform an intuition about the mathematical
-properties of money that will make it easier to avoid pitfalls when doing monetary
-calculations.</p>
+<p>I will gradually develop a purely mathematical model for working with monetary data
+to communicate the purpose of each piece and make the final iteration more
+intelligible. This will also serve to form an intuitive understanding
+of the mathematical properties of money that will make it easier to avoid
+pitfalls when performing monetary calculations.</p>
+<p>I will start by discussing the current best practices for working with currency
+programmatically and the difficulties that they present.
+The current practices are based on the foundational work by Martin Fowler, which
+I will use as a reference point and a foundation for the model to be
+developed, but my intention is not to
+discredit the work of Fowler and his colleagues at Thoughtworks or anyone
+else who has made contributions to the collective knowledge of our field. Nor
+is it to develop a pattern or framework to replace these ideas. My intention with
+this article is simply to identify and resolve a lack of clarity
+of the mathematical rules that underlie these patterns in order to simplify their
+implementation and maintenance in modern applications.</p>
 <h2 id="introduction">Introduction</h2>
 <p>Traditional financial applications treat money as a simple data structure consisting of
 an amount and a currency. This is an intuitive representation of money, and it is
 certainly possible to build large scale financial applications based on this kind of
-structure since all modern financial infrastructure does so, but this is a deceptively
+structure since all modern financial infrastructure does so. However, this is a
+deceptively
 inaccurate representation of money with many pitfalls waiting for the unprepared.
 The reason for this is that this model only considers the intrinsic properties of
 money as an object, not its functional properties as, well, money.</p>
-<p>In order for some object to be used as money, it must satisfy three functional properties:</p>
+<p>In order for an object to be used as money, it must satisfy three functional properties:</p>
 <ol>
 <li>Unit of account</li>
 <li>Medium of exchange</li>
 <li>Store of value</li>
 </ol>
-<p><em>Medium of exchange</em> is simple. We just have to be able to exchange the object for
-some other object at some pre-determined rate.</p>
-<p><em>Store of value</em> just means that the object will still have value at some arbitrary
+<p><a href="https://en.wikipedia.org/wiki/Money#Functions">Wikipedia</a> has a lot of information on
+these properties and their history, but I will summarize them as they relate to our
+model.</p>
+<p><em>Medium of exchange</em> is simple. We have to be able to exchange the monetary object
+for other arbitrary objects at some pre-determined rate.</p>
+<p><em>Store of value</em> simply means that the object will still have value at some arbitrary
 point in the future. This might not seem like something that a mathematical model needs
 to worry about since it's more of a property of the physical object, but we will see
 later on that this is something we need to consider when creating a model that
@@ -833,8 +820,8 @@ guarantees mathematical correctness of monetary calculations.</p>
 <p><em>Unit of account</em> is also so simple it's not often thought about. It means that we
 have to be able to use <em>units</em> of the object in order to value other objects.
 This property is required in order for the object to be a <em>medium of exchange</em> or a
-<em>store of value</em> since we can't exchange the object for any other arbitrary object
-without valuing the other objects in units of our medium, and we can't have value
+<em>store of value</em>. This is because we can't exchange the object for another arbitrary object
+without valuing the other object in units of our medium. We also can't have value
 stored into the future unless we can value the object in terms of what we can exchange
 it for.</p>
 <p>The standard approach of simply pairing an amount with a currency only satisfies
@@ -847,40 +834,36 @@ able to encode all three of these properties at the mathematical level without a
 logical orchestration in code.</p>
 <h2 id="the-dilemma">The Dilemma</h2>
 <p>Defining a mathematical object that can satisfy the functional properties of money is
-easier said than done.</p>
-<p>Martin Fowler's <em>Money</em> pattern<sup><a href="#1">[1]</a></sup> is a good starting place
+easier said than done. Martin Fowler's <em>Money</em> pattern<sup><a href="#1">[1]</a></sup> is a
+good starting place
 considering it is effectively the original source of the current de facto money
-implementation.</p>
-<p>The core concept of Fowler's <em>Money</em> pattern is that we have a class that encapsulates
+implementation. The core concept of Fowler's <em>Money</em> pattern is that we have a class
+that encapsulates
 an amount and a currency together in one object that can be used in arithmetic
 operations. This is a simple idea that seems obvious in hindsight, but it was a
 foundational idea for application design, and most applications that do anything with
-money are at least partially inspired by it, but the difficulty with Fowler's
-pattern, and by consequence most, if not all, modern money frameworks, is that they
+money are at least partially inspired by it. The difficulty with Fowler's
+pattern and by consequence most, if not all, modern money frameworks, is that they
 treat money as a collection of separate pieces of data. An amount, a currency, an
 exchange rate, rounding rules, etc... This creates a fundamental problem when working
 with money in applications because the math that we can do with them is limited to the
 math that can be done with abstract numbers, but we need to do math with concrete
-numbers (e.g. 10 USD, 15 EUR, etc...), and to support modern applications, we need some
+numbers (e.g. 10 USD, 15 EUR, etc...). To support modern applications, we need some
 kind of mathematical model that can handle calculations with multiple different
 currencies at once without having to encode the <em>concreteness</em> of our monies in
 separate objects.</p>
-<p>The pattern presented by Fowler in his book is foundational for working with monetary
-data in Object-oriented programs, but it needs some expansion in order to alleviate
-the numerous headaches that come from working with money in modern multi-currency
-applications as well as functional programs.</p>
 <p>Most modern currency frameworks improve upon Fowler's original single-class pattern, but
 they tend to focus on adding scaffolding around the original single-class pattern to
-handle other things like formatting and exchange, which has created some very useful
+handle other things like formatting and exchange. This has created some very useful
 frameworks that make life easier for the programmers that use them, but it ends up making
 the resulting framework more useful in a specific context without solving the general
 problem of working with monetary data programmatically, so not all applications benefit
-from or are able to use these frameworks, and there is nothing in place to make the work
+from or are able to use these frameworks. There is nothing in place to make the work
 of the framework authors easier, so improvements to existing frameworks and new, better
 frameworks are few and far between.</p>
 <p>The real issue we need to solve if we want a robust and language-agnostic pattern for
 working with money is not how to structure all of the separate pieces of data that can
-affect financial information, but how to actually do math with <em>money</em> instead of just
+affect financial information, but how to actually do math with <em>money</em> instead of only
 numbers. If we can figure that out, then implementing any kind of currency framework
 will be much easier since we will have mathematically enforceable rules to guide our
 design decisions.</p>
@@ -888,8 +871,8 @@ design decisions.</p>
 attempts to do math on integers or decimals instead of concrete monies, which causes
 the programmer (or pattern designer) to have to define their own rules of mathematics
 for working with money. Fowler actually points out this dilemma in his book when he
-discusses
-arithmetic between different currencies, and he mentions that the simplest solution
+discusses arithmetic between different currencies.
+He mentions that the simplest solution
 is to treat the addition/subtraction of two different currencies as an error, but it's
 also possible to use a structure like Ward Cunningham's
 <em>Money Bag</em>, an object that tracks values in multiple currencies
@@ -903,7 +886,7 @@ the application. This is understandable since the solution would be project-depe
 when using this pattern, but this design decision the programmer has to make is
 deceptively problematic.</p>
 <p>It might not seem like it at first, but when we make these kinds of decisions, we are
-essentially redefining the rules of mathematics as they apply to money, and this has
+essentially redefining the rules of mathematics as they apply to money. This has
 very far-reaching consequences when we start doing more complicated things like
 integrating with third-party services or serializing monetary data since our
 calculations with money affect the accuracy of our data which has a very
@@ -949,20 +932,6 @@ be any established mathematical rules for this, so I would argue that without
 mathematical truth to guide us, we have been including FourCheeseBlends in our
 financial applications for as long as we've been building them. We just haven't
 realized it yet.</p>
-<h4 id="disclaimer">Disclaimer</h4>
-<p>At this point, I should point out that my intention is not to
-discredit the work of Martin Fowler and his colleagues at Thoughtworks or anyone
-else who has made contributions to the collective knowledge of our field.</p>
-<p>Fowler's original <em>Money</em> pattern has played a foundational role in supporting
-all of the financial infrastructure of the modern world, so it is by no means a
-small contribution, and my simplified explanation of the pattern above does not do its
-significance justice in any way.</p>
-<p>I have nothing but respect for the brilliant minds that contributed to these
-ideas, and I want to clarify that my intention with this article is not to develop
-any kind of programming pattern or solution that could replace Fowler's or anyone
-else's established money patterns, but instead to identify and resolve a lack of
-clarity of the mathematical rules that underlie those patterns in order to simplify
-their implementation and maintenance in modern applications.</p>
 <hr />
 <h2 id="developing-the-model">Developing the Model</h2>
 <p>As mentioned in the previous section, to the best of my knowledge, there are no
@@ -997,21 +966,21 @@ corresponds to.</p>
 <p>For #2, we have to satisfy #1 since we can't exchange an object or token for something
 else unless we can value the other object in terms of a certain number of countable
 units of our monetary object, but we also need to somehow show that a monetary object
-is convertible to some other object at a specified rate in order to mathematically
+is convertible to other arbitrary objects at a specified rate in order to mathematically
 represent this property of money, so in order for our model to support #2, it
 needs to support conversion of currencies with foreign exchange rates between them or
 some other mathematical operation that corresponds to the exchange of a monetary
 object for some other object.</p>
-<p>For #3, we mostly just need to support #2 since the property of a <em>store of value</em>
-essentially just means that we can still use the object as a <em>medium of exchange</em> at
+<p>For #3, we need to support #2 since the property of a <em>store of value</em>
+simply means that we can still use the object as a <em>medium of exchange</em> at
 some point in the future, but this is subtly difficult as it requires us to include some
 means of calculating the temporal nature of money in our model, otherwise we can't
 really prove that a <em>medium of exchange</em> used today is still a <em>medium of exchange</em>
 tomorrow.</p>
 <p>With this in mind, we need to ensure that our mathematical object has some way to
-ensure these three properties are not lost when we perform calculations on monetary
+ensure that these three properties are not lost when we perform calculations on monetary
 amounts, but we don't necessarily need to satisfy all three properties with a single
-mathematical <em>object</em>, and we can use functions and higher level mathematical constructs
+mathematical object. We can use functions and higher level mathematical constructs
 in our model in order to satisfy all three properties for the model as a whole.</p>
 <hr />
 <h3 id="a-mathematical-money-object">A Mathematical Money Object</h3>
@@ -1020,7 +989,7 @@ it satisfies our requirements.</p>
 <p>For #1, the standard implementation based on Fowler's pattern associates a single
 amount with a single currency inside an object to ensure we are always aware of the
 concreteness of the numbers we are working with, but this is an incomplete data model
-because a concrete number is still just a number mathematically, so using an
+because a concrete number is still only a number mathematically, so using an
 object-oriented approach to encapsulating the amount and currency together in one object
 requires us to conceptually strip the currency away before and reattach it after any
 calculation we perform on the monetary amount, which is additional logical overhead for
@@ -1047,12 +1016,12 @@ scaffolding to support the other properties of money ourselves.</p>
 encoding and doing calculations with concrete numbers as that will ensure that our
 mathematical object represents something that is countable.</p>
 <h3 id="countable-monies">Countable Monies</h3>
-<p>If we're looking for a mathematical object to represent a concrete number we can find
-inspiration with mathematical representations of other units of measure, and just like
+<p>If we're looking for a mathematical object to represent a concrete number, we can find
+inspiration with mathematical representations of other units of measure. Just like
 Length, Width, and Height can be represented as a 3-dimensional vector in Euclidean
 space, we can represent a monetary amount of multiple currencies as an N-dimensional
-vector of concrete numbers representing each of the N currencies we are working with
-in an N-dimensional vector space over the reals.</p>
+vector of concrete numbers. Each component of the vector will represent one of the N
+currencies we are working with in an N-dimensional vector space over the reals.</p>
 <p>For example, if we have 6 EUR and 10 USD in our wallet, we can represent the monetary
 value of our wallet as the vector <span class="arithmatex">\((6,10)\)</span> assuming that we are only tracking EUR and
 USD in our application. If we were to add JPY to our application, we would have the
@@ -1104,10 +1073,10 @@ algebra would keep our math consistent, but this would not reflect the reality o
 It doesn't make much sense to multiply an arbitrary object by another arbitrary object
 whether it is a physical object or a conceptual token. The properties of a
 <em>unit of account</em> as a quantity of some kind of object are universal whether the object
-is physical or not, so the intuition informed by the examples above holds for money in
+is physical or not, so the intuition we develop through this model holds for money in
 general.</p>
-<p>Okay, we have a vector space, and we can define physical assets as vectors, which we
-can use in arithmetic, so we've mathematically satisfied the properties of a
+<p>We have a vector space, we can define physical assets as vectors, and we
+can use them in arithmetic, so we've mathematically satisfied the properties of a
 <em>unit of account</em>, but we need to be able to convert those physical assets to different
 currencies in order to satisfy the properties of a <em>store of value</em> and
 <em>medium of exchange</em> and finally get past the limitations we've faced for two
@@ -1134,14 +1103,14 @@ corresponding currency <strong><em>to</em></strong> the target currency and then
 to get the full value of the money vector in the target currency only.</p>
 <p>That sounds a lot like the dot product, doesn't it? Let's see what that looks like:</p>
 <div class="arithmatex">\[ \langle u,r \rangle = (6 \cdot 1.0 + 500 \cdot 0.004 + 20 \cdot 0.4) = (6 + 2 + 8) = 16 \]</div>
-<p>Okay, this works, but now our result is just an abstract number, so we've lost our
+<p>This works, but now our result is only an abstract number, so we've lost our
 ability to encode the fact that this is a concrete number that represents 16 EUR and
-not just 16.</p>
+not only 16.</p>
 <p>To solve that, we can multiply the result of the dot product calculation with the basis
 vector <span class="arithmatex">\(e_k\)</span> that corresponds to the target currency since that vector is all 0s except
 for the target currency, which will be 1:</p>
 <div class="arithmatex">\[ \langle u,r \rangle e_1 = 16 (1, 0, 0) = (16, 0, 0) = 16\ EUR \]</div>
-<p>Okay, but what if we want to convert to JPY or any other currency, but we don't have
+<p>But what if we want to convert to JPY or any other currency, but we don't have
 a rates vector for that currency? That is to say, what if the only rates vector we
 have is the <span class="arithmatex">\(r\)</span> vector representing the rates <strong><em>to</em></strong> EUR, but we want to convert
 to another currency in <span class="arithmatex">\(V\)</span>?</p>
@@ -1199,16 +1168,16 @@ builder notation used for <span class="arithmatex">\(\gamma\)</span>, all compon
 apply this transformation to all components of <span class="arithmatex">\(r\)</span> in order to obtain the gamma set:</p>
 <div class="arithmatex">\[ \{ r \in V\ |\ (\forall r_k) r_k \not = 0 \} \]</div>
 <p>This limitation is not simply a coincidence. Conceptually, forex rates represent the
-values of currencies in relation to each other, and the transformation has the effect
+values of currencies in relation to each other, and this transformation has the effect
 of inverting this relationship for all of the currencies in <span class="arithmatex">\(r\)</span>. It doesn't make sense
 for any of the components of <span class="arithmatex">\(r\)</span> to be 0 because, by the conceptual definition of
-money, a currency cannot have a value of 0 or it would not be usable as a
-<em>store of value</em>, or as a <em>medium of exchange</em>. To illustrate this further, take a
+money, a currency cannot have a value of 0. If it did, it would not be usable as a
+<em>store of value</em> or a <em>medium of exchange</em>. To illustrate this further, take a
 defunct currency that is no longer in circulation. It may have some value for
 collectors that would be willing to pay money to obtain it, but this exchange is in
 the form of the exchange of money for goods, not money for money, and you would not be
 able to use the defunct currency at the grocery store or to pay your rent, so it does
-not qualify as a general <em>medium of exchange</em>, and if it can't be universally
+not qualify as a general <em>medium of exchange</em>. If it can't be universally
 exchanged, then it can't store universal value into the future, so it is also not
 usable as a <em>store of value</em>. Any other situation that would result in an exchange rate
 of 0 will also represent an object that does not qualify as a general medium of
@@ -1227,10 +1196,10 @@ of <span class="arithmatex">\(r\)</span> must be exactly 1:</p>
 <span class="arithmatex">\(\gamma_1\)</span>: <span class="arithmatex">\((1.0, 0.008, 0.8)\)</span></p>
 <p>This is problematic because in order for our model to remain consistent, we need the
 equality: <span class="arithmatex">\(\gamma_k \equiv r\)</span> to hold when <span class="arithmatex">\(k\)</span> is the index of the currency that <span class="arithmatex">\(r\)</span>
-represents the rates <strong><em>to</em></strong>, otherwise, we can't trust that <span class="arithmatex">\(\gamma_k\)</span> represents
+represents the rates <strong><em>to</em></strong>. Otherwise, we can't trust that <span class="arithmatex">\(\gamma_k\)</span> represents
 the rates <strong><em>to</em></strong> the target currency. In the example above, this currency is
 EUR, and this equality does not hold. The reason is because <span class="arithmatex">\(r\)</span> does not correctly
-represent the rates to <em>any</em> currency in <span class="arithmatex">\(V\)</span>. This is proved because our vectors
+represent the rates to <em>any</em> currency in <span class="arithmatex">\(V\)</span>. This is proven because our vectors
 always include <em>all</em> currencies in the space <span class="arithmatex">\(V\)</span>, and any vector that represents the
 rates <strong><em>to</em></strong> a currency in <span class="arithmatex">\(V\)</span> will have a value of 1 for the component corresponding
 to the target currency since any currency has an exchange rate of 1 with itself.
@@ -1273,12 +1242,13 @@ model <em>movement</em> of objects in 3D space through vector transformations.</
 <p>It's helpful to think of the vector space <span class="arithmatex">\(V\)</span> as a <em>Currency Space</em>, and the gamma set
 as a set of linear transformations of the Currency Space.
 This terminology is useful because it describes the actual mathematical behavior
-of money; within <span class="arithmatex">\(V\)</span>, we can represent monetary values of the currencies
+of money. Within <span class="arithmatex">\(V\)</span>, we can represent monetary values of the currencies
 in <span class="arithmatex">\(V\)</span> as arbitrary vectors, and we can track the fluctuations of the values of those
 currencies over time via <span class="arithmatex">\(\gamma\)</span>.</p>
 <p>In this way, we can model the <em>movement</em> of monetary values over time, which provides
 us with the final piece needed to satisfy the properties of a <em>store of value</em>
-mathematically, but we can still improve the practical usability of our model.</p>
+mathematically. This model is technically sufficient for representing money
+mathematically, but we can still improve the practical usability of it.</p>
 <h3 id="evaluation">Evaluation</h3>
 <p>The model we have defined so far technically satisfies the functional properties of
 money, but there is another conceptual operation that we can add to our model to
@@ -1322,7 +1292,8 @@ calculation before a transaction, "how much is this in xyz?".</li>
 </ul>
 </li>
 </ul>
-<p>Okay, so how do we represent the <em>Evaluate</em> operation mathematically?</p>
+<p>Given the above description, how do we represent the <em>Evaluate</em> operation
+mathematically?</p>
 <p><em>Evaluation</em> essentially boils down to checking the value of a conversion before
 committing to the full transaction, and if we recall our definition of the <em>convert</em>
 function:</p>
@@ -1356,14 +1327,14 @@ everything we need for our complete mathematical model of money and a little bit
 <div class="arithmatex">\[ C(v)_k = E(v)_k e_k \]</div>
 <h2 id="notes-on-performance">Notes on Performance</h2>
 <p>Most programmers would have noticed that, with this model, monetary calculations
-are in linear time, and at first glance, it definitely seems like this would make
+are in linear time. At first glance, it definitely seems like this would make
 calculations much slower than a traditional model, but this is not necessarily true.</p>
 <p>I won't make any assertions about the specific performance of the linear model
 compared to the traditional model since I have not profiled them against each
 other, and there are too many factors that contribute to performance to draw a
 meaningful conclusion about the difference, but I want to clarify that the time
 complexity of the linear model is not usually linear in practice.</p>
-<p>Generally speaking, calculations in the linear model would run in O(n) time where
+<p>Generally speaking, calculations in the linear model would run in O(n) time, where
 <em>n</em> is the dimension of our currency space, but because most practical applications
 will not change the currency space at run-time, we can consider the running time to be
 constant.</p>
@@ -1372,13 +1343,14 @@ in our previous examples, then the running time for calculations would be O(3) s
 <em>n</em> is constant at run-time. This is not simply a pedantic difference because the running
 time of calculations between two vectors really does remain constant with respect to
 input. Of course, the constant multiplier of 3 means that even if we add two vectors
-that only have one component with a value such as two vectors of just USD where EUR and
+that only have one component with a value, such as two vectors of only USD where EUR and
 JPY are both 0, then the running time will still be O(3) even though only one value of
 each of the vectors is actually
-relevant to the calculation, so in some situations, the traditional model will be more
+relevant to the calculation. From this, we see that in some situations the
+traditional model will be more
 efficient, but in practice, if the application does need to do calculations with
-multiple currencies, then the running time of the traditional model will still be O(n)
-where <em>n</em> is the number of currencies involved. Additionally, in the traditional
+multiple currencies, then the running time of the traditional model will still be
+O(n), where <em>n</em> is the number of currencies involved. Additionally, in the traditional
 model, each of those <em>n</em> calculations are between user-defined types, but in the linear
 model, each of the <em>n</em> calculations are between primitive numeric types, so the constant
 factor of each individual calculation should be lower in both CPU time and memory usage
@@ -1424,10 +1396,11 @@ with monetary values should work due to the mathematical rules of linear algebra
 <p>Additionally, because of the rules of linear algebra, we can easily use
 monetary values in calculations in other schools of math that have rules for
 interpreting
-vectors such as calculus and exterior algebra. Whether this is useful or
-not, I don't know, but it's
-interesting to think about using this model with manifolds or tensors to simulate
-more complex financial systems.</p>
+vectors such as calculus and exterior algebra. This is likely useful for Economics
+where linear algebra and calculus are already used frequently, but
+it could also prove useful for developing complex models through dimensional
+analysis since it provides a clear definition of the mathematical structure of
+monetary values as units of currencies.</p>
 <p>I hope that this article has provided some insight into the mathematical properties
 of money and how we can leverage these properties to create more robust financial
 applications.</p>
