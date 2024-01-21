@@ -125,4 +125,5 @@ Version 1.0.0:
 - [ ] Recipes to add
   - [ ] Use-cases without vectors
 - [ ] Refactor CLDR data processing script
+  - [#11](https://github.com/GrammAcc/linearmoney/issues/11)
 - [ ] Add contributing guidelines and setup CI
