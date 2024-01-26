@@ -16,7 +16,10 @@ from typing import Literal, Any, TypeAlias
 import linearmoney as lm
 
 ResourceName: TypeAlias = (
-    Literal["locales"] | Literal["currencies"] | Literal["supported_iso_codes"]
+    Literal["locales"]
+    | Literal["currencies"]
+    | Literal["supported_iso_codes"]
+    | Literal["cldr_version"]
 )
 
 

@@ -319,3 +319,9 @@ with open("src/linearmoney/currencies.json", "w") as json_file:
 
 with open("src/linearmoney/supported_iso_codes.json", "w") as json_file:
     json.dump(sorted(supported_currencies), json_file)
+
+with open("cldr-json/cldr-json/cldr-core/package.json", "r") as file:
+    data = json.load(file)
+    CLDR_VERSION = data["version"]
+    with open("src/linearmoney/cldr_version.json", "w") as json_file:
+        json.dump(CLDR_VERSION, json_file)
