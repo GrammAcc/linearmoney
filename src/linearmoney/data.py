@@ -139,7 +139,7 @@ _REQUIRED_LOCALE_KEYS = {
 
 
 @cache.cached()
-def _merge_locale_overrides(locales: LocaleData, **overrides) -> LocaleData:
+def _merge_locale_overrides(locales: LocaleMap, **overrides) -> LocaleMap:
     """Merge any values given by keyword arguments into the resulting locale data,
     overriding the values for the corresponding keys in `locales`."""
 
@@ -329,11 +329,11 @@ _REQUIRED_CURRENCY_KEYS = {
 
 
 @cache.cached()
-def _merge_currency_overrides(currencies: CurrencyData, **overrides) -> CurrencyData:
+def _merge_currency_overrides(currencies: CurrencyMap, **overrides) -> CurrencyMap:
     """Merge any values given by keyword arguments into the resulting currencies data
     overriding the values for the corresponding keys in `currencies`."""
 
-    new_currencies: CurrencyData = copy.deepcopy(currencies)
+    new_currencies = copy.deepcopy(currencies)
 
     for i in _REQUIRED_CURRENCY_KEYS:
         if i in overrides:
@@ -386,7 +386,7 @@ def currency(iso_code: str, **overrides) -> CurrencyData:
 You must provide all rounding data for unknown currency."
             )
 
-    currencies: CurrencyData
+    currencies: CurrencyMap
     if iso_code in _fallback_currencies:
         currencies = _fallback_currencies[iso_code]
     else:
