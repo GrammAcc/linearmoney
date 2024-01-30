@@ -13,7 +13,7 @@ documentation = "https://grammacc.github.io/linearmoney"
 include = ["*.json", "py.typed"]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.11"
 
 [tool.poetry.group.dev.dependencies]
 tox = "^4.6.4"
