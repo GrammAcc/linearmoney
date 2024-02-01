@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "linearmoney"
 dynamic = ["version"]
@@ -33,16 +37,100 @@ ignore-vcs = true
 include = ["*.json", "py.typed"]
 
 
+# This is needed for hatchling to find the version in the package __init__.py file.
 # See https://github.com/pypa/hatch/issues/981#issuecomment-1743631364
 [tool.hatch.build.targets.sdist]
 include = ["src"]
 
+# This is needed for hatchling to find the version in the package __init__.py file.
+# See https://github.com/pypa/hatch/issues/981#issuecomment-1743631364
 [tool.hatch.build.targets.wheel]
 packages = ["src/linearmoney"]
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+
+[tool.hatch.envs.default]
+python = "3.12"
+
+[tool.hatch.envs.default.scripts]
+ci = [
+    "- hatch run test:suite",
+    "- hatch run -py=3.11 test:cov",
+    "- hatch run docs:test",
+    "- hatch run types:check",
+    "- hatch run style:format",
+    "- hatch run style:lintsrc",
+    "- hatch run style:linttests",
+    "- hatch run style:lintdocs",
+]
+
+
+[tool.hatch.envs.test]
+description = "Test Suite and Coverage Reporting"
+dependencies = [
+    "pytest",
+    "pytest-cov",
+    "pytest-parametrize-cases",
+    "pytest-lazy-fixtures",
+    "pdoc",
+]
+
+[[tool.hatch.envs.test.matrix]]
+python = ["3.11", "3.12"]
+
+[tool.hatch.envs.test.scripts]
+suite = "- pytest"
+cov = "- pytest --cov-config=pyproject.toml --cov-report html:htmlcov --cov=linearmoney"
+doctest = [
+    "- pytest --doctest-glob='*.md' README.md documentation",
+    "- python documentation/run_doctests.py",
+]
+prod = "- pip install --force-reinstall -i https://test.pypi.org/simple linearmoney && pytest"
+
+
+[tool.hatch.envs.types]
+description = "Run static type checker"
+dependencies = ["mypy"]
+
+[tool.hatch.envs.types.scripts]
+check = "mypy -p linearmoney"
+
+
+[tool.hatch.envs.style]
+detached = true
+python = "3.12"
+description = "Autoformatting and Linting"
+dependencies = [
+    "black",
+    "flake8",
+]
+[tool.hatch.envs.style.scripts]
+format = "black ."
+lintsrc = "flake8 src"
+linttests = "flake8 --extend-ignore E501 tests"
+lintdocs = "flake8 documentation"
+
+
+[tool.hatch.envs.docs]
+description = "Documentation generation and utilities"
+dependencies = [
+    "pdoc",
+    "mkdocs",
+    "mkdocs-material",
+    "pytest",
+]
+
+[tool.hatch.envs.docs.scripts]
+build = [
+    "- sh -c 'pygmentize -f html -a .language-python -S default > documentation/md/syntax-highlighting.css'",
+    "- pdoc 'linearmoney' --docformat='google' --output-directory='documentation/md/api_reference' --template-directory='documentation/pdoc_templates'",
+    "- mkdocs build -f documentation/mkdocs.yml",
+]
+serve = "python documentation/serve.py"
+test = [
+    "- pytest --doctest-glob='*.md' README.md documentation",
+    "- python documentation/run_doctests.py",
+]
+
 
 [tool.pytest.ini_options]
 log_file="testsuite.log"
@@ -55,9 +143,7 @@ exclude_lines = [
     "if TYPE_CHECKING:",
     "@abstractmethod",
 ]
-omit = [
-    "_utils.py",
-]
+omit = ["_utils.py"]
 
 [tool.coverage.run]
 source = ["linearmoney"]
