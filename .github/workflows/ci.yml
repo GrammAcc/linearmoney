@@ -1,0 +1,52 @@
+name: Linearmoney CI
+
+on:
+  push:
+    branches: ["main", "dev"]
+  pull_request:
+    branches: ["main", "dev"]
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Locales
+        run: |
+          sudo locale-gen ja_JP
+          sudo update-locale
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: |
+            3.11
+            3.12
+      - name: Install Hatch
+        run: pipx install hatch
+      - name: Run Hatch CI
+        run: hatch run ci
+  # windows:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-python@v5
+  #       with:
+  #         python-version: |
+  #           3.11
+  #           3.12
+  #     - name: Install Hatch
+  #       run: pipx install hatch
+  #     - name: Run Hatch CI
+  #       run: hatch run ci
+  mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: |
+            3.11
+            3.12
+      - name: Install Hatch
+        run: pipx install hatch
+      - name: Run Hatch CI
+        run: hatch run ci

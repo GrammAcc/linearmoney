@@ -22,7 +22,6 @@ repository = "https://github.com/GrammAcc/linearmoney"
 
 [project.optional-dependencies]
 dev = [
-    "tox>=4.6.4",
     "pytest",
     "pytest-parametrize-cases",
     "pytest-lazy-fixtures",
@@ -53,11 +52,22 @@ python = "3.12"
 
 [tool.hatch.envs.default.scripts]
 ci = [
+    "hatch run test:suite",
+    "hatch run -py=3.11 test:cov",
+    "hatch run docs:test-prose",
+    "hatch run docs:test-in-source",
+    "hatch run types:check",
+    "hatch run style:lintsrc",
+    "hatch run style:linttests",
+    "hatch run style:lintdocs",
+]
+all = [
+    "hatch run style:format",
     "- hatch run test:suite",
     "- hatch run -py=3.11 test:cov",
-    "- hatch run docs:test",
+    "- hatch run docs:test-prose",
+    "- hatch run docs:test-in-source",
     "- hatch run types:check",
-    "- hatch run style:format",
     "- hatch run style:lintsrc",
     "- hatch run style:linttests",
     "- hatch run style:lintdocs",
@@ -71,19 +81,14 @@ dependencies = [
     "pytest-cov",
     "pytest-parametrize-cases",
     "pytest-lazy-fixtures",
-    "pdoc",
 ]
 
 [[tool.hatch.envs.test.matrix]]
 python = ["3.11", "3.12"]
 
 [tool.hatch.envs.test.scripts]
-suite = "- pytest"
-cov = "- pytest --cov-config=pyproject.toml --cov-report html:htmlcov --cov=linearmoney"
-doctest = [
-    "- pytest --doctest-glob='*.md' README.md documentation",
-    "- python documentation/run_doctests.py",
-]
+suite = "pytest"
+cov = "pytest --cov-config=pyproject.toml --cov-report html:htmlcov --cov=linearmoney"
 prod = "- pip install --force-reinstall -i https://test.pypi.org/simple linearmoney && pytest"
 
 
@@ -103,6 +108,7 @@ dependencies = [
     "black",
     "flake8",
 ]
+
 [tool.hatch.envs.style.scripts]
 format = "black ."
 lintsrc = "flake8 src"
@@ -126,16 +132,15 @@ build = [
     "- mkdocs build -f documentation/mkdocs.yml",
 ]
 serve = "python documentation/serve.py"
-test = [
-    "- pytest --doctest-glob='*.md' README.md documentation",
-    "- python documentation/run_doctests.py",
-]
+test-prose = "pytest --doctest-glob='*.md' README.md documentation"
+test-in-source = "python documentation/run_doctests.py"
 
 
 [tool.pytest.ini_options]
 log_file="testsuite.log"
 log_file_level="DEBUG"
 addopts = "--import-mode=importlib --show-capture=no --ignore=cldr-json"
+
 
 [tool.coverage.report]
 exclude_lines = [
