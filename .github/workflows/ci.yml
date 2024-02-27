@@ -13,6 +13,7 @@ jobs:
       - name: Generate Locales
         run: |
           sudo locale-gen ja_JP
+          sudo locale-gen C
           sudo update-locale
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -40,6 +41,15 @@ jobs:
   mac:
     runs-on: macos-latest
     steps:
+      - name: Generate Locales
+        run: |
+          # Generating locales on a Mac is a nightmare.
+          # I don't have a mac, so I can't test this locally, but
+          # this is the only way I've been able to get the GH Action to
+          # actually create and use a new locale.
+          # See: https://apple.stackexchange.com/a/444831
+          mkdir ~/.locale
+          cp -r /usr/share/locale/en_US.UTF-8 ~/.locale/C.UTF-8
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
@@ -49,4 +59,7 @@ jobs:
       - name: Install Hatch
         run: pipx install hatch
       - name: Run Hatch CI
-        run: hatch run ci
+        run: |
+          # Needed to utilize the locales created in the Generate Locales step.
+          export PATH_LOCALE=~/.locale
+          hatch run ci

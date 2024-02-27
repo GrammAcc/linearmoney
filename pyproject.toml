@@ -127,9 +127,9 @@ dependencies = [
 
 [tool.hatch.envs.docs.scripts]
 build = [
-    "- sh -c 'pygmentize -f html -a .language-python -S default > documentation/md/syntax-highlighting.css'",
-    "- pdoc 'linearmoney' --docformat='google' --output-directory='documentation/md/api_reference' --template-directory='documentation/pdoc_templates'",
-    "- mkdocs build -f documentation/mkdocs.yml",
+    "sh -c 'pygmentize -f html -a .language-python -S default > documentation/md/syntax-highlighting.css'",
+    "pdoc 'linearmoney' --docformat='google' --output-directory='documentation/md/api_reference' --template-directory='documentation/pdoc_templates'",
+    "mkdocs build -f documentation/mkdocs.yml",
 ]
 serve = "python documentation/serve.py"
 test-prose = "pytest --doctest-glob='*.md' README.md documentation"
