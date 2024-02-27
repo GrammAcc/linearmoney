@@ -139,7 +139,7 @@ _REQUIRED_LOCALE_KEYS = {
 
 
 @cache.cached()
-def _merge_locale_overrides(locales: LocaleData, **overrides) -> LocaleData:
+def _merge_locale_overrides(locales: LocaleMap, **overrides) -> LocaleMap:
     """Merge any values given by keyword arguments into the resulting locale data,
     overriding the values for the corresponding keys in `locales`."""
 
@@ -270,12 +270,20 @@ def system_locale() -> LocaleData:
     and desktop apps since those applications usually don't need to support
     multiple locales, but the developer doesn't always know the locale of the
     end user's environment.
+
+    Prior to version 0.1.2, there was a bug in this function that would cause
+    a crash when the system locale was set to the default C/POSIX locale.
+    Version 0.1.2 and later fix this by interpreting the default C/POSIX locale
+    as `en_US`. See
+    [#14](https://github.com/GrammAcc/linearmoney/issues/14).
     """
 
     system_locale_string: str | None = posix_locale.getlocale()[0]
     assert (
         system_locale_string is not None
     ), "We init the system locale above, so it should not be None."
+    if system_locale_string.upper() == "C" or system_locale_string.upper() == "POSIX":
+        system_locale_string = "en_US"
     language, region = system_locale_string.split("_")
 
     return locale(language, region)
@@ -329,11 +337,11 @@ _REQUIRED_CURRENCY_KEYS = {
 
 
 @cache.cached()
-def _merge_currency_overrides(currencies: CurrencyData, **overrides) -> CurrencyData:
+def _merge_currency_overrides(currencies: CurrencyMap, **overrides) -> CurrencyMap:
     """Merge any values given by keyword arguments into the resulting currencies data
     overriding the values for the corresponding keys in `currencies`."""
 
-    new_currencies: CurrencyData = copy.deepcopy(currencies)
+    new_currencies = copy.deepcopy(currencies)
 
     for i in _REQUIRED_CURRENCY_KEYS:
         if i in overrides:
@@ -386,7 +394,7 @@ def currency(iso_code: str, **overrides) -> CurrencyData:
 You must provide all rounding data for unknown currency."
             )
 
-    currencies: CurrencyData
+    currencies: CurrencyMap
     if iso_code in _fallback_currencies:
         currencies = _fallback_currencies[iso_code]
     else:

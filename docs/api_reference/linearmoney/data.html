@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="pdoc 14.3.0"/>
+    <meta name="generator" content="pdoc 14.4.0"/>
     <title>linearmoney.data API documentation</title>
 
     <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
@@ -336,7 +336,7 @@
 </span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a>
 </span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a>
 </span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a><span class="nd">@cache</span><span class="o">.</span><span class="n">cached</span><span class="p">()</span>
-</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a><span class="k">def</span> <span class="nf">_merge_locale_overrides</span><span class="p">(</span><span class="n">locales</span><span class="p">:</span> <span class="n">LocaleData</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LocaleData</span><span class="p">:</span>
+</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a><span class="k">def</span> <span class="nf">_merge_locale_overrides</span><span class="p">(</span><span class="n">locales</span><span class="p">:</span> <span class="n">LocaleMap</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LocaleMap</span><span class="p">:</span>
 </span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Merge any values given by keyword arguments into the resulting locale data,</span>
 </span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a><span class="sd">    overriding the values for the corresponding keys in `locales`.&quot;&quot;&quot;</span>
 </span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a>
@@ -467,141 +467,149 @@
 </span><span id="L-270"><a href="#L-270"><span class="linenos">270</span></a><span class="sd">    and desktop apps since those applications usually don&#39;t need to support</span>
 </span><span id="L-271"><a href="#L-271"><span class="linenos">271</span></a><span class="sd">    multiple locales, but the developer doesn&#39;t always know the locale of the</span>
 </span><span id="L-272"><a href="#L-272"><span class="linenos">272</span></a><span class="sd">    end user&#39;s environment.</span>
-</span><span id="L-273"><a href="#L-273"><span class="linenos">273</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-274"><a href="#L-274"><span class="linenos">274</span></a>
-</span><span id="L-275"><a href="#L-275"><span class="linenos">275</span></a>    <span class="n">system_locale_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="L-276"><a href="#L-276"><span class="linenos">276</span></a>    <span class="k">assert</span> <span class="p">(</span>
-</span><span id="L-277"><a href="#L-277"><span class="linenos">277</span></a>        <span class="n">system_locale_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-</span><span id="L-278"><a href="#L-278"><span class="linenos">278</span></a>    <span class="p">),</span> <span class="s2">&quot;We init the system locale above, so it should not be None.&quot;</span>
-</span><span id="L-279"><a href="#L-279"><span class="linenos">279</span></a>    <span class="n">language</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+</span><span id="L-273"><a href="#L-273"><span class="linenos">273</span></a>
+</span><span id="L-274"><a href="#L-274"><span class="linenos">274</span></a><span class="sd">    Prior to version 0.1.2, there was a bug in this function that would cause</span>
+</span><span id="L-275"><a href="#L-275"><span class="linenos">275</span></a><span class="sd">    a crash when the system locale was set to the default C/POSIX locale.</span>
+</span><span id="L-276"><a href="#L-276"><span class="linenos">276</span></a><span class="sd">    Version 0.1.2 and later fix this by interpreting the default C/POSIX locale</span>
+</span><span id="L-277"><a href="#L-277"><span class="linenos">277</span></a><span class="sd">    as `en_US`. See</span>
+</span><span id="L-278"><a href="#L-278"><span class="linenos">278</span></a><span class="sd">    [#14](https://github.com/GrammAcc/linearmoney/issues/14).</span>
+</span><span id="L-279"><a href="#L-279"><span class="linenos">279</span></a><span class="sd">    &quot;&quot;&quot;</span>
 </span><span id="L-280"><a href="#L-280"><span class="linenos">280</span></a>
-</span><span id="L-281"><a href="#L-281"><span class="linenos">281</span></a>    <span class="k">return</span> <span class="n">locale</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
-</span><span id="L-282"><a href="#L-282"><span class="linenos">282</span></a>
-</span><span id="L-283"><a href="#L-283"><span class="linenos">283</span></a>
-</span><span id="L-284"><a href="#L-284"><span class="linenos">284</span></a><span class="k">class</span> <span class="nc">CurrencyMap</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-</span><span id="L-285"><a href="#L-285"><span class="linenos">285</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents the structure of denominational/rounding data for currencies.</span>
-</span><span id="L-286"><a href="#L-286"><span class="linenos">286</span></a>
-</span><span id="L-287"><a href="#L-287"><span class="linenos">287</span></a><span class="sd">    TODO:</span>
-</span><span id="L-288"><a href="#L-288"><span class="linenos">288</span></a><span class="sd">        Mark this as readonly once [PEP 705](https://peps.python.org/pep-0705/)</span>
-</span><span id="L-289"><a href="#L-289"><span class="linenos">289</span></a><span class="sd">        is implemented.</span>
-</span><span id="L-290"><a href="#L-290"><span class="linenos">290</span></a><span class="sd">        We currently have to cast a `DataMap` to `CurrencyMap` whenever we construct this</span>
-</span><span id="L-291"><a href="#L-291"><span class="linenos">291</span></a><span class="sd">        dict since we can&#39;t mark a `TypedDict` as read-only yet.</span>
-</span><span id="L-292"><a href="#L-292"><span class="linenos">292</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-293"><a href="#L-293"><span class="linenos">293</span></a>
-</span><span id="L-294"><a href="#L-294"><span class="linenos">294</span></a>    <span class="n">places</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="L-295"><a href="#L-295"><span class="linenos">295</span></a>    <span class="n">cash_places</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="L-296"><a href="#L-296"><span class="linenos">296</span></a>    <span class="n">denomination</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="L-297"><a href="#L-297"><span class="linenos">297</span></a>    <span class="n">cash_denomination</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="L-298"><a href="#L-298"><span class="linenos">298</span></a>
-</span><span id="L-299"><a href="#L-299"><span class="linenos">299</span></a>
-</span><span id="L-300"><a href="#L-300"><span class="linenos">300</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">eq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-301"><a href="#L-301"><span class="linenos">301</span></a><span class="k">class</span> <span class="nc">CurrencyData</span><span class="p">(</span><span class="n">EqualityByHashMixin</span><span class="p">):</span>
-</span><span id="L-302"><a href="#L-302"><span class="linenos">302</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A [Datasource](/linearmoney/glossary.html#datasource) that provides denominational</span>
-</span><span id="L-303"><a href="#L-303"><span class="linenos">303</span></a><span class="sd">    data for currency rounding.&quot;&quot;&quot;</span>
-</span><span id="L-304"><a href="#L-304"><span class="linenos">304</span></a>
-</span><span id="L-305"><a href="#L-305"><span class="linenos">305</span></a>    <span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="L-306"><a href="#L-306"><span class="linenos">306</span></a>    <span class="n">data</span><span class="p">:</span> <span class="n">CurrencyMap</span>
+</span><span id="L-281"><a href="#L-281"><span class="linenos">281</span></a>    <span class="n">system_locale_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="L-282"><a href="#L-282"><span class="linenos">282</span></a>    <span class="k">assert</span> <span class="p">(</span>
+</span><span id="L-283"><a href="#L-283"><span class="linenos">283</span></a>        <span class="n">system_locale_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span><span id="L-284"><a href="#L-284"><span class="linenos">284</span></a>    <span class="p">),</span> <span class="s2">&quot;We init the system locale above, so it should not be None.&quot;</span>
+</span><span id="L-285"><a href="#L-285"><span class="linenos">285</span></a>    <span class="k">if</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;C&quot;</span> <span class="ow">or</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;POSIX&quot;</span><span class="p">:</span>
+</span><span id="L-286"><a href="#L-286"><span class="linenos">286</span></a>        <span class="n">system_locale_string</span> <span class="o">=</span> <span class="s2">&quot;en_US&quot;</span>
+</span><span id="L-287"><a href="#L-287"><span class="linenos">287</span></a>    <span class="n">language</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+</span><span id="L-288"><a href="#L-288"><span class="linenos">288</span></a>
+</span><span id="L-289"><a href="#L-289"><span class="linenos">289</span></a>    <span class="k">return</span> <span class="n">locale</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
+</span><span id="L-290"><a href="#L-290"><span class="linenos">290</span></a>
+</span><span id="L-291"><a href="#L-291"><span class="linenos">291</span></a>
+</span><span id="L-292"><a href="#L-292"><span class="linenos">292</span></a><span class="k">class</span> <span class="nc">CurrencyMap</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="L-293"><a href="#L-293"><span class="linenos">293</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents the structure of denominational/rounding data for currencies.</span>
+</span><span id="L-294"><a href="#L-294"><span class="linenos">294</span></a>
+</span><span id="L-295"><a href="#L-295"><span class="linenos">295</span></a><span class="sd">    TODO:</span>
+</span><span id="L-296"><a href="#L-296"><span class="linenos">296</span></a><span class="sd">        Mark this as readonly once [PEP 705](https://peps.python.org/pep-0705/)</span>
+</span><span id="L-297"><a href="#L-297"><span class="linenos">297</span></a><span class="sd">        is implemented.</span>
+</span><span id="L-298"><a href="#L-298"><span class="linenos">298</span></a><span class="sd">        We currently have to cast a `DataMap` to `CurrencyMap` whenever we construct this</span>
+</span><span id="L-299"><a href="#L-299"><span class="linenos">299</span></a><span class="sd">        dict since we can&#39;t mark a `TypedDict` as read-only yet.</span>
+</span><span id="L-300"><a href="#L-300"><span class="linenos">300</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-301"><a href="#L-301"><span class="linenos">301</span></a>
+</span><span id="L-302"><a href="#L-302"><span class="linenos">302</span></a>    <span class="n">places</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="L-303"><a href="#L-303"><span class="linenos">303</span></a>    <span class="n">cash_places</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="L-304"><a href="#L-304"><span class="linenos">304</span></a>    <span class="n">denomination</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="L-305"><a href="#L-305"><span class="linenos">305</span></a>    <span class="n">cash_denomination</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="L-306"><a href="#L-306"><span class="linenos">306</span></a>
 </span><span id="L-307"><a href="#L-307"><span class="linenos">307</span></a>
-</span><span id="L-308"><a href="#L-308"><span class="linenos">308</span></a>    <span class="nd">@property</span>
-</span><span id="L-309"><a href="#L-309"><span class="linenos">309</span></a>    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-</span><span id="L-310"><a href="#L-310"><span class="linenos">310</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Identifies the currency, but not necessarily the unique data of the currency.</span>
-</span><span id="L-311"><a href="#L-311"><span class="linenos">311</span></a>
-</span><span id="L-312"><a href="#L-312"><span class="linenos">312</span></a><span class="sd">        Represents the positional arguments used to create this instance.</span>
-</span><span id="L-313"><a href="#L-313"><span class="linenos">313</span></a><span class="sd">        See [Datasources](/linearmoney/glossary.html#datasource) in the glossary</span>
-</span><span id="L-314"><a href="#L-314"><span class="linenos">314</span></a><span class="sd">        for more details.</span>
-</span><span id="L-315"><a href="#L-315"><span class="linenos">315</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-316"><a href="#L-316"><span class="linenos">316</span></a>
-</span><span id="L-317"><a href="#L-317"><span class="linenos">317</span></a>        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iso_code</span><span class="p">,)</span>
-</span><span id="L-318"><a href="#L-318"><span class="linenos">318</span></a>
-</span><span id="L-319"><a href="#L-319"><span class="linenos">319</span></a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-</span><span id="L-320"><a href="#L-320"><span class="linenos">320</span></a>        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
-</span><span id="L-321"><a href="#L-321"><span class="linenos">321</span></a>
-</span><span id="L-322"><a href="#L-322"><span class="linenos">322</span></a>
-</span><span id="L-323"><a href="#L-323"><span class="linenos">323</span></a><span class="n">_REQUIRED_CURRENCY_KEYS</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="L-324"><a href="#L-324"><span class="linenos">324</span></a>    <span class="s2">&quot;places&quot;</span><span class="p">,</span>
-</span><span id="L-325"><a href="#L-325"><span class="linenos">325</span></a>    <span class="s2">&quot;cash_places&quot;</span><span class="p">,</span>
-</span><span id="L-326"><a href="#L-326"><span class="linenos">326</span></a>    <span class="s2">&quot;denomination&quot;</span><span class="p">,</span>
-</span><span id="L-327"><a href="#L-327"><span class="linenos">327</span></a>    <span class="s2">&quot;cash_denomination&quot;</span><span class="p">,</span>
-</span><span id="L-328"><a href="#L-328"><span class="linenos">328</span></a><span class="p">}</span>
+</span><span id="L-308"><a href="#L-308"><span class="linenos">308</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">eq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-309"><a href="#L-309"><span class="linenos">309</span></a><span class="k">class</span> <span class="nc">CurrencyData</span><span class="p">(</span><span class="n">EqualityByHashMixin</span><span class="p">):</span>
+</span><span id="L-310"><a href="#L-310"><span class="linenos">310</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A [Datasource](/linearmoney/glossary.html#datasource) that provides denominational</span>
+</span><span id="L-311"><a href="#L-311"><span class="linenos">311</span></a><span class="sd">    data for currency rounding.&quot;&quot;&quot;</span>
+</span><span id="L-312"><a href="#L-312"><span class="linenos">312</span></a>
+</span><span id="L-313"><a href="#L-313"><span class="linenos">313</span></a>    <span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="L-314"><a href="#L-314"><span class="linenos">314</span></a>    <span class="n">data</span><span class="p">:</span> <span class="n">CurrencyMap</span>
+</span><span id="L-315"><a href="#L-315"><span class="linenos">315</span></a>
+</span><span id="L-316"><a href="#L-316"><span class="linenos">316</span></a>    <span class="nd">@property</span>
+</span><span id="L-317"><a href="#L-317"><span class="linenos">317</span></a>    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="L-318"><a href="#L-318"><span class="linenos">318</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Identifies the currency, but not necessarily the unique data of the currency.</span>
+</span><span id="L-319"><a href="#L-319"><span class="linenos">319</span></a>
+</span><span id="L-320"><a href="#L-320"><span class="linenos">320</span></a><span class="sd">        Represents the positional arguments used to create this instance.</span>
+</span><span id="L-321"><a href="#L-321"><span class="linenos">321</span></a><span class="sd">        See [Datasources](/linearmoney/glossary.html#datasource) in the glossary</span>
+</span><span id="L-322"><a href="#L-322"><span class="linenos">322</span></a><span class="sd">        for more details.</span>
+</span><span id="L-323"><a href="#L-323"><span class="linenos">323</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-324"><a href="#L-324"><span class="linenos">324</span></a>
+</span><span id="L-325"><a href="#L-325"><span class="linenos">325</span></a>        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iso_code</span><span class="p">,)</span>
+</span><span id="L-326"><a href="#L-326"><span class="linenos">326</span></a>
+</span><span id="L-327"><a href="#L-327"><span class="linenos">327</span></a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span><span id="L-328"><a href="#L-328"><span class="linenos">328</span></a>        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
 </span><span id="L-329"><a href="#L-329"><span class="linenos">329</span></a>
 </span><span id="L-330"><a href="#L-330"><span class="linenos">330</span></a>
-</span><span id="L-331"><a href="#L-331"><span class="linenos">331</span></a><span class="nd">@cache</span><span class="o">.</span><span class="n">cached</span><span class="p">()</span>
-</span><span id="L-332"><a href="#L-332"><span class="linenos">332</span></a><span class="k">def</span> <span class="nf">_merge_currency_overrides</span><span class="p">(</span><span class="n">currencies</span><span class="p">:</span> <span class="n">CurrencyData</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CurrencyData</span><span class="p">:</span>
-</span><span id="L-333"><a href="#L-333"><span class="linenos">333</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Merge any values given by keyword arguments into the resulting currencies data</span>
-</span><span id="L-334"><a href="#L-334"><span class="linenos">334</span></a><span class="sd">    overriding the values for the corresponding keys in `currencies`.&quot;&quot;&quot;</span>
-</span><span id="L-335"><a href="#L-335"><span class="linenos">335</span></a>
-</span><span id="L-336"><a href="#L-336"><span class="linenos">336</span></a>    <span class="n">new_currencies</span><span class="p">:</span> <span class="n">CurrencyData</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">currencies</span><span class="p">)</span>
+</span><span id="L-331"><a href="#L-331"><span class="linenos">331</span></a><span class="n">_REQUIRED_CURRENCY_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="L-332"><a href="#L-332"><span class="linenos">332</span></a>    <span class="s2">&quot;places&quot;</span><span class="p">,</span>
+</span><span id="L-333"><a href="#L-333"><span class="linenos">333</span></a>    <span class="s2">&quot;cash_places&quot;</span><span class="p">,</span>
+</span><span id="L-334"><a href="#L-334"><span class="linenos">334</span></a>    <span class="s2">&quot;denomination&quot;</span><span class="p">,</span>
+</span><span id="L-335"><a href="#L-335"><span class="linenos">335</span></a>    <span class="s2">&quot;cash_denomination&quot;</span><span class="p">,</span>
+</span><span id="L-336"><a href="#L-336"><span class="linenos">336</span></a><span class="p">}</span>
 </span><span id="L-337"><a href="#L-337"><span class="linenos">337</span></a>
-</span><span id="L-338"><a href="#L-338"><span class="linenos">338</span></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">_REQUIRED_CURRENCY_KEYS</span><span class="p">:</span>
-</span><span id="L-339"><a href="#L-339"><span class="linenos">339</span></a>        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">overrides</span><span class="p">:</span>
-</span><span id="L-340"><a href="#L-340"><span class="linenos">340</span></a>            <span class="n">new_currencies</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">overrides</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c1"># type: ignore[literal-required]</span>
-</span><span id="L-341"><a href="#L-341"><span class="linenos">341</span></a>
-</span><span id="L-342"><a href="#L-342"><span class="linenos">342</span></a>    <span class="k">return</span> <span class="n">new_currencies</span>
+</span><span id="L-338"><a href="#L-338"><span class="linenos">338</span></a>
+</span><span id="L-339"><a href="#L-339"><span class="linenos">339</span></a><span class="nd">@cache</span><span class="o">.</span><span class="n">cached</span><span class="p">()</span>
+</span><span id="L-340"><a href="#L-340"><span class="linenos">340</span></a><span class="k">def</span> <span class="nf">_merge_currency_overrides</span><span class="p">(</span><span class="n">currencies</span><span class="p">:</span> <span class="n">CurrencyMap</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CurrencyMap</span><span class="p">:</span>
+</span><span id="L-341"><a href="#L-341"><span class="linenos">341</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Merge any values given by keyword arguments into the resulting currencies data</span>
+</span><span id="L-342"><a href="#L-342"><span class="linenos">342</span></a><span class="sd">    overriding the values for the corresponding keys in `currencies`.&quot;&quot;&quot;</span>
 </span><span id="L-343"><a href="#L-343"><span class="linenos">343</span></a>
-</span><span id="L-344"><a href="#L-344"><span class="linenos">344</span></a>
-</span><span id="L-345"><a href="#L-345"><span class="linenos">345</span></a><span class="n">_fallback_currencies</span> <span class="o">=</span> <span class="n">resources</span><span class="o">.</span><span class="n">get_package_resource</span><span class="p">(</span><span class="s2">&quot;currencies&quot;</span><span class="p">)</span>
-</span><span id="L-346"><a href="#L-346"><span class="linenos">346</span></a><span class="n">_supported_iso_codes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">resources</span><span class="o">.</span><span class="n">get_package_resource</span><span class="p">(</span><span class="s2">&quot;supported_iso_codes&quot;</span><span class="p">))</span>
-</span><span id="L-347"><a href="#L-347"><span class="linenos">347</span></a>
-</span><span id="L-348"><a href="#L-348"><span class="linenos">348</span></a>
-</span><span id="L-349"><a href="#L-349"><span class="linenos">349</span></a><span class="nd">@cache</span><span class="o">.</span><span class="n">cached</span><span class="p">()</span>
-</span><span id="L-350"><a href="#L-350"><span class="linenos">350</span></a><span class="k">def</span> <span class="nf">currency</span><span class="p">(</span><span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CurrencyData</span><span class="p">:</span>
-</span><span id="L-351"><a href="#L-351"><span class="linenos">351</span></a><span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Create a new `CurrencyData` datasource based on `iso_code` and `**overrides`</span>
+</span><span id="L-344"><a href="#L-344"><span class="linenos">344</span></a>    <span class="n">new_currencies</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">currencies</span><span class="p">)</span>
+</span><span id="L-345"><a href="#L-345"><span class="linenos">345</span></a>
+</span><span id="L-346"><a href="#L-346"><span class="linenos">346</span></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">_REQUIRED_CURRENCY_KEYS</span><span class="p">:</span>
+</span><span id="L-347"><a href="#L-347"><span class="linenos">347</span></a>        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">overrides</span><span class="p">:</span>
+</span><span id="L-348"><a href="#L-348"><span class="linenos">348</span></a>            <span class="n">new_currencies</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">overrides</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c1"># type: ignore[literal-required]</span>
+</span><span id="L-349"><a href="#L-349"><span class="linenos">349</span></a>
+</span><span id="L-350"><a href="#L-350"><span class="linenos">350</span></a>    <span class="k">return</span> <span class="n">new_currencies</span>
+</span><span id="L-351"><a href="#L-351"><span class="linenos">351</span></a>
 </span><span id="L-352"><a href="#L-352"><span class="linenos">352</span></a>
-</span><span id="L-353"><a href="#L-353"><span class="linenos">353</span></a><span class="sd">    Args:</span>
-</span><span id="L-354"><a href="#L-354"><span class="linenos">354</span></a><span class="sd">        iso_code:</span>
-</span><span id="L-355"><a href="#L-355"><span class="linenos">355</span></a><span class="sd">            The ISO 4217 alpha code of the currency to parse denominational data for.</span>
-</span><span id="L-356"><a href="#L-356"><span class="linenos">356</span></a><span class="sd">        **overrides:</span>
-</span><span id="L-357"><a href="#L-357"><span class="linenos">357</span></a><span class="sd">            Denominational options to override the default rounding rules for the</span>
-</span><span id="L-358"><a href="#L-358"><span class="linenos">358</span></a><span class="sd">            requested currency.</span>
-</span><span id="L-359"><a href="#L-359"><span class="linenos">359</span></a><span class="sd">            The name of each kwarg is interpreted as a key in the `CurrencyMap`</span>
-</span><span id="L-360"><a href="#L-360"><span class="linenos">360</span></a><span class="sd">            returned as the `CurrencyData.data` field, and</span>
-</span><span id="L-361"><a href="#L-361"><span class="linenos">361</span></a><span class="sd">            its value will replace the value of that key in the output `DataMap`.</span>
-</span><span id="L-362"><a href="#L-362"><span class="linenos">362</span></a><span class="sd">            E.g. `currency(&quot;USD&quot;, denomination=5)` will return a `CurrencyData`</span>
-</span><span id="L-363"><a href="#L-363"><span class="linenos">363</span></a><span class="sd">            with denominational data for the &#39;USD&#39; currency, but rounding to the</span>
-</span><span id="L-364"><a href="#L-364"><span class="linenos">364</span></a><span class="sd">            nearest $0.05, so rounding $10.068 using this data would result in</span>
-</span><span id="L-365"><a href="#L-365"><span class="linenos">365</span></a><span class="sd">            $10.05, not $10.07.</span>
-</span><span id="L-366"><a href="#L-366"><span class="linenos">366</span></a><span class="sd">    Returns:</span>
-</span><span id="L-367"><a href="#L-367"><span class="linenos">367</span></a><span class="sd">        The newly parsed `CurrencyData`.</span>
-</span><span id="L-368"><a href="#L-368"><span class="linenos">368</span></a><span class="sd">    Raises:</span>
-</span><span id="L-369"><a href="#L-369"><span class="linenos">369</span></a><span class="sd">        `linearmoney.exceptions.UnknownDataError`:</span>
-</span><span id="L-370"><a href="#L-370"><span class="linenos">370</span></a><span class="sd">            If the cldr-json data does not have denominational data for `iso_code`</span>
-</span><span id="L-371"><a href="#L-371"><span class="linenos">371</span></a><span class="sd">            and not all of the fields of `CurrencyMap` are provided as **overrides.</span>
-</span><span id="L-372"><a href="#L-372"><span class="linenos">372</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-373"><a href="#L-373"><span class="linenos">373</span></a>
-</span><span id="L-374"><a href="#L-374"><span class="linenos">374</span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">iso_code</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
-</span><span id="L-375"><a href="#L-375"><span class="linenos">375</span></a>        <span class="n">iso_code</span> <span class="o">=</span> <span class="n">iso_code</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-</span><span id="L-376"><a href="#L-376"><span class="linenos">376</span></a>
-</span><span id="L-377"><a href="#L-377"><span class="linenos">377</span></a>    <span class="k">if</span> <span class="n">iso_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_supported_iso_codes</span><span class="p">:</span>
-</span><span id="L-378"><a href="#L-378"><span class="linenos">378</span></a>        <span class="k">if</span> <span class="p">(</span>
-</span><span id="L-379"><a href="#L-379"><span class="linenos">379</span></a>            <span class="s2">&quot;denomination&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
-</span><span id="L-380"><a href="#L-380"><span class="linenos">380</span></a>            <span class="ow">or</span> <span class="s2">&quot;places&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
-</span><span id="L-381"><a href="#L-381"><span class="linenos">381</span></a>            <span class="ow">or</span> <span class="s2">&quot;cash_denomination&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
-</span><span id="L-382"><a href="#L-382"><span class="linenos">382</span></a>            <span class="ow">or</span> <span class="s2">&quot;cash_places&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
-</span><span id="L-383"><a href="#L-383"><span class="linenos">383</span></a>        <span class="p">):</span>
-</span><span id="L-384"><a href="#L-384"><span class="linenos">384</span></a>            <span class="k">raise</span> <span class="n">UnknownDataError</span><span class="p">(</span>
-</span><span id="L-385"><a href="#L-385"><span class="linenos">385</span></a>                <span class="sa">f</span><span class="s2">&quot;Rounding data for currency </span><span class="si">{</span><span class="n">iso_code</span><span class="si">}</span><span class="s2"> not found.</span><span class="se">\</span>
-</span><span id="L-386"><a href="#L-386"><span class="linenos">386</span></a><span class="s2">You must provide all rounding data for unknown currency.&quot;</span>
-</span><span id="L-387"><a href="#L-387"><span class="linenos">387</span></a>            <span class="p">)</span>
-</span><span id="L-388"><a href="#L-388"><span class="linenos">388</span></a>
-</span><span id="L-389"><a href="#L-389"><span class="linenos">389</span></a>    <span class="n">currencies</span><span class="p">:</span> <span class="n">CurrencyData</span>
-</span><span id="L-390"><a href="#L-390"><span class="linenos">390</span></a>    <span class="k">if</span> <span class="n">iso_code</span> <span class="ow">in</span> <span class="n">_fallback_currencies</span><span class="p">:</span>
-</span><span id="L-391"><a href="#L-391"><span class="linenos">391</span></a>        <span class="n">currencies</span> <span class="o">=</span> <span class="n">_fallback_currencies</span><span class="p">[</span><span class="n">iso_code</span><span class="p">]</span>
-</span><span id="L-392"><a href="#L-392"><span class="linenos">392</span></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="L-393"><a href="#L-393"><span class="linenos">393</span></a>        <span class="n">currencies</span> <span class="o">=</span> <span class="n">_fallback_currencies</span><span class="p">[</span><span class="s2">&quot;DEFAULT&quot;</span><span class="p">]</span>
-</span><span id="L-394"><a href="#L-394"><span class="linenos">394</span></a>
-</span><span id="L-395"><a href="#L-395"><span class="linenos">395</span></a>    <span class="k">if</span> <span class="n">overrides</span><span class="p">:</span>
-</span><span id="L-396"><a href="#L-396"><span class="linenos">396</span></a>        <span class="c1"># We cast to satisfy mypy since we can&#39;t use read-only TypedDict yet.</span>
-</span><span id="L-397"><a href="#L-397"><span class="linenos">397</span></a>        <span class="c1"># Remove this cast once pep 705 is implemented.</span>
-</span><span id="L-398"><a href="#L-398"><span class="linenos">398</span></a>        <span class="k">return</span> <span class="n">CurrencyData</span><span class="p">(</span>
-</span><span id="L-399"><a href="#L-399"><span class="linenos">399</span></a>            <span class="n">iso_code</span><span class="p">,</span>
-</span><span id="L-400"><a href="#L-400"><span class="linenos">400</span></a>            <span class="n">data</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span>
-</span><span id="L-401"><a href="#L-401"><span class="linenos">401</span></a>                <span class="n">CurrencyMap</span><span class="p">,</span> <span class="n">DataMap</span><span class="p">(</span><span class="n">_merge_currency_overrides</span><span class="p">(</span><span class="n">currencies</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">))</span>
-</span><span id="L-402"><a href="#L-402"><span class="linenos">402</span></a>            <span class="p">),</span>
-</span><span id="L-403"><a href="#L-403"><span class="linenos">403</span></a>        <span class="p">)</span>
-</span><span id="L-404"><a href="#L-404"><span class="linenos">404</span></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="L-405"><a href="#L-405"><span class="linenos">405</span></a>        <span class="c1"># We cast to satisfy mypy since we can&#39;t use read-only TypedDict yet.</span>
-</span><span id="L-406"><a href="#L-406"><span class="linenos">406</span></a>        <span class="c1"># Remove this cast once pep 705 is implemented.</span>
-</span><span id="L-407"><a href="#L-407"><span class="linenos">407</span></a>        <span class="k">return</span> <span class="n">CurrencyData</span><span class="p">(</span><span class="n">iso_code</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">CurrencyMap</span><span class="p">,</span> <span class="n">DataMap</span><span class="p">(</span><span class="n">currencies</span><span class="p">)))</span>
+</span><span id="L-353"><a href="#L-353"><span class="linenos">353</span></a><span class="n">_fallback_currencies</span> <span class="o">=</span> <span class="n">resources</span><span class="o">.</span><span class="n">get_package_resource</span><span class="p">(</span><span class="s2">&quot;currencies&quot;</span><span class="p">)</span>
+</span><span id="L-354"><a href="#L-354"><span class="linenos">354</span></a><span class="n">_supported_iso_codes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">resources</span><span class="o">.</span><span class="n">get_package_resource</span><span class="p">(</span><span class="s2">&quot;supported_iso_codes&quot;</span><span class="p">))</span>
+</span><span id="L-355"><a href="#L-355"><span class="linenos">355</span></a>
+</span><span id="L-356"><a href="#L-356"><span class="linenos">356</span></a>
+</span><span id="L-357"><a href="#L-357"><span class="linenos">357</span></a><span class="nd">@cache</span><span class="o">.</span><span class="n">cached</span><span class="p">()</span>
+</span><span id="L-358"><a href="#L-358"><span class="linenos">358</span></a><span class="k">def</span> <span class="nf">currency</span><span class="p">(</span><span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CurrencyData</span><span class="p">:</span>
+</span><span id="L-359"><a href="#L-359"><span class="linenos">359</span></a><span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Create a new `CurrencyData` datasource based on `iso_code` and `**overrides`</span>
+</span><span id="L-360"><a href="#L-360"><span class="linenos">360</span></a>
+</span><span id="L-361"><a href="#L-361"><span class="linenos">361</span></a><span class="sd">    Args:</span>
+</span><span id="L-362"><a href="#L-362"><span class="linenos">362</span></a><span class="sd">        iso_code:</span>
+</span><span id="L-363"><a href="#L-363"><span class="linenos">363</span></a><span class="sd">            The ISO 4217 alpha code of the currency to parse denominational data for.</span>
+</span><span id="L-364"><a href="#L-364"><span class="linenos">364</span></a><span class="sd">        **overrides:</span>
+</span><span id="L-365"><a href="#L-365"><span class="linenos">365</span></a><span class="sd">            Denominational options to override the default rounding rules for the</span>
+</span><span id="L-366"><a href="#L-366"><span class="linenos">366</span></a><span class="sd">            requested currency.</span>
+</span><span id="L-367"><a href="#L-367"><span class="linenos">367</span></a><span class="sd">            The name of each kwarg is interpreted as a key in the `CurrencyMap`</span>
+</span><span id="L-368"><a href="#L-368"><span class="linenos">368</span></a><span class="sd">            returned as the `CurrencyData.data` field, and</span>
+</span><span id="L-369"><a href="#L-369"><span class="linenos">369</span></a><span class="sd">            its value will replace the value of that key in the output `DataMap`.</span>
+</span><span id="L-370"><a href="#L-370"><span class="linenos">370</span></a><span class="sd">            E.g. `currency(&quot;USD&quot;, denomination=5)` will return a `CurrencyData`</span>
+</span><span id="L-371"><a href="#L-371"><span class="linenos">371</span></a><span class="sd">            with denominational data for the &#39;USD&#39; currency, but rounding to the</span>
+</span><span id="L-372"><a href="#L-372"><span class="linenos">372</span></a><span class="sd">            nearest $0.05, so rounding $10.068 using this data would result in</span>
+</span><span id="L-373"><a href="#L-373"><span class="linenos">373</span></a><span class="sd">            $10.05, not $10.07.</span>
+</span><span id="L-374"><a href="#L-374"><span class="linenos">374</span></a><span class="sd">    Returns:</span>
+</span><span id="L-375"><a href="#L-375"><span class="linenos">375</span></a><span class="sd">        The newly parsed `CurrencyData`.</span>
+</span><span id="L-376"><a href="#L-376"><span class="linenos">376</span></a><span class="sd">    Raises:</span>
+</span><span id="L-377"><a href="#L-377"><span class="linenos">377</span></a><span class="sd">        `linearmoney.exceptions.UnknownDataError`:</span>
+</span><span id="L-378"><a href="#L-378"><span class="linenos">378</span></a><span class="sd">            If the cldr-json data does not have denominational data for `iso_code`</span>
+</span><span id="L-379"><a href="#L-379"><span class="linenos">379</span></a><span class="sd">            and not all of the fields of `CurrencyMap` are provided as **overrides.</span>
+</span><span id="L-380"><a href="#L-380"><span class="linenos">380</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-381"><a href="#L-381"><span class="linenos">381</span></a>
+</span><span id="L-382"><a href="#L-382"><span class="linenos">382</span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">iso_code</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+</span><span id="L-383"><a href="#L-383"><span class="linenos">383</span></a>        <span class="n">iso_code</span> <span class="o">=</span> <span class="n">iso_code</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</span><span id="L-384"><a href="#L-384"><span class="linenos">384</span></a>
+</span><span id="L-385"><a href="#L-385"><span class="linenos">385</span></a>    <span class="k">if</span> <span class="n">iso_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_supported_iso_codes</span><span class="p">:</span>
+</span><span id="L-386"><a href="#L-386"><span class="linenos">386</span></a>        <span class="k">if</span> <span class="p">(</span>
+</span><span id="L-387"><a href="#L-387"><span class="linenos">387</span></a>            <span class="s2">&quot;denomination&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
+</span><span id="L-388"><a href="#L-388"><span class="linenos">388</span></a>            <span class="ow">or</span> <span class="s2">&quot;places&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
+</span><span id="L-389"><a href="#L-389"><span class="linenos">389</span></a>            <span class="ow">or</span> <span class="s2">&quot;cash_denomination&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
+</span><span id="L-390"><a href="#L-390"><span class="linenos">390</span></a>            <span class="ow">or</span> <span class="s2">&quot;cash_places&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
+</span><span id="L-391"><a href="#L-391"><span class="linenos">391</span></a>        <span class="p">):</span>
+</span><span id="L-392"><a href="#L-392"><span class="linenos">392</span></a>            <span class="k">raise</span> <span class="n">UnknownDataError</span><span class="p">(</span>
+</span><span id="L-393"><a href="#L-393"><span class="linenos">393</span></a>                <span class="sa">f</span><span class="s2">&quot;Rounding data for currency </span><span class="si">{</span><span class="n">iso_code</span><span class="si">}</span><span class="s2"> not found.</span><span class="se">\</span>
+</span><span id="L-394"><a href="#L-394"><span class="linenos">394</span></a><span class="s2">You must provide all rounding data for unknown currency.&quot;</span>
+</span><span id="L-395"><a href="#L-395"><span class="linenos">395</span></a>            <span class="p">)</span>
+</span><span id="L-396"><a href="#L-396"><span class="linenos">396</span></a>
+</span><span id="L-397"><a href="#L-397"><span class="linenos">397</span></a>    <span class="n">currencies</span><span class="p">:</span> <span class="n">CurrencyMap</span>
+</span><span id="L-398"><a href="#L-398"><span class="linenos">398</span></a>    <span class="k">if</span> <span class="n">iso_code</span> <span class="ow">in</span> <span class="n">_fallback_currencies</span><span class="p">:</span>
+</span><span id="L-399"><a href="#L-399"><span class="linenos">399</span></a>        <span class="n">currencies</span> <span class="o">=</span> <span class="n">_fallback_currencies</span><span class="p">[</span><span class="n">iso_code</span><span class="p">]</span>
+</span><span id="L-400"><a href="#L-400"><span class="linenos">400</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="L-401"><a href="#L-401"><span class="linenos">401</span></a>        <span class="n">currencies</span> <span class="o">=</span> <span class="n">_fallback_currencies</span><span class="p">[</span><span class="s2">&quot;DEFAULT&quot;</span><span class="p">]</span>
+</span><span id="L-402"><a href="#L-402"><span class="linenos">402</span></a>
+</span><span id="L-403"><a href="#L-403"><span class="linenos">403</span></a>    <span class="k">if</span> <span class="n">overrides</span><span class="p">:</span>
+</span><span id="L-404"><a href="#L-404"><span class="linenos">404</span></a>        <span class="c1"># We cast to satisfy mypy since we can&#39;t use read-only TypedDict yet.</span>
+</span><span id="L-405"><a href="#L-405"><span class="linenos">405</span></a>        <span class="c1"># Remove this cast once pep 705 is implemented.</span>
+</span><span id="L-406"><a href="#L-406"><span class="linenos">406</span></a>        <span class="k">return</span> <span class="n">CurrencyData</span><span class="p">(</span>
+</span><span id="L-407"><a href="#L-407"><span class="linenos">407</span></a>            <span class="n">iso_code</span><span class="p">,</span>
+</span><span id="L-408"><a href="#L-408"><span class="linenos">408</span></a>            <span class="n">data</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span>
+</span><span id="L-409"><a href="#L-409"><span class="linenos">409</span></a>                <span class="n">CurrencyMap</span><span class="p">,</span> <span class="n">DataMap</span><span class="p">(</span><span class="n">_merge_currency_overrides</span><span class="p">(</span><span class="n">currencies</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">))</span>
+</span><span id="L-410"><a href="#L-410"><span class="linenos">410</span></a>            <span class="p">),</span>
+</span><span id="L-411"><a href="#L-411"><span class="linenos">411</span></a>        <span class="p">)</span>
+</span><span id="L-412"><a href="#L-412"><span class="linenos">412</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="L-413"><a href="#L-413"><span class="linenos">413</span></a>        <span class="c1"># We cast to satisfy mypy since we can&#39;t use read-only TypedDict yet.</span>
+</span><span id="L-414"><a href="#L-414"><span class="linenos">414</span></a>        <span class="c1"># Remove this cast once pep 705 is implemented.</span>
+</span><span id="L-415"><a href="#L-415"><span class="linenos">415</span></a>        <span class="k">return</span> <span class="n">CurrencyData</span><span class="p">(</span><span class="n">iso_code</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">CurrencyMap</span><span class="p">,</span> <span class="n">DataMap</span><span class="p">(</span><span class="n">currencies</span><span class="p">)))</span>
 </span></pre></div>
 
 
@@ -783,15 +791,23 @@ typed with a Literal type.</li>
 </span><span id="system_locale-271"><a href="#system_locale-271"><span class="linenos">271</span></a><span class="sd">    and desktop apps since those applications usually don&#39;t need to support</span>
 </span><span id="system_locale-272"><a href="#system_locale-272"><span class="linenos">272</span></a><span class="sd">    multiple locales, but the developer doesn&#39;t always know the locale of the</span>
 </span><span id="system_locale-273"><a href="#system_locale-273"><span class="linenos">273</span></a><span class="sd">    end user&#39;s environment.</span>
-</span><span id="system_locale-274"><a href="#system_locale-274"><span class="linenos">274</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="system_locale-275"><a href="#system_locale-275"><span class="linenos">275</span></a>
-</span><span id="system_locale-276"><a href="#system_locale-276"><span class="linenos">276</span></a>    <span class="n">system_locale_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="system_locale-277"><a href="#system_locale-277"><span class="linenos">277</span></a>    <span class="k">assert</span> <span class="p">(</span>
-</span><span id="system_locale-278"><a href="#system_locale-278"><span class="linenos">278</span></a>        <span class="n">system_locale_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-</span><span id="system_locale-279"><a href="#system_locale-279"><span class="linenos">279</span></a>    <span class="p">),</span> <span class="s2">&quot;We init the system locale above, so it should not be None.&quot;</span>
-</span><span id="system_locale-280"><a href="#system_locale-280"><span class="linenos">280</span></a>    <span class="n">language</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+</span><span id="system_locale-274"><a href="#system_locale-274"><span class="linenos">274</span></a>
+</span><span id="system_locale-275"><a href="#system_locale-275"><span class="linenos">275</span></a><span class="sd">    Prior to version 0.1.2, there was a bug in this function that would cause</span>
+</span><span id="system_locale-276"><a href="#system_locale-276"><span class="linenos">276</span></a><span class="sd">    a crash when the system locale was set to the default C/POSIX locale.</span>
+</span><span id="system_locale-277"><a href="#system_locale-277"><span class="linenos">277</span></a><span class="sd">    Version 0.1.2 and later fix this by interpreting the default C/POSIX locale</span>
+</span><span id="system_locale-278"><a href="#system_locale-278"><span class="linenos">278</span></a><span class="sd">    as `en_US`. See</span>
+</span><span id="system_locale-279"><a href="#system_locale-279"><span class="linenos">279</span></a><span class="sd">    [#14](https://github.com/GrammAcc/linearmoney/issues/14).</span>
+</span><span id="system_locale-280"><a href="#system_locale-280"><span class="linenos">280</span></a><span class="sd">    &quot;&quot;&quot;</span>
 </span><span id="system_locale-281"><a href="#system_locale-281"><span class="linenos">281</span></a>
-</span><span id="system_locale-282"><a href="#system_locale-282"><span class="linenos">282</span></a>    <span class="k">return</span> <span class="n">locale</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
+</span><span id="system_locale-282"><a href="#system_locale-282"><span class="linenos">282</span></a>    <span class="n">system_locale_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">posix_locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="system_locale-283"><a href="#system_locale-283"><span class="linenos">283</span></a>    <span class="k">assert</span> <span class="p">(</span>
+</span><span id="system_locale-284"><a href="#system_locale-284"><span class="linenos">284</span></a>        <span class="n">system_locale_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span><span id="system_locale-285"><a href="#system_locale-285"><span class="linenos">285</span></a>    <span class="p">),</span> <span class="s2">&quot;We init the system locale above, so it should not be None.&quot;</span>
+</span><span id="system_locale-286"><a href="#system_locale-286"><span class="linenos">286</span></a>    <span class="k">if</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;C&quot;</span> <span class="ow">or</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;POSIX&quot;</span><span class="p">:</span>
+</span><span id="system_locale-287"><a href="#system_locale-287"><span class="linenos">287</span></a>        <span class="n">system_locale_string</span> <span class="o">=</span> <span class="s2">&quot;en_US&quot;</span>
+</span><span id="system_locale-288"><a href="#system_locale-288"><span class="linenos">288</span></a>    <span class="n">language</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">system_locale_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+</span><span id="system_locale-289"><a href="#system_locale-289"><span class="linenos">289</span></a>
+</span><span id="system_locale-290"><a href="#system_locale-290"><span class="linenos">290</span></a>    <span class="k">return</span> <span class="n">locale</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -802,6 +818,12 @@ Python process.</p>
 and desktop apps since those applications usually don't need to support
 multiple locales, but the developer doesn't always know the locale of the
 end user's environment.</p>
+
+<p>Prior to version 0.1.2, there was a bug in this function that would cause
+a crash when the system locale was set to the default C/POSIX locale.
+Version 0.1.2 and later fix this by interpreting the default C/POSIX locale
+as <code>en_US</code>. See
+<a href="https://github.com/GrammAcc/linearmoney/issues/14">#14</a>.</p>
 </div>
 
 
@@ -818,65 +840,65 @@ end user's environment.</p>
 
     </div>
     <a class="headerlink" href="#currency"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="currency-350"><a href="#currency-350"><span class="linenos">350</span></a><span class="nd">@cache</span><span class="o">.</span><span class="n">cached</span><span class="p">()</span>
-</span><span id="currency-351"><a href="#currency-351"><span class="linenos">351</span></a><span class="k">def</span> <span class="nf">currency</span><span class="p">(</span><span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CurrencyData</span><span class="p">:</span>
-</span><span id="currency-352"><a href="#currency-352"><span class="linenos">352</span></a><span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Create a new `CurrencyData` datasource based on `iso_code` and `**overrides`</span>
-</span><span id="currency-353"><a href="#currency-353"><span class="linenos">353</span></a>
-</span><span id="currency-354"><a href="#currency-354"><span class="linenos">354</span></a><span class="sd">    Args:</span>
-</span><span id="currency-355"><a href="#currency-355"><span class="linenos">355</span></a><span class="sd">        iso_code:</span>
-</span><span id="currency-356"><a href="#currency-356"><span class="linenos">356</span></a><span class="sd">            The ISO 4217 alpha code of the currency to parse denominational data for.</span>
-</span><span id="currency-357"><a href="#currency-357"><span class="linenos">357</span></a><span class="sd">        **overrides:</span>
-</span><span id="currency-358"><a href="#currency-358"><span class="linenos">358</span></a><span class="sd">            Denominational options to override the default rounding rules for the</span>
-</span><span id="currency-359"><a href="#currency-359"><span class="linenos">359</span></a><span class="sd">            requested currency.</span>
-</span><span id="currency-360"><a href="#currency-360"><span class="linenos">360</span></a><span class="sd">            The name of each kwarg is interpreted as a key in the `CurrencyMap`</span>
-</span><span id="currency-361"><a href="#currency-361"><span class="linenos">361</span></a><span class="sd">            returned as the `CurrencyData.data` field, and</span>
-</span><span id="currency-362"><a href="#currency-362"><span class="linenos">362</span></a><span class="sd">            its value will replace the value of that key in the output `DataMap`.</span>
-</span><span id="currency-363"><a href="#currency-363"><span class="linenos">363</span></a><span class="sd">            E.g. `currency(&quot;USD&quot;, denomination=5)` will return a `CurrencyData`</span>
-</span><span id="currency-364"><a href="#currency-364"><span class="linenos">364</span></a><span class="sd">            with denominational data for the &#39;USD&#39; currency, but rounding to the</span>
-</span><span id="currency-365"><a href="#currency-365"><span class="linenos">365</span></a><span class="sd">            nearest $0.05, so rounding $10.068 using this data would result in</span>
-</span><span id="currency-366"><a href="#currency-366"><span class="linenos">366</span></a><span class="sd">            $10.05, not $10.07.</span>
-</span><span id="currency-367"><a href="#currency-367"><span class="linenos">367</span></a><span class="sd">    Returns:</span>
-</span><span id="currency-368"><a href="#currency-368"><span class="linenos">368</span></a><span class="sd">        The newly parsed `CurrencyData`.</span>
-</span><span id="currency-369"><a href="#currency-369"><span class="linenos">369</span></a><span class="sd">    Raises:</span>
-</span><span id="currency-370"><a href="#currency-370"><span class="linenos">370</span></a><span class="sd">        `linearmoney.exceptions.UnknownDataError`:</span>
-</span><span id="currency-371"><a href="#currency-371"><span class="linenos">371</span></a><span class="sd">            If the cldr-json data does not have denominational data for `iso_code`</span>
-</span><span id="currency-372"><a href="#currency-372"><span class="linenos">372</span></a><span class="sd">            and not all of the fields of `CurrencyMap` are provided as **overrides.</span>
-</span><span id="currency-373"><a href="#currency-373"><span class="linenos">373</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="currency-374"><a href="#currency-374"><span class="linenos">374</span></a>
-</span><span id="currency-375"><a href="#currency-375"><span class="linenos">375</span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">iso_code</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
-</span><span id="currency-376"><a href="#currency-376"><span class="linenos">376</span></a>        <span class="n">iso_code</span> <span class="o">=</span> <span class="n">iso_code</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-</span><span id="currency-377"><a href="#currency-377"><span class="linenos">377</span></a>
-</span><span id="currency-378"><a href="#currency-378"><span class="linenos">378</span></a>    <span class="k">if</span> <span class="n">iso_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_supported_iso_codes</span><span class="p">:</span>
-</span><span id="currency-379"><a href="#currency-379"><span class="linenos">379</span></a>        <span class="k">if</span> <span class="p">(</span>
-</span><span id="currency-380"><a href="#currency-380"><span class="linenos">380</span></a>            <span class="s2">&quot;denomination&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
-</span><span id="currency-381"><a href="#currency-381"><span class="linenos">381</span></a>            <span class="ow">or</span> <span class="s2">&quot;places&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
-</span><span id="currency-382"><a href="#currency-382"><span class="linenos">382</span></a>            <span class="ow">or</span> <span class="s2">&quot;cash_denomination&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
-</span><span id="currency-383"><a href="#currency-383"><span class="linenos">383</span></a>            <span class="ow">or</span> <span class="s2">&quot;cash_places&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
-</span><span id="currency-384"><a href="#currency-384"><span class="linenos">384</span></a>        <span class="p">):</span>
-</span><span id="currency-385"><a href="#currency-385"><span class="linenos">385</span></a>            <span class="k">raise</span> <span class="n">UnknownDataError</span><span class="p">(</span>
-</span><span id="currency-386"><a href="#currency-386"><span class="linenos">386</span></a>                <span class="sa">f</span><span class="s2">&quot;Rounding data for currency </span><span class="si">{</span><span class="n">iso_code</span><span class="si">}</span><span class="s2"> not found.</span><span class="se">\</span>
-</span><span id="currency-387"><a href="#currency-387"><span class="linenos">387</span></a><span class="s2">You must provide all rounding data for unknown currency.&quot;</span>
-</span><span id="currency-388"><a href="#currency-388"><span class="linenos">388</span></a>            <span class="p">)</span>
-</span><span id="currency-389"><a href="#currency-389"><span class="linenos">389</span></a>
-</span><span id="currency-390"><a href="#currency-390"><span class="linenos">390</span></a>    <span class="n">currencies</span><span class="p">:</span> <span class="n">CurrencyData</span>
-</span><span id="currency-391"><a href="#currency-391"><span class="linenos">391</span></a>    <span class="k">if</span> <span class="n">iso_code</span> <span class="ow">in</span> <span class="n">_fallback_currencies</span><span class="p">:</span>
-</span><span id="currency-392"><a href="#currency-392"><span class="linenos">392</span></a>        <span class="n">currencies</span> <span class="o">=</span> <span class="n">_fallback_currencies</span><span class="p">[</span><span class="n">iso_code</span><span class="p">]</span>
-</span><span id="currency-393"><a href="#currency-393"><span class="linenos">393</span></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="currency-394"><a href="#currency-394"><span class="linenos">394</span></a>        <span class="n">currencies</span> <span class="o">=</span> <span class="n">_fallback_currencies</span><span class="p">[</span><span class="s2">&quot;DEFAULT&quot;</span><span class="p">]</span>
-</span><span id="currency-395"><a href="#currency-395"><span class="linenos">395</span></a>
-</span><span id="currency-396"><a href="#currency-396"><span class="linenos">396</span></a>    <span class="k">if</span> <span class="n">overrides</span><span class="p">:</span>
-</span><span id="currency-397"><a href="#currency-397"><span class="linenos">397</span></a>        <span class="c1"># We cast to satisfy mypy since we can&#39;t use read-only TypedDict yet.</span>
-</span><span id="currency-398"><a href="#currency-398"><span class="linenos">398</span></a>        <span class="c1"># Remove this cast once pep 705 is implemented.</span>
-</span><span id="currency-399"><a href="#currency-399"><span class="linenos">399</span></a>        <span class="k">return</span> <span class="n">CurrencyData</span><span class="p">(</span>
-</span><span id="currency-400"><a href="#currency-400"><span class="linenos">400</span></a>            <span class="n">iso_code</span><span class="p">,</span>
-</span><span id="currency-401"><a href="#currency-401"><span class="linenos">401</span></a>            <span class="n">data</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span>
-</span><span id="currency-402"><a href="#currency-402"><span class="linenos">402</span></a>                <span class="n">CurrencyMap</span><span class="p">,</span> <span class="n">DataMap</span><span class="p">(</span><span class="n">_merge_currency_overrides</span><span class="p">(</span><span class="n">currencies</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">))</span>
-</span><span id="currency-403"><a href="#currency-403"><span class="linenos">403</span></a>            <span class="p">),</span>
-</span><span id="currency-404"><a href="#currency-404"><span class="linenos">404</span></a>        <span class="p">)</span>
-</span><span id="currency-405"><a href="#currency-405"><span class="linenos">405</span></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="currency-406"><a href="#currency-406"><span class="linenos">406</span></a>        <span class="c1"># We cast to satisfy mypy since we can&#39;t use read-only TypedDict yet.</span>
-</span><span id="currency-407"><a href="#currency-407"><span class="linenos">407</span></a>        <span class="c1"># Remove this cast once pep 705 is implemented.</span>
-</span><span id="currency-408"><a href="#currency-408"><span class="linenos">408</span></a>        <span class="k">return</span> <span class="n">CurrencyData</span><span class="p">(</span><span class="n">iso_code</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">CurrencyMap</span><span class="p">,</span> <span class="n">DataMap</span><span class="p">(</span><span class="n">currencies</span><span class="p">)))</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="currency-358"><a href="#currency-358"><span class="linenos">358</span></a><span class="nd">@cache</span><span class="o">.</span><span class="n">cached</span><span class="p">()</span>
+</span><span id="currency-359"><a href="#currency-359"><span class="linenos">359</span></a><span class="k">def</span> <span class="nf">currency</span><span class="p">(</span><span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CurrencyData</span><span class="p">:</span>
+</span><span id="currency-360"><a href="#currency-360"><span class="linenos">360</span></a><span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Create a new `CurrencyData` datasource based on `iso_code` and `**overrides`</span>
+</span><span id="currency-361"><a href="#currency-361"><span class="linenos">361</span></a>
+</span><span id="currency-362"><a href="#currency-362"><span class="linenos">362</span></a><span class="sd">    Args:</span>
+</span><span id="currency-363"><a href="#currency-363"><span class="linenos">363</span></a><span class="sd">        iso_code:</span>
+</span><span id="currency-364"><a href="#currency-364"><span class="linenos">364</span></a><span class="sd">            The ISO 4217 alpha code of the currency to parse denominational data for.</span>
+</span><span id="currency-365"><a href="#currency-365"><span class="linenos">365</span></a><span class="sd">        **overrides:</span>
+</span><span id="currency-366"><a href="#currency-366"><span class="linenos">366</span></a><span class="sd">            Denominational options to override the default rounding rules for the</span>
+</span><span id="currency-367"><a href="#currency-367"><span class="linenos">367</span></a><span class="sd">            requested currency.</span>
+</span><span id="currency-368"><a href="#currency-368"><span class="linenos">368</span></a><span class="sd">            The name of each kwarg is interpreted as a key in the `CurrencyMap`</span>
+</span><span id="currency-369"><a href="#currency-369"><span class="linenos">369</span></a><span class="sd">            returned as the `CurrencyData.data` field, and</span>
+</span><span id="currency-370"><a href="#currency-370"><span class="linenos">370</span></a><span class="sd">            its value will replace the value of that key in the output `DataMap`.</span>
+</span><span id="currency-371"><a href="#currency-371"><span class="linenos">371</span></a><span class="sd">            E.g. `currency(&quot;USD&quot;, denomination=5)` will return a `CurrencyData`</span>
+</span><span id="currency-372"><a href="#currency-372"><span class="linenos">372</span></a><span class="sd">            with denominational data for the &#39;USD&#39; currency, but rounding to the</span>
+</span><span id="currency-373"><a href="#currency-373"><span class="linenos">373</span></a><span class="sd">            nearest $0.05, so rounding $10.068 using this data would result in</span>
+</span><span id="currency-374"><a href="#currency-374"><span class="linenos">374</span></a><span class="sd">            $10.05, not $10.07.</span>
+</span><span id="currency-375"><a href="#currency-375"><span class="linenos">375</span></a><span class="sd">    Returns:</span>
+</span><span id="currency-376"><a href="#currency-376"><span class="linenos">376</span></a><span class="sd">        The newly parsed `CurrencyData`.</span>
+</span><span id="currency-377"><a href="#currency-377"><span class="linenos">377</span></a><span class="sd">    Raises:</span>
+</span><span id="currency-378"><a href="#currency-378"><span class="linenos">378</span></a><span class="sd">        `linearmoney.exceptions.UnknownDataError`:</span>
+</span><span id="currency-379"><a href="#currency-379"><span class="linenos">379</span></a><span class="sd">            If the cldr-json data does not have denominational data for `iso_code`</span>
+</span><span id="currency-380"><a href="#currency-380"><span class="linenos">380</span></a><span class="sd">            and not all of the fields of `CurrencyMap` are provided as **overrides.</span>
+</span><span id="currency-381"><a href="#currency-381"><span class="linenos">381</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="currency-382"><a href="#currency-382"><span class="linenos">382</span></a>
+</span><span id="currency-383"><a href="#currency-383"><span class="linenos">383</span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">iso_code</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+</span><span id="currency-384"><a href="#currency-384"><span class="linenos">384</span></a>        <span class="n">iso_code</span> <span class="o">=</span> <span class="n">iso_code</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</span><span id="currency-385"><a href="#currency-385"><span class="linenos">385</span></a>
+</span><span id="currency-386"><a href="#currency-386"><span class="linenos">386</span></a>    <span class="k">if</span> <span class="n">iso_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_supported_iso_codes</span><span class="p">:</span>
+</span><span id="currency-387"><a href="#currency-387"><span class="linenos">387</span></a>        <span class="k">if</span> <span class="p">(</span>
+</span><span id="currency-388"><a href="#currency-388"><span class="linenos">388</span></a>            <span class="s2">&quot;denomination&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
+</span><span id="currency-389"><a href="#currency-389"><span class="linenos">389</span></a>            <span class="ow">or</span> <span class="s2">&quot;places&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
+</span><span id="currency-390"><a href="#currency-390"><span class="linenos">390</span></a>            <span class="ow">or</span> <span class="s2">&quot;cash_denomination&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
+</span><span id="currency-391"><a href="#currency-391"><span class="linenos">391</span></a>            <span class="ow">or</span> <span class="s2">&quot;cash_places&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overrides</span>
+</span><span id="currency-392"><a href="#currency-392"><span class="linenos">392</span></a>        <span class="p">):</span>
+</span><span id="currency-393"><a href="#currency-393"><span class="linenos">393</span></a>            <span class="k">raise</span> <span class="n">UnknownDataError</span><span class="p">(</span>
+</span><span id="currency-394"><a href="#currency-394"><span class="linenos">394</span></a>                <span class="sa">f</span><span class="s2">&quot;Rounding data for currency </span><span class="si">{</span><span class="n">iso_code</span><span class="si">}</span><span class="s2"> not found.</span><span class="se">\</span>
+</span><span id="currency-395"><a href="#currency-395"><span class="linenos">395</span></a><span class="s2">You must provide all rounding data for unknown currency.&quot;</span>
+</span><span id="currency-396"><a href="#currency-396"><span class="linenos">396</span></a>            <span class="p">)</span>
+</span><span id="currency-397"><a href="#currency-397"><span class="linenos">397</span></a>
+</span><span id="currency-398"><a href="#currency-398"><span class="linenos">398</span></a>    <span class="n">currencies</span><span class="p">:</span> <span class="n">CurrencyMap</span>
+</span><span id="currency-399"><a href="#currency-399"><span class="linenos">399</span></a>    <span class="k">if</span> <span class="n">iso_code</span> <span class="ow">in</span> <span class="n">_fallback_currencies</span><span class="p">:</span>
+</span><span id="currency-400"><a href="#currency-400"><span class="linenos">400</span></a>        <span class="n">currencies</span> <span class="o">=</span> <span class="n">_fallback_currencies</span><span class="p">[</span><span class="n">iso_code</span><span class="p">]</span>
+</span><span id="currency-401"><a href="#currency-401"><span class="linenos">401</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="currency-402"><a href="#currency-402"><span class="linenos">402</span></a>        <span class="n">currencies</span> <span class="o">=</span> <span class="n">_fallback_currencies</span><span class="p">[</span><span class="s2">&quot;DEFAULT&quot;</span><span class="p">]</span>
+</span><span id="currency-403"><a href="#currency-403"><span class="linenos">403</span></a>
+</span><span id="currency-404"><a href="#currency-404"><span class="linenos">404</span></a>    <span class="k">if</span> <span class="n">overrides</span><span class="p">:</span>
+</span><span id="currency-405"><a href="#currency-405"><span class="linenos">405</span></a>        <span class="c1"># We cast to satisfy mypy since we can&#39;t use read-only TypedDict yet.</span>
+</span><span id="currency-406"><a href="#currency-406"><span class="linenos">406</span></a>        <span class="c1"># Remove this cast once pep 705 is implemented.</span>
+</span><span id="currency-407"><a href="#currency-407"><span class="linenos">407</span></a>        <span class="k">return</span> <span class="n">CurrencyData</span><span class="p">(</span>
+</span><span id="currency-408"><a href="#currency-408"><span class="linenos">408</span></a>            <span class="n">iso_code</span><span class="p">,</span>
+</span><span id="currency-409"><a href="#currency-409"><span class="linenos">409</span></a>            <span class="n">data</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span>
+</span><span id="currency-410"><a href="#currency-410"><span class="linenos">410</span></a>                <span class="n">CurrencyMap</span><span class="p">,</span> <span class="n">DataMap</span><span class="p">(</span><span class="n">_merge_currency_overrides</span><span class="p">(</span><span class="n">currencies</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">))</span>
+</span><span id="currency-411"><a href="#currency-411"><span class="linenos">411</span></a>            <span class="p">),</span>
+</span><span id="currency-412"><a href="#currency-412"><span class="linenos">412</span></a>        <span class="p">)</span>
+</span><span id="currency-413"><a href="#currency-413"><span class="linenos">413</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="currency-414"><a href="#currency-414"><span class="linenos">414</span></a>        <span class="c1"># We cast to satisfy mypy since we can&#39;t use read-only TypedDict yet.</span>
+</span><span id="currency-415"><a href="#currency-415"><span class="linenos">415</span></a>        <span class="c1"># Remove this cast once pep 705 is implemented.</span>
+</span><span id="currency-416"><a href="#currency-416"><span class="linenos">416</span></a>        <span class="k">return</span> <span class="n">CurrencyData</span><span class="p">(</span><span class="n">iso_code</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">CurrencyMap</span><span class="p">,</span> <span class="n">DataMap</span><span class="p">(</span><span class="n">currencies</span><span class="p">)))</span>
 </span></pre></div>
 
 
@@ -1497,20 +1519,20 @@ for more details.</p>
 
     </div>
     <a class="headerlink" href="#CurrencyMap"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CurrencyMap-285"><a href="#CurrencyMap-285"><span class="linenos">285</span></a><span class="k">class</span> <span class="nc">CurrencyMap</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-</span><span id="CurrencyMap-286"><a href="#CurrencyMap-286"><span class="linenos">286</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents the structure of denominational/rounding data for currencies.</span>
-</span><span id="CurrencyMap-287"><a href="#CurrencyMap-287"><span class="linenos">287</span></a>
-</span><span id="CurrencyMap-288"><a href="#CurrencyMap-288"><span class="linenos">288</span></a><span class="sd">    TODO:</span>
-</span><span id="CurrencyMap-289"><a href="#CurrencyMap-289"><span class="linenos">289</span></a><span class="sd">        Mark this as readonly once [PEP 705](https://peps.python.org/pep-0705/)</span>
-</span><span id="CurrencyMap-290"><a href="#CurrencyMap-290"><span class="linenos">290</span></a><span class="sd">        is implemented.</span>
-</span><span id="CurrencyMap-291"><a href="#CurrencyMap-291"><span class="linenos">291</span></a><span class="sd">        We currently have to cast a `DataMap` to `CurrencyMap` whenever we construct this</span>
-</span><span id="CurrencyMap-292"><a href="#CurrencyMap-292"><span class="linenos">292</span></a><span class="sd">        dict since we can&#39;t mark a `TypedDict` as read-only yet.</span>
-</span><span id="CurrencyMap-293"><a href="#CurrencyMap-293"><span class="linenos">293</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="CurrencyMap-294"><a href="#CurrencyMap-294"><span class="linenos">294</span></a>
-</span><span id="CurrencyMap-295"><a href="#CurrencyMap-295"><span class="linenos">295</span></a>    <span class="n">places</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="CurrencyMap-296"><a href="#CurrencyMap-296"><span class="linenos">296</span></a>    <span class="n">cash_places</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="CurrencyMap-297"><a href="#CurrencyMap-297"><span class="linenos">297</span></a>    <span class="n">denomination</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="CurrencyMap-298"><a href="#CurrencyMap-298"><span class="linenos">298</span></a>    <span class="n">cash_denomination</span><span class="p">:</span> <span class="nb">int</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CurrencyMap-293"><a href="#CurrencyMap-293"><span class="linenos">293</span></a><span class="k">class</span> <span class="nc">CurrencyMap</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="CurrencyMap-294"><a href="#CurrencyMap-294"><span class="linenos">294</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents the structure of denominational/rounding data for currencies.</span>
+</span><span id="CurrencyMap-295"><a href="#CurrencyMap-295"><span class="linenos">295</span></a>
+</span><span id="CurrencyMap-296"><a href="#CurrencyMap-296"><span class="linenos">296</span></a><span class="sd">    TODO:</span>
+</span><span id="CurrencyMap-297"><a href="#CurrencyMap-297"><span class="linenos">297</span></a><span class="sd">        Mark this as readonly once [PEP 705](https://peps.python.org/pep-0705/)</span>
+</span><span id="CurrencyMap-298"><a href="#CurrencyMap-298"><span class="linenos">298</span></a><span class="sd">        is implemented.</span>
+</span><span id="CurrencyMap-299"><a href="#CurrencyMap-299"><span class="linenos">299</span></a><span class="sd">        We currently have to cast a `DataMap` to `CurrencyMap` whenever we construct this</span>
+</span><span id="CurrencyMap-300"><a href="#CurrencyMap-300"><span class="linenos">300</span></a><span class="sd">        dict since we can&#39;t mark a `TypedDict` as read-only yet.</span>
+</span><span id="CurrencyMap-301"><a href="#CurrencyMap-301"><span class="linenos">301</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="CurrencyMap-302"><a href="#CurrencyMap-302"><span class="linenos">302</span></a>
+</span><span id="CurrencyMap-303"><a href="#CurrencyMap-303"><span class="linenos">303</span></a>    <span class="n">places</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="CurrencyMap-304"><a href="#CurrencyMap-304"><span class="linenos">304</span></a>    <span class="n">cash_places</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="CurrencyMap-305"><a href="#CurrencyMap-305"><span class="linenos">305</span></a>    <span class="n">denomination</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="CurrencyMap-306"><a href="#CurrencyMap-306"><span class="linenos">306</span></a>    <span class="n">cash_denomination</span><span class="p">:</span> <span class="nb">int</span>
 </span></pre></div>
 
 
@@ -1603,27 +1625,27 @@ for more details.</p>
 
     </div>
     <a class="headerlink" href="#CurrencyData"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CurrencyData-301"><a href="#CurrencyData-301"><span class="linenos">301</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">eq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="CurrencyData-302"><a href="#CurrencyData-302"><span class="linenos">302</span></a><span class="k">class</span> <span class="nc">CurrencyData</span><span class="p">(</span><span class="n">EqualityByHashMixin</span><span class="p">):</span>
-</span><span id="CurrencyData-303"><a href="#CurrencyData-303"><span class="linenos">303</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A [Datasource](/linearmoney/glossary.html#datasource) that provides denominational</span>
-</span><span id="CurrencyData-304"><a href="#CurrencyData-304"><span class="linenos">304</span></a><span class="sd">    data for currency rounding.&quot;&quot;&quot;</span>
-</span><span id="CurrencyData-305"><a href="#CurrencyData-305"><span class="linenos">305</span></a>
-</span><span id="CurrencyData-306"><a href="#CurrencyData-306"><span class="linenos">306</span></a>    <span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="CurrencyData-307"><a href="#CurrencyData-307"><span class="linenos">307</span></a>    <span class="n">data</span><span class="p">:</span> <span class="n">CurrencyMap</span>
-</span><span id="CurrencyData-308"><a href="#CurrencyData-308"><span class="linenos">308</span></a>
-</span><span id="CurrencyData-309"><a href="#CurrencyData-309"><span class="linenos">309</span></a>    <span class="nd">@property</span>
-</span><span id="CurrencyData-310"><a href="#CurrencyData-310"><span class="linenos">310</span></a>    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-</span><span id="CurrencyData-311"><a href="#CurrencyData-311"><span class="linenos">311</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Identifies the currency, but not necessarily the unique data of the currency.</span>
-</span><span id="CurrencyData-312"><a href="#CurrencyData-312"><span class="linenos">312</span></a>
-</span><span id="CurrencyData-313"><a href="#CurrencyData-313"><span class="linenos">313</span></a><span class="sd">        Represents the positional arguments used to create this instance.</span>
-</span><span id="CurrencyData-314"><a href="#CurrencyData-314"><span class="linenos">314</span></a><span class="sd">        See [Datasources](/linearmoney/glossary.html#datasource) in the glossary</span>
-</span><span id="CurrencyData-315"><a href="#CurrencyData-315"><span class="linenos">315</span></a><span class="sd">        for more details.</span>
-</span><span id="CurrencyData-316"><a href="#CurrencyData-316"><span class="linenos">316</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CurrencyData-317"><a href="#CurrencyData-317"><span class="linenos">317</span></a>
-</span><span id="CurrencyData-318"><a href="#CurrencyData-318"><span class="linenos">318</span></a>        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iso_code</span><span class="p">,)</span>
-</span><span id="CurrencyData-319"><a href="#CurrencyData-319"><span class="linenos">319</span></a>
-</span><span id="CurrencyData-320"><a href="#CurrencyData-320"><span class="linenos">320</span></a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-</span><span id="CurrencyData-321"><a href="#CurrencyData-321"><span class="linenos">321</span></a>        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CurrencyData-309"><a href="#CurrencyData-309"><span class="linenos">309</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">eq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="CurrencyData-310"><a href="#CurrencyData-310"><span class="linenos">310</span></a><span class="k">class</span> <span class="nc">CurrencyData</span><span class="p">(</span><span class="n">EqualityByHashMixin</span><span class="p">):</span>
+</span><span id="CurrencyData-311"><a href="#CurrencyData-311"><span class="linenos">311</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A [Datasource](/linearmoney/glossary.html#datasource) that provides denominational</span>
+</span><span id="CurrencyData-312"><a href="#CurrencyData-312"><span class="linenos">312</span></a><span class="sd">    data for currency rounding.&quot;&quot;&quot;</span>
+</span><span id="CurrencyData-313"><a href="#CurrencyData-313"><span class="linenos">313</span></a>
+</span><span id="CurrencyData-314"><a href="#CurrencyData-314"><span class="linenos">314</span></a>    <span class="n">iso_code</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="CurrencyData-315"><a href="#CurrencyData-315"><span class="linenos">315</span></a>    <span class="n">data</span><span class="p">:</span> <span class="n">CurrencyMap</span>
+</span><span id="CurrencyData-316"><a href="#CurrencyData-316"><span class="linenos">316</span></a>
+</span><span id="CurrencyData-317"><a href="#CurrencyData-317"><span class="linenos">317</span></a>    <span class="nd">@property</span>
+</span><span id="CurrencyData-318"><a href="#CurrencyData-318"><span class="linenos">318</span></a>    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="CurrencyData-319"><a href="#CurrencyData-319"><span class="linenos">319</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Identifies the currency, but not necessarily the unique data of the currency.</span>
+</span><span id="CurrencyData-320"><a href="#CurrencyData-320"><span class="linenos">320</span></a>
+</span><span id="CurrencyData-321"><a href="#CurrencyData-321"><span class="linenos">321</span></a><span class="sd">        Represents the positional arguments used to create this instance.</span>
+</span><span id="CurrencyData-322"><a href="#CurrencyData-322"><span class="linenos">322</span></a><span class="sd">        See [Datasources](/linearmoney/glossary.html#datasource) in the glossary</span>
+</span><span id="CurrencyData-323"><a href="#CurrencyData-323"><span class="linenos">323</span></a><span class="sd">        for more details.</span>
+</span><span id="CurrencyData-324"><a href="#CurrencyData-324"><span class="linenos">324</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CurrencyData-325"><a href="#CurrencyData-325"><span class="linenos">325</span></a>
+</span><span id="CurrencyData-326"><a href="#CurrencyData-326"><span class="linenos">326</span></a>        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iso_code</span><span class="p">,)</span>
+</span><span id="CurrencyData-327"><a href="#CurrencyData-327"><span class="linenos">327</span></a>
+</span><span id="CurrencyData-328"><a href="#CurrencyData-328"><span class="linenos">328</span></a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span><span id="CurrencyData-329"><a href="#CurrencyData-329"><span class="linenos">329</span></a>        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
 </span></pre></div>
 
 
@@ -1675,16 +1697,16 @@ data for currency rounding.</p>
 
     </div>
     <a class="headerlink" href="#CurrencyData.id"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CurrencyData.id-309"><a href="#CurrencyData.id-309"><span class="linenos">309</span></a>    <span class="nd">@property</span>
-</span><span id="CurrencyData.id-310"><a href="#CurrencyData.id-310"><span class="linenos">310</span></a>    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-</span><span id="CurrencyData.id-311"><a href="#CurrencyData.id-311"><span class="linenos">311</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Identifies the currency, but not necessarily the unique data of the currency.</span>
-</span><span id="CurrencyData.id-312"><a href="#CurrencyData.id-312"><span class="linenos">312</span></a>
-</span><span id="CurrencyData.id-313"><a href="#CurrencyData.id-313"><span class="linenos">313</span></a><span class="sd">        Represents the positional arguments used to create this instance.</span>
-</span><span id="CurrencyData.id-314"><a href="#CurrencyData.id-314"><span class="linenos">314</span></a><span class="sd">        See [Datasources](/linearmoney/glossary.html#datasource) in the glossary</span>
-</span><span id="CurrencyData.id-315"><a href="#CurrencyData.id-315"><span class="linenos">315</span></a><span class="sd">        for more details.</span>
-</span><span id="CurrencyData.id-316"><a href="#CurrencyData.id-316"><span class="linenos">316</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CurrencyData.id-317"><a href="#CurrencyData.id-317"><span class="linenos">317</span></a>
-</span><span id="CurrencyData.id-318"><a href="#CurrencyData.id-318"><span class="linenos">318</span></a>        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iso_code</span><span class="p">,)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CurrencyData.id-317"><a href="#CurrencyData.id-317"><span class="linenos">317</span></a>    <span class="nd">@property</span>
+</span><span id="CurrencyData.id-318"><a href="#CurrencyData.id-318"><span class="linenos">318</span></a>    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="CurrencyData.id-319"><a href="#CurrencyData.id-319"><span class="linenos">319</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Identifies the currency, but not necessarily the unique data of the currency.</span>
+</span><span id="CurrencyData.id-320"><a href="#CurrencyData.id-320"><span class="linenos">320</span></a>
+</span><span id="CurrencyData.id-321"><a href="#CurrencyData.id-321"><span class="linenos">321</span></a><span class="sd">        Represents the positional arguments used to create this instance.</span>
+</span><span id="CurrencyData.id-322"><a href="#CurrencyData.id-322"><span class="linenos">322</span></a><span class="sd">        See [Datasources](/linearmoney/glossary.html#datasource) in the glossary</span>
+</span><span id="CurrencyData.id-323"><a href="#CurrencyData.id-323"><span class="linenos">323</span></a><span class="sd">        for more details.</span>
+</span><span id="CurrencyData.id-324"><a href="#CurrencyData.id-324"><span class="linenos">324</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CurrencyData.id-325"><a href="#CurrencyData.id-325"><span class="linenos">325</span></a>
+</span><span id="CurrencyData.id-326"><a href="#CurrencyData.id-326"><span class="linenos">326</span></a>        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iso_code</span><span class="p">,)</span>
 </span></pre></div>
 
 

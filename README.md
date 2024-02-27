@@ -47,7 +47,7 @@ data to provide data-driven interfaces for currency rounding, formatting, and lo
 
 ## Installation
 
-linearmoney requires Python >= 3.12
+linearmoney requires Python >= 3.11
 
 From PyPi:
 

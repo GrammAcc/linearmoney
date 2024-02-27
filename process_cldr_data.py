@@ -164,9 +164,9 @@ for i in temp_locale_data.keys():
             locale_data["standard"][locale_string]["decimal_separator"] = number_data[
                 j
             ]["decimal"]
-            locale_data["accounting"][locale_string][
-                "grouping_separator"
-            ] = number_data[j]["group"]
+            locale_data["accounting"][locale_string]["grouping_separator"] = (
+                number_data[j]["group"]
+            )
             locale_data["standard"][locale_string]["grouping_separator"] = number_data[
                 j
             ]["group"]

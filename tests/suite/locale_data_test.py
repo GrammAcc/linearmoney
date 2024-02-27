@@ -200,6 +200,8 @@ def test_system_locale_basic_usage():
     """Ensure the `system_locale` gives the locale of the running Python process."""
 
     system_locale_string = posix_locale.getlocale()[0]
+    if system_locale_string.upper() == "C" or system_locale_string.upper() == "POSIX":
+        system_locale_string = "en_US"
     assert system_locale_string == lm.data.system_locale().tag
 
 
@@ -208,7 +210,6 @@ def test_system_locale_after_update():
     if the POSIX locale is updated using the stdlib."""
 
     system_locale_string = posix_locale.getlocale()[0]
-    assert system_locale_string == lm.data.system_locale().tag
 
     if system_locale_string == "ja_JP":
         posix_locale.setlocale(posix_locale.LC_ALL, "en_US.UTF-8")
@@ -216,3 +217,11 @@ def test_system_locale_after_update():
     else:
         posix_locale.setlocale(posix_locale.LC_ALL, "ja_JP.UTF-8")
         assert lm.data.system_locale().tag == "ja_JP"
+
+
+def test_system_locale_c_locale():
+    """The default "C" or "POSIX" locale should be interpreted as "en_US"
+    by the `system_locale` function."""
+
+    posix_locale.setlocale(posix_locale.LC_ALL, "C.UTF-8")
+    assert lm.data.system_locale().tag == "en_US"
