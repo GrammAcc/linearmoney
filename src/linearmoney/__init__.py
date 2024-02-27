@@ -31,4 +31,4 @@ from . import (  # noqa: E402
     resources,
 )
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
