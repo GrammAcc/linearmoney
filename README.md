@@ -60,11 +60,8 @@ From source:
 ```bash
 git clone https://github.com/GrammAcc/linearmoney
 cd linearmoney
-poetry build
+python -m build .
 ```
-
-See the [poetry installation](https://python-poetry.org/docs/#installation) docs if
-you don't have poetry installed yet.
 
 Then to install (virtual environment recommended):
 
@@ -113,12 +110,13 @@ some examples of how to mitigate the verbosity of the library and other helpful 
 ## Contributing
 
 This project is in early development and is not yet accepting PRs. Once a contributing
-workflow and CI pipeline are setup, we will start accepting public PRs.
+workflow and CI pipeline are set up, we will start accepting public PRs.
 
 ## Roadmap
 
 Version 1.0.0:
 - [ ] Redesign locale/formatting data structure
+  - [#15](https://github.com/GrammAcc/linearmoney/issues/15)
 - [ ] Redesign caching system
 - [ ] Higher-order serialization interface
   - [ ] Serialization/deserialization of forex vectors
@@ -127,3 +125,5 @@ Version 1.0.0:
 - [ ] Refactor CLDR data processing script
   - [#11](https://github.com/GrammAcc/linearmoney/issues/11)
 - [ ] Add contributing guidelines and setup CI
+  - [ ] Contributing guidelines
+  - [x] CI workflow
