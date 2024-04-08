@@ -109,8 +109,9 @@ some examples of how to mitigate the verbosity of the library and other helpful 
 
 ## Contributing
 
-This project is in early development and is not yet accepting PRs. Once a contributing
-workflow and CI pipeline are set up, we will start accepting public PRs.
+Contributions are greatly appreciated!
+
+See the [contributing guidelines](/CONTRIBUTING.md) to get started.
 
 ## Roadmap
 
@@ -124,6 +125,6 @@ Version 1.0.0:
   - [ ] Use-cases without vectors
 - [ ] Refactor CLDR data processing script
   - [#11](https://github.com/GrammAcc/linearmoney/issues/11)
-- [ ] Add contributing guidelines and setup CI
-  - [ ] Contributing guidelines
+- [x] Add contributing guidelines and setup CI
+  - [x] Contributing guidelines
   - [x] CI workflow
