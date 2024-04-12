@@ -72,6 +72,7 @@ all = [
     "- hatch run style:linttests",
     "- hatch run style:lintdocs",
 ]
+checkcldr = "python tests/cldr.py"
 
 
 [tool.hatch.envs.test]
