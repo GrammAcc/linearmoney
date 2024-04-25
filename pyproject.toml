@@ -72,7 +72,6 @@ all = [
     "- hatch run style:linttests",
     "- hatch run style:lintdocs",
 ]
-checkcldr = "python tests/cldr.py"
 
 
 [tool.hatch.envs.test]
@@ -135,6 +134,14 @@ build = [
 serve = "python documentation/serve.py"
 test-prose = "pytest --doctest-glob='*.md' README.md documentation"
 test-in-source = "python documentation/run_doctests.py"
+
+[tool.hatch.envs.cldr]
+description = "CLDR data tooling"
+detached = true
+
+[tool.hatch.envs.cldr.scripts]
+build = "python process_cldr_data.py"
+test = "python tests/cldr.py"
 
 
 [tool.pytest.ini_options]

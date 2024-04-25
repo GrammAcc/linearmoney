@@ -1,3 +1,8 @@
+"""TODO:
+    - Separate `temp_locale_data` into currency and locale data.
+    - Change `temp_locale_mappings` to be the source of truth for locale strings.
+"""
+
 import json
 import os
 import unicodedata
@@ -6,6 +11,7 @@ import unicodedata
 def remove_control_characters(s):
     return "".join(ch for ch in s if unicodedata.category(ch)[0] != "C")
 
+print("processing cldr data...")
 
 currency_data = {}
 currency_mapping = {}
@@ -15,11 +21,6 @@ temp_currency_data = {}
 temp_locale_data = {}
 temp_locale_mappings = {}
 
-locale_dirs = []
-with os.scandir("cldr-json/cldr-json/cldr-numbers-modern/main") as dir_contents:
-    for entry in dir_contents:
-        if entry.is_dir():
-            locale_dirs.append(entry.name)
 
 with open(
     "cldr-json/cldr-json/cldr-core/supplemental/likelySubtags.json", "r"
@@ -33,22 +34,35 @@ with open(
     temp_currency_data = json.load(json_file)
 
 
-for i in locale_dirs:
-    temp_locale_data[i] = {}
-    with open(
-        "".join(
-            ["cldr-json/cldr-json/cldr-numbers-modern/main/", i, "/currencies.json"]
-        ),
-        "r",
-    ) as json_file:
-        temp_locale_data[i]["currencies"] = json.load(json_file)
+def build_temp_locale_data() -> None:
+    """Populate the `temp_locale_data` dict."""
 
-    with open(
-        "".join(["cldr-json/cldr-json/cldr-numbers-modern/main/", i, "/numbers.json"]),
-        "r",
-    ) as json_file:
-        temp_locale_data[i]["numbers"] = json.load(json_file)
+    locale_dirs = []
+    with os.scandir("cldr-json/cldr-json/cldr-numbers-modern/main") as dir_contents:
+        for entry in dir_contents:
+            if entry.is_dir():
+                locale_dirs.append(entry.name)
 
+    for i in locale_dirs:
+        temp_locale_data[i] = {}
+        with open(
+            "".join(
+                ["cldr-json/cldr-json/cldr-numbers-modern/main/", i, "/currencies.json"]
+            ),
+            "r",
+        ) as json_file:
+            temp_locale_data[i]["currencies"] = json.load(json_file)
+
+        with open(
+            "".join(
+                ["cldr-json/cldr-json/cldr-numbers-modern/main/", i, "/numbers.json"]
+            ),
+            "r",
+        ) as json_file:
+            temp_locale_data[i]["numbers"] = json.load(json_file)
+
+
+build_temp_locale_data()
 
 temp_currency_regions = temp_currency_data["supplemental"]["currencyData"]["region"]
 for i in temp_currency_regions.keys():
@@ -293,7 +307,7 @@ def _sorted_dict(d: dict) -> dict:
 _sorted_l10n = lambda l10n: _sorted_dict({k: _sorted_dict(v) for k, v in l10n.items()})
 
 
-def _build_fractions_data(fractions_dict: dict) -> dict:
+def _typecast_fractions_data(fractions_dict: dict) -> dict:
     for i in fractions_dict.values():
         for k, v in i.items():
             i[k] = int(v)
@@ -308,7 +322,7 @@ _formatting_data = {
     "standard": _standard_formatting,
 }
 
-_fractions_data = _build_fractions_data(locale_data["fractions"])
+_fractions_data = _typecast_fractions_data(locale_data["fractions"])
 
 with open("src/linearmoney/locales.json", "w") as json_file:
     json.dump(_formatting_data, json_file)
@@ -325,3 +339,5 @@ with open("cldr-json/cldr-json/cldr-core/package.json", "r") as file:
     CLDR_VERSION = data["version"]
     with open("src/linearmoney/cldr_version.json", "w") as json_file:
         json.dump(CLDR_VERSION, json_file)
+
+print("successfully processed cldr data")
