@@ -66,6 +66,19 @@ if the code is not written in a way that is easily testable. Code that is easily
 to change later as well, so this is an opportunity to improve the design of the changes before
 merge.
 
+## Updating CLDR Data
+
+If a new version of the CLDR data has been released and we have decided to include
+it, then we can update it with the following steps:
+
+1. Pull the new version of the CLDR JSON data from the upstream https://github.com/unicode-org/cldr-json repo.
+2. Run `hatch run cldr:build` to process the new data and update the linearmoney resource files.
+3. Run `hatch run test:suite` to verify that there are no problems with the newly generated data.
+4. If tests failed due to a change in the data causing the expected formatting or rounding results to change, update the test cases with the new expectations based on the updated data. If the test failed because the expected structure of the data changed or because of some error in the build, then the tests should not be updated and the data processing script needs to be debugged.
+5. Once source tests are passing, copy the resource files to the test file locations in the `tests` directory. E.g. `src/linearmoney/locales.json` -> `tests/cldr/locales.json`. These files are used to test changes to the cldr data processing script itself.
+6. Run `hatch run cldr:test` to ensure the test resource files were copied correctly.
+7. Commit and push your changes.
+
 ## Creating a Release
 
 If you are the current maintainer of linearmoney, you can follow these steps to create

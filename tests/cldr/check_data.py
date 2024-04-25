@@ -19,13 +19,13 @@ with open("src/linearmoney/locales.json", "r") as json_file:
 with open("src/linearmoney/supported_iso_codes.json", "r") as json_file:
     new_supported_iso_codes = json.load(json_file)
 
-with open("tests/cldr_version.json", "r") as json_file:
+with open("tests/cldr/cldr_version.json", "r") as json_file:
     cldr_version = json.load(json_file)
-with open("tests/currencies.json", "r") as json_file:
+with open("tests/cldr/currencies.json", "r") as json_file:
     currencies = json.load(json_file)
-with open("tests/locales.json", "r") as json_file:
+with open("tests/cldr/locales.json", "r") as json_file:
     locales = json.load(json_file)
-with open("tests/supported_iso_codes.json", "r") as json_file:
+with open("tests/cldr/supported_iso_codes.json", "r") as json_file:
     supported_iso_codes = json.load(json_file)
 
 try:

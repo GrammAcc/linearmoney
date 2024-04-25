@@ -141,7 +141,7 @@ detached = true
 
 [tool.hatch.envs.cldr.scripts]
 build = "python process_cldr_data.py"
-test = "python tests/cldr.py"
+test = "python tests/cldr/check_data.py"
 
 
 [tool.pytest.ini_options]
