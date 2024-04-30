@@ -1,92 +1,115 @@
-"""TODO:
-    - Separate `temp_locale_data` into currency and locale data.
-    - Change `temp_locale_mappings` to be the source of truth for locale strings.
-"""
-
 import json
 import os
 import unicodedata
+import functools
 
 
 def remove_control_characters(s):
     return "".join(ch for ch in s if unicodedata.category(ch)[0] != "C")
 
 
+def normalize_whitespace(char):
+    return str(unicodedata.normalize("NFKD", char).encode("ascii", "ignore"))
+
+
+def sort_dict(d: dict) -> dict:
+    return {
+        k: dict(sorted(v.items())) if isinstance(v, dict) else v
+        for k, v in dict(sorted(d.items())).items()
+    }
+
+
 print("processing cldr data...")
 
-currency_data = {}
-currency_mapping = {}
-locale_data = {}
-temp_locales = {}
-temp_currency_data = {}
-temp_locale_data = {}
-temp_locale_mappings = {}
+
+_raw_currency_data: dict | None = None
 
 
-with open(
-    "cldr-json/cldr-json/cldr-core/supplemental/likelySubtags.json", "r"
-) as json_file:
-    temp_locale_mappings = json.load(json_file)["supplemental"]["likelySubtags"]
+def get_raw_currency_data() -> dict:
+    """Returns the following structure:
+    {
+        "fractions": {
+            "curr_code": {
+                "_rounding": int,
+                "_digits": int,
+                "_cashRounding": int (optional),
+                "_cashDigits": int (optional),
+            },
+            ...,
+        },
+        "region": {
+            "county_code": [
+                {
+                    "curr_code": {
+                        "_from": date_string,
+                        "_to": date_string (optional) - indicates current circulation.
+                    },
+                    ...,
+                },
+                ...,
+            ],
+            ...,
+        }
+    }
+    """
+    global _raw_currency_data
+    if _raw_currency_data is not None:
+        return _raw_currency_data
+
+    with open(
+        "cldr-json/cldr-json/cldr-core/supplemental/currencyData.json", "r"
+    ) as json_file:
+        _raw_currency_data = json.load(json_file)["supplemental"]["currencyData"]
+        return _raw_currency_data
 
 
-with open(
-    "cldr-json/cldr-json/cldr-core/supplemental/currencyData.json", "r"
-) as json_file:
-    temp_currency_data = json.load(json_file)
+_local_currency_tags: dict[str, str] | None = None
 
 
-def build_temp_locale_data() -> None:
-    """Populate the `temp_locale_data` dict."""
-
-    locale_dirs = []
-    with os.scandir("cldr-json/cldr-json/cldr-numbers-modern/main") as dir_contents:
-        for entry in dir_contents:
-            if entry.is_dir():
-                locale_dirs.append(entry.name)
-
-    for i in locale_dirs:
-        temp_locale_data[i] = {}
-        with open(
-            "".join(
-                ["cldr-json/cldr-json/cldr-numbers-modern/main/", i, "/currencies.json"]
-            ),
-            "r",
-        ) as json_file:
-            temp_locale_data[i]["currencies"] = json.load(json_file)
-
-        with open(
-            "".join(
-                ["cldr-json/cldr-json/cldr-numbers-modern/main/", i, "/numbers.json"]
-            ),
-            "r",
-        ) as json_file:
-            temp_locale_data[i]["numbers"] = json.load(json_file)
+def get_local_currency_tags() -> dict[str, str]:
+    global _local_currency_tags
+    if _local_currency_tags is not None:
+        return _local_currency_tags
+    local_currencies = {}
+    for country_code, tenders in get_raw_currency_data()["region"].items():
+        for currencies in tenders:
+            for curr_code, curr_status in currencies.items():
+                if "_from" in curr_status and "_to" not in curr_status:
+                    if country_code not in local_currencies:
+                        local_currencies[country_code] = curr_code
+    _local_currency_tags = dict(sorted(local_currencies.items()))
+    return _local_currency_tags
 
 
-build_temp_locale_data()
-
-temp_currency_regions = temp_currency_data["supplemental"]["currencyData"]["region"]
-for i in temp_currency_regions.keys():
-    for j in temp_currency_regions[i]:
-        for k in j.keys():
-            if "_from" in j[k] and not "_to" in j[k]:
-                if not i in currency_mapping:
-                    currency_mapping[i] = k
-                if not k in currency_data:
-                    currency_data[k] = {}
+_supported_currency_tags: list[str] | None = None
 
 
-def _build_fractions_data(curr_data: dict, key: str) -> dict:
+def get_supported_currency_tags() -> list[str]:
+    global _supported_currency_tags
+    if _supported_currency_tags is not None:
+        return _supported_currency_tags
+    supported_currencies = []
+    for country_code, tenders in get_raw_currency_data()["region"].items():
+        for currencies in tenders:
+            for curr_code, curr_status in currencies.items():
+                if "_from" in curr_status and "_to" not in curr_status:
+                    if curr_code not in supported_currencies:
+                        supported_currencies.append(curr_code.upper())
+    _supported_currency_tags = sorted(supported_currencies)
+    return _supported_currency_tags
+
+
+def restructure_fractions_data(curr_data: dict, key: str) -> dict:
     output_dict = {}
-    for i in curr_data[key]:
-        if i == "_rounding":
-            output_dict["denomination"] = curr_data[key][i]
-        elif i == "_digits":
-            output_dict["places"] = curr_data[key][i]
-        elif i == "_cashRounding":
-            output_dict["cash_denomination"] = curr_data[key][i]
-        elif j == "_cashDigits":
-            output_dict["cash_places"] = curr_data[key][i]
+    for k, v in curr_data[key].items():
+        if k == "_rounding":
+            output_dict["denomination"] = v
+        elif k == "_digits":
+            output_dict["places"] = v
+        elif k == "_cashRounding":
+            output_dict["cash_denomination"] = v
+        elif k == "_cashDigits":
+            output_dict["cash_places"] = v
     if "cash_denomination" not in output_dict:
         output_dict["cash_denomination"] = output_dict["denomination"]
     if "cash_places" not in output_dict:
@@ -94,246 +117,368 @@ def _build_fractions_data(curr_data: dict, key: str) -> dict:
     return output_dict
 
 
-new_currency_data = {}
-temp_fractions = temp_currency_data["supplemental"]["currencyData"]["fractions"]
-new_currency_data["DEFAULT"] = _build_fractions_data(temp_fractions, "DEFAULT")
+_parsed_currency_data: dict | None = None
 
-supported_currencies = list(currency_data.keys())
-# supported_currencies.append("COMPOSITE")
 
-for i in currency_data.keys():
-    if i in temp_fractions:
-        new_currency_data[i] = _build_fractions_data(temp_fractions, i)
+def parse_currency_data() -> dict:
+    global _parsed_currency_data
+    if _parsed_currency_data is not None:
+        return _parsed_currency_data
+    raw_fractions_data = get_raw_currency_data()["fractions"]
 
-locale_data["fractions"] = new_currency_data
+    _currency_data = {}
+    _currency_data["DEFAULT"] = restructure_fractions_data(
+        raw_fractions_data, "DEFAULT"
+    )
+    for i in get_supported_currency_tags():
+        if i in raw_fractions_data:
+            _currency_data[i] = restructure_fractions_data(raw_fractions_data, i)
+    for _data in _currency_data.values():
+        for k, v in _data.items():
+            _data[k] = int(v)
+    _parsed_currency_data = sort_dict(_currency_data)
+    return _parsed_currency_data
 
-locale_data["accounting"] = {}
-locale_data["standard"] = {}
 
-for i in temp_locale_data.keys():
-    identity = temp_locale_data[i]["currencies"]["main"][i]["identity"]
+_locale_dirs: list[str] | None = None
 
-    if not "language" in identity:
-        continue
-    locale_string = ""
-    if "territory" in identity:
-        locale_string = "_".join([identity["language"], identity["territory"]])
 
-    else:
-        if i in temp_locale_mappings:
-            new_string = temp_locale_mappings[i]
-            split_string = new_string.split("-")
-            language = split_string[0]
-            split_string.reverse()
-            country = split_string[0]
-            locale_string = "_".join([language, country])
+def get_locale_dirs() -> list[str]:
+    global _locale_dirs
+    if _locale_dirs is not None:
+        return _locale_dirs
+    locale_dirs = []
+    with os.scandir("cldr-json/cldr-json/cldr-numbers-modern/main") as dir_contents:
+        for entry in dir_contents:
+            if entry.is_dir():
+                locale_dirs.append(entry.name)
+    _locale_dirs = locale_dirs
+    return locale_dirs
+
+
+_raw_locale_data: dict | None = None
+
+
+def get_raw_locale_data() -> dict:
+
+    global _raw_locale_data
+    if _raw_locale_data is not None:
+        return _raw_locale_data
+
+    locale_data = {}
+    for locale_dir in get_locale_dirs():
+        locale_dict = {}
+        currencies = {}
+        numbers = {}
+        with open(
+            "".join(
+                [
+                    "cldr-json/cldr-json/cldr-numbers-modern/main/",
+                    locale_dir,
+                    "/currencies.json",
+                ]
+            ),
+            "r",
+        ) as json_file:
+            currencies = json.load(json_file)["main"][locale_dir]["numbers"][
+                "currencies"
+            ]
+
+        with open(
+            "".join(
+                [
+                    "cldr-json/cldr-json/cldr-numbers-modern/main/",
+                    locale_dir,
+                    "/numbers.json",
+                ]
+            ),
+            "r",
+        ) as json_file:
+            numbers = json.load(json_file)["main"][locale_dir]["numbers"]
+        default_number_system = numbers["defaultNumberingSystem"]
+
+        format_symbols = {}
+        patterns = {"standard": "", "accounting": ""}
+
+        for key in numbers.keys():
+            if key.startswith(
+                "".join(["symbols-numberSystem-", default_number_system])
+            ):
+                format_symbols = numbers[key]
+            elif key.startswith(
+                "".join(["currencyFormats-numberSystem-", default_number_system])
+            ):
+                patterns["standard"] = numbers[key]["standard"]
+                patterns["accounting"] = numbers[key]["accounting"]
+
+        if not format_symbols or not patterns["standard"] or not patterns["accounting"]:
+            # Incomplete locale data.
+            print(locale_dir, " missing locale data")
+            continue
+        locale_dict["patterns"] = patterns
+        locale_dict["format_symbols"] = format_symbols
+
+        currency_symbols = {}
+        for k, v in currencies.items():
+            if "symbol" in v:
+                currency_symbols[k.upper()] = v["symbol"]
+            elif "symbol-alt-narrow" in v:
+                currency_symbols[k.upper()] = v["symbol-alt-narrow"]
+            else:
+                currency_symbols[k.upper()] = k.upper()
+
+        locale_dict["currency_symbols"] = currency_symbols
+
+        locale_data[locale_dir] = locale_dict
+    _raw_locale_data = locale_data
+    return locale_data
+
+
+_locale_strings: dict[str, str] | None = None
+
+
+def get_locale_strings() -> dict[str, str]:
+    global _locale_strings
+    if _locale_strings is not None:
+        return _locale_strings
+    identities = {}
+    for locale_dir in get_locale_dirs():
+        with open(
+            "".join(
+                [
+                    "cldr-json/cldr-json/cldr-numbers-modern/main/",
+                    locale_dir,
+                    "/currencies.json",
+                ]
+            ),
+            "r",
+        ) as json_file:
+            identities[locale_dir] = json.load(json_file)["main"][locale_dir][
+                "identity"
+            ]
+
+    with open(
+        "cldr-json/cldr-json/cldr-core/supplemental/likelySubtags.json", "r"
+    ) as json_file:
+        dir_to_locale_mapping = json.load(json_file)["supplemental"]["likelySubtags"]
+
+    locale_strings = {}
+    for locale_dir in get_locale_dirs():
+        identity = identities[locale_dir]
+        if "language" not in identity:
+            continue
+        locale_string = ""
+        if "territory" in identity:
+            locale_string = "_".join([identity["language"], identity["territory"]])
+
         else:
-            locale_string = i
+            if locale_dir in dir_to_locale_mapping:
+                new_string = dir_to_locale_mapping[locale_dir]
+                split_string = new_string.split("-")
+                language = split_string[0]
+                # Teritory is last item in split.
+                split_string.reverse()
+                country = split_string[0]
+                locale_string = "_".join([language, country])
+            else:
+                locale_string = locale_dir
 
-    split_locale = locale_string.split("_")
-    if len(split_locale) != 2:
-        continue
-    language = split_locale[0]
-    country = split_locale[1]
+        split_locale = locale_string.split("_")
+        if len(split_locale) != 2:
+            continue
+        language = split_locale[0]
+        country = split_locale[1]
 
-    country_is_macroregion = False
-    try:
-        int(country)
-        country_is_macroregion = True
-    except:
-        pass
-    if country_is_macroregion:
-        continue
-
-    locale_data["accounting"][locale_string] = {}
-    locale_data["standard"][locale_string] = {}
-    locale_data["accounting"][locale_string]["local_currency_code"] = currency_mapping[
-        country
-    ]
-    locale_data["standard"][locale_string]["local_currency_code"] = currency_mapping[
-        country
-    ]
-    number_data = temp_locale_data[i]["numbers"]["main"][i]["numbers"]
-    default_number_system = number_data["defaultNumberingSystem"]
-    currencies_data = temp_locale_data[i]["currencies"]["main"][i]["numbers"][
-        "currencies"
-    ]
-
-    currency_symbols = {}
-    for k, v in currencies_data.items():
-        if "symbol" in v:
-            currency_symbols[k.upper()] = v["symbol"]
-        elif "symbol-alt-narrow" in v:
-            currency_symbols[k.upper()] = v["symbol-alt-narrow"]
+        country_is_macroregion = False
+        try:
+            int(country)
+            country_is_macroregion = True
+        except:
+            pass
+        if country_is_macroregion:
+            continue
         else:
-            currency_symbols[k.upper()] = k.upper()
+            locale_strings[locale_dir] = locale_string
+    _locale_strings = locale_strings
+    return locale_strings
 
-    locale_data["accounting"][locale_string]["currency_symbols"] = currency_symbols
-    locale_data["standard"][locale_string]["currency_symbols"] = currency_symbols
 
-    for j in number_data.keys():
-        if j.startswith("".join(["symbols-numberSystem-", default_number_system])):
-            locale_data["accounting"][locale_string]["decimal_separator"] = number_data[
-                j
-            ]["decimal"]
-            locale_data["standard"][locale_string]["decimal_separator"] = number_data[
-                j
-            ]["decimal"]
-            locale_data["accounting"][locale_string]["grouping_separator"] = (
-                number_data[j]["group"]
+@functools.lru_cache
+def parse_formatting_pattern(pattern: str) -> dict:
+    parsed_data_dict: dict[str, int | tuple[int, ...]] = {}
+    pattern_split = pattern.split(";")
+    for sign in ["positive", "negative"]:
+        parsed_pattern = remove_control_characters(pattern_split[0])
+        if len(pattern_split) > 1:
+            parsed_pattern = remove_control_characters(
+                pattern_split[0 if sign == "positive" else 1]
             )
-            locale_data["standard"][locale_string]["grouping_separator"] = number_data[
-                j
-            ]["group"]
-            locale_data["accounting"][locale_string]["positive_sign"] = number_data[j][
-                "plusSign"
-            ]
-            locale_data["standard"][locale_string]["positive_sign"] = number_data[j][
-                "plusSign"
-            ]
-            locale_data["accounting"][locale_string]["negative_sign"] = number_data[j][
-                "minusSign"
-            ]
-            locale_data["standard"][locale_string]["negative_sign"] = number_data[j][
-                "minusSign"
-            ]
-        elif j.startswith(
-            "".join(["currencyFormats-numberSystem-", default_number_system])
-        ):
-            patterns = {
-                "standard": number_data[j]["standard"],
-                "accounting": number_data[j]["accounting"],
-            }
-            tmp_list = ["positive", "negative"]
-            for i in patterns.keys():
-                pattern_split = patterns[i].split(";")
-                for j in tmp_list:
-                    locale_dict = {}
-                    pattern = remove_control_characters(pattern_split[0])
-                    if len(pattern_split) > 1:
-                        pattern = remove_control_characters(
-                            pattern_split[tmp_list.index(j)]
-                        )
 
-                    elif j == "negative":
-                        locale_dict["negative_symbol_before"] = locale_data[i][
-                            locale_string
-                        ]["positive_symbol_before"]
-                        locale_dict["negative_symbol_space"] = locale_data[i][
-                            locale_string
-                        ]["positive_symbol_space"]
-                        locale_dict["negative_grouping"] = locale_data[i][
-                            locale_string
-                        ]["positive_grouping"]
-                        locale_dict["negative_sign_position"] = 1
-                        locale_data[i][locale_string].update(locale_dict)
-                        continue
-
-                    symbol_placeholder = "¤"
-                    decimal_split = pattern.split(".")
-                    locale_dict["_".join([j, "sign_position"])] = -1
-                    locale_dict["_".join([j, "symbol_space"])] = -1
-                    if pattern.startswith("(") and pattern.endswith(")"):
-                        locale_dict["_".join([j, "sign_position"])] = 0
-                        new_pattern = pattern.lstrip("(").rstrip(")")
-                        pattern = new_pattern
-                    if pattern.startswith("-"):
-                        locale_dict["_".join([j, "sign_position"])] = 1
-                        new_pattern = pattern.lstrip("-")
-                        if new_pattern.startswith(" "):
-                            locale_dict["_".join([j, "symbol_space"])] = 2
-                        pattern = new_pattern
-                    elif pattern.endswith("-"):
-                        locale_dict["_".join([j, "sign_position"])] = 2
-                        new_pattern = pattern.rstrip("-")
-                        if new_pattern.endswith(" "):
-                            locale_dict["_".join([j, "symbol_space"])] = 2
-                        pattern = new_pattern
-                    if pattern.startswith(symbol_placeholder):
-                        locale_dict["_".join([j, "symbol_before"])] = True
-                        if locale_dict["_".join([j, "symbol_space"])] == -1:
-                            if pattern[1] == " ":
-                                if pattern[2] == "-":
-                                    locale_dict["_".join([j, "sign_position"])] = 4
-                                    locale_dict["_".join([j, "symbol_space"])] = 2
-                                else:
-                                    locale_dict["_".join([j, "symbol_space"])] = 1
-                            elif pattern[1] == "-":
-                                locale_dict["_".join([j, "sign_position"])] = 4
-                                if pattern[2] == " ":
-                                    locale_dict["_".join([j, "symbol_space"])] = 1
-                            else:
-                                locale_dict["_".join([j, "symbol_space"])] = 0
-                    elif pattern.endswith(symbol_placeholder):
-                        locale_dict["_".join([j, "symbol_before"])] = False
-                        if locale_dict["_".join([j, "symbol_space"])] == -1:
-                            plen = len(pattern)
-                            if pattern[plen - 2] == " ":
-                                if pattern[plen - 3] == "-":
-                                    locale_dict["_".join([j, "sign_position"])] = 3
-                                    locale_dict["_".join([j, "symbol_space"])] = 2
-                                else:
-                                    locale_dict["_".join([j, "symbol_space"])] = 1
-                            elif pattern[plen - 2] == "-":
-                                locale_dict["_".join([j, "sign_position"])] = 3
-                                if pattern[plen - 3] == " ":
-                                    locale_dict["_".join([j, "symbol_space"])] = 1
-                            else:
-                                locale_dict["_".join([j, "symbol_space"])] = 0
-                    group_split = decimal_split[0].split(",")
-                    if len(group_split) > 1:
-                        grouping_list = []
-                        for k in group_split:
-                            if len(k) > 1:
-                                should_append = True
-                                for l in k:
-                                    if l != "#" and l != "0":
-                                        should_append = False
-                                if should_append:
-                                    grouping_list.append(len(k))
-                        locale_dict["_".join([j, "grouping"])] = tuple(grouping_list)
+        symbol_placeholder = "¤"
+        decimal_split = parsed_pattern.split(".")
+        # A value of -1 for sign position means don't include the sign
+        # in the formatted string, so we use this as default
+        # for the positive sign. The negative sign should always
+        # be shown unless the value is 0, which indicates parenthesis, so
+        # We default to 1 for the negative sign.
+        parsed_data_dict["positive_sign_position"] = -1
+        parsed_data_dict["negative_sign_position"] = 1
+        parsed_data_dict["_".join([sign, "symbol_space"])] = -1
+        if parsed_pattern.startswith("(") and parsed_pattern.endswith(")"):
+            parsed_data_dict["_".join([sign, "sign_position"])] = 0
+            new_parsed_pattern = parsed_pattern.lstrip("(").rstrip(")")
+            parsed_pattern = new_parsed_pattern
+        if parsed_pattern.startswith("-"):
+            parsed_data_dict["_".join([sign, "sign_position"])] = 1
+            new_parsed_pattern = parsed_pattern.lstrip("-")
+            if normalize_whitespace(new_parsed_pattern).startswith(
+                normalize_whitespace(" ")
+            ):
+                parsed_data_dict["_".join([sign, "symbol_space"])] = 2
+            parsed_pattern = new_parsed_pattern
+        elif parsed_pattern.endswith("-"):
+            parsed_data_dict["_".join([sign, "sign_position"])] = 2
+            new_parsed_pattern = parsed_pattern.rstrip("-")
+            if normalize_whitespace(new_parsed_pattern).endswith(
+                normalize_whitespace(" ")
+            ):
+                parsed_data_dict["_".join([sign, "symbol_space"])] = 2
+            parsed_pattern = new_parsed_pattern
+        if parsed_pattern.startswith(symbol_placeholder):
+            parsed_data_dict["_".join([sign, "symbol_before"])] = True
+            if parsed_data_dict["_".join([sign, "symbol_space"])] == -1:
+                if normalize_whitespace(parsed_pattern[1]) == normalize_whitespace(
+                    normalize_whitespace(" ")
+                ):
+                    if parsed_pattern[2] == "-":
+                        parsed_data_dict["_".join([sign, "sign_position"])] = 4
+                        parsed_data_dict["_".join([sign, "symbol_space"])] = 2
                     else:
-                        locale_dict["_".join([j, "grouping"])] = (-1,)
+                        parsed_data_dict["_".join([sign, "symbol_space"])] = 1
+                elif parsed_pattern[1] == "-":
+                    parsed_data_dict["_".join([sign, "sign_position"])] = 4
+                    if normalize_whitespace(parsed_pattern[2]) == normalize_whitespace(
+                        " "
+                    ):
+                        parsed_data_dict["_".join([sign, "symbol_space"])] = 1
+                else:
+                    parsed_data_dict["_".join([sign, "symbol_space"])] = 0
+        elif parsed_pattern.endswith(symbol_placeholder):
+            parsed_data_dict["_".join([sign, "symbol_before"])] = False
+            if parsed_data_dict["_".join([sign, "symbol_space"])] == -1:
+                plen = len(parsed_pattern)
+                if normalize_whitespace(
+                    parsed_pattern[plen - 2]
+                ) == normalize_whitespace(" "):
+                    if parsed_pattern[plen - 3] == "-":
+                        parsed_data_dict["_".join([sign, "sign_position"])] = 3
+                        parsed_data_dict["_".join([sign, "symbol_space"])] = 2
+                    else:
+                        parsed_data_dict["_".join([sign, "symbol_space"])] = 1
+                elif parsed_pattern[plen - 2] == "-":
+                    parsed_data_dict["_".join([sign, "sign_position"])] = 3
+                    if normalize_whitespace(
+                        parsed_pattern[plen - 3]
+                    ) == normalize_whitespace(" "):
+                        parsed_data_dict["_".join([sign, "symbol_space"])] = 1
+                else:
+                    parsed_data_dict["_".join([sign, "symbol_space"])] = 0
+        group_split = decimal_split[0].split(",")
+        if len(group_split) > 1:
+            grouping_list = []
+            for grouping in group_split:
+                if len(grouping) > 1:
+                    should_append = True
+                    for char in grouping:
+                        if char != "#" and char != "0":
+                            should_append = False
+                    if should_append:
+                        grouping_list.append(len(grouping))
+            parsed_data_dict["_".join([sign, "grouping"])] = tuple(grouping_list)
+        else:
+            parsed_data_dict["_".join([sign, "grouping"])] = (-1,)
+    return parsed_data_dict
 
-                    locale_data[i][locale_string].update(locale_dict)
+
+_parsed_locale_data: dict[str, dict] | None = None
 
 
-def _sorted_dict(d: dict) -> dict:
-    return {
-        k: dict(sorted(v.items())) if isinstance(v, dict) else v
-        for k, v in dict(sorted(d.items())).items()
+def parse_locale_data() -> dict[str, dict]:
+    global _parsed_locale_data
+    if _parsed_locale_data is not None:
+        return _parsed_locale_data
+
+    def sort_formatting_dict(formatting_dict):
+        return sort_dict({k: sort_dict(v) for k, v in formatting_dict.items()})
+
+    accounting_data, standard_data = {}, {}
+
+    for locale_dir, locale_string in get_locale_strings().items():
+        locale_dict_standard = {}
+        locale_dict_accounting = {}
+        raw_locale_data = get_raw_locale_data()[locale_dir]
+        language, region = locale_string.split("_")
+        locale_dict_standard["local_currency_code"] = get_local_currency_tags()[region]
+        locale_dict_accounting["local_currency_code"] = get_local_currency_tags()[
+            region
+        ]
+
+        locale_dict_accounting["currency_symbols"] = raw_locale_data["currency_symbols"]
+        locale_dict_standard["currency_symbols"] = raw_locale_data["currency_symbols"]
+
+        locale_dict_accounting["decimal_separator"] = raw_locale_data["format_symbols"][
+            "decimal"
+        ]
+        locale_dict_standard["decimal_separator"] = raw_locale_data["format_symbols"][
+            "decimal"
+        ]
+        locale_dict_accounting["grouping_separator"] = raw_locale_data[
+            "format_symbols"
+        ]["group"]
+        locale_dict_standard["grouping_separator"] = raw_locale_data["format_symbols"][
+            "group"
+        ]
+        locale_dict_accounting["positive_sign"] = raw_locale_data["format_symbols"][
+            "plusSign"
+        ]
+        locale_dict_standard["positive_sign"] = raw_locale_data["format_symbols"][
+            "plusSign"
+        ]
+        locale_dict_accounting["negative_sign"] = raw_locale_data["format_symbols"][
+            "minusSign"
+        ]
+        locale_dict_standard["negative_sign"] = raw_locale_data["format_symbols"][
+            "minusSign"
+        ]
+
+        parsed_pattern_data_accounting = parse_formatting_pattern(
+            raw_locale_data["patterns"]["accounting"]
+        )
+        parsed_pattern_data_standard = parse_formatting_pattern(
+            raw_locale_data["patterns"]["standard"]
+        )
+
+        locale_dict_accounting.update(parsed_pattern_data_accounting)
+        locale_dict_standard.update(parsed_pattern_data_standard)
+
+        accounting_data[locale_string] = locale_dict_accounting
+        standard_data[locale_string] = locale_dict_standard
+    _parsed_locale_data = {
+        "accounting": sort_formatting_dict(accounting_data),
+        "standard": sort_formatting_dict(standard_data),
     }
+    return _parsed_locale_data
 
-
-_sorted_l10n = lambda l10n: _sorted_dict({k: _sorted_dict(v) for k, v in l10n.items()})
-
-
-def _typecast_fractions_data(fractions_dict: dict) -> dict:
-    for i in fractions_dict.values():
-        for k, v in i.items():
-            i[k] = int(v)
-    return _sorted_dict(fractions_dict)
-
-
-_standard_formatting = _sorted_l10n(locale_data["standard"])
-_accounting_formatting = _sorted_l10n(locale_data["accounting"])
-
-_formatting_data = {
-    "accounting": _accounting_formatting,
-    "standard": _standard_formatting,
-}
-
-_fractions_data = _typecast_fractions_data(locale_data["fractions"])
 
 with open("src/linearmoney/locales.json", "w") as json_file:
-    json.dump(_formatting_data, json_file)
-
+    json.dump(parse_locale_data(), json_file)
 
 with open("src/linearmoney/currencies.json", "w") as json_file:
-    json.dump(_fractions_data, json_file)
+    json.dump(parse_currency_data(), json_file)
+
 
 with open("src/linearmoney/supported_iso_codes.json", "w") as json_file:
-    json.dump(sorted(supported_currencies), json_file)
+    json.dump(sorted(get_supported_currency_tags()), json_file)
 
 with open("cldr-json/cldr-json/cldr-core/package.json", "r") as file:
     data = json.load(file)

@@ -123,7 +123,7 @@ Version 1.0.0:
   - [ ] Serialization/deserialization of forex vectors
 - [ ] Recipes to add
   - [ ] Use-cases without vectors
-- [ ] Refactor CLDR data processing script
+- [x] Refactor CLDR data processing script
   - [#11](https://github.com/GrammAcc/linearmoney/issues/11)
 - [x] Add contributing guidelines and setup CI
   - [x] Contributing guidelines
