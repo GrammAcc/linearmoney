@@ -389,13 +389,13 @@ def test_l10n_non_ascii_format(
     curr_eur = lm.data.currency("eur")
     rounded_val_eur = lm.scalar.roundas(val_eur, curr_eur)
     assert lm.scalar.l10n(rounded_val_eur, curr_eur, lc) == "".join(
-        ["4", fixt_french_thousands_space, "000,00", fixt_euro_symbol]
+        ["4", fixt_french_thousands_space, "000,00 ", fixt_euro_symbol]
     )
     val_usd = lm.vector.evaluate(fixt_positive_l10n_asset, "usd", fixt_forex_usd)
     curr_usd = lm.data.currency("usd")
     rounded_val_usd = lm.scalar.roundas(val_usd, curr_usd)
     assert lm.scalar.l10n(rounded_val_usd, curr_usd, lc) == "".join(
-        ["10", fixt_french_thousands_space, "000,00$US"]
+        ["10", fixt_french_thousands_space, "000,00 $US"]
     )
 
 
