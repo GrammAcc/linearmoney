@@ -9,6 +9,7 @@ from linearmoney.exceptions import SpaceError
 
 from tests.conftest import helpers
 
+
 evaluations = [
     Case("to_cad", to_currency="cad", expected=12.5),
     Case("to_cny", to_currency="cny", expected=1250),
