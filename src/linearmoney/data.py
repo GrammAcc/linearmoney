@@ -24,9 +24,20 @@ from linearmoney.mixins import ImmutableDeduplicationMixin, EqualityByHashMixin
 from linearmoney.exceptions import UnknownDataError
 
 
-class FormatType(enum.StrEnum):
-    STANDARD = enum.auto()
-    ACCOUNTING = enum.auto()
+# This class needs to have a docstring, or the doctest examples in
+# the parent class `enum.Enum` will fail due to bare `Enum` not
+# being available in the test namespace.
+class FormatType(enum.Enum):
+    """Enum representing the allowed locale formats.
+
+    Primarily used to select l10n data with the `locale` function.
+    """
+
+    STANDARD = "standard"
+    ACCOUNTING = "accounting"
+
+    def __str__(self) -> str:
+        return self.value
 
 
 class DataMap(EqualityByHashMixin, ImmutableDeduplicationMixin, Mapping):
@@ -179,10 +190,10 @@ def locale(
             The region (territory) portion of the
             [locale tag](/linearmoney/glossary.html#locale-tag)
         nformat:
-            The number format to use. Should be a member of the `FormatType` string enum.
+            The number format to use. Should be a member of the `FormatType` enum.
             The difference in format is generally only in negative numbers. E.g. -10 in
             'standard' vs. (10) in 'accounting'.
-            If you aren't sure which format you need, you probably want 'standard'.
+            If you aren't sure which format you need, you probably want 'FormatType.STANDARD`.
         **overrides:
             Formatting options to override the default formatting rules for the
             requested locale.
@@ -221,10 +232,12 @@ def locale(
 
     locales: LocaleMap
 
-    if nformat in _fallback_locales:
+    format_key = str(nformat)
+
+    if format_key in _fallback_locales:
         locale_string = "_".join([language, region])
         try:
-            locales = _fallback_locales[nformat][locale_string]
+            locales = _fallback_locales[format_key][locale_string]
         except KeyError as e:
             raise UnknownDataError(
                 f"invalid value for `language` {language} or `region` {region}. \
@@ -233,8 +246,8 @@ Locale data not available under number format {nformat}"
 
     else:
         raise ValueError(
-            f"invalid value for `nformat`. Expected either 'standard' or \
-'accounting' got {nformat}"
+            f"invalid value for `nformat`. Expected either 'FormatType.Standard' or \
+'FormatType.Accounting' got {nformat}"
         )
 
     if overrides:
