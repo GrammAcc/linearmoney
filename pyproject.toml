@@ -26,6 +26,8 @@ dev = [
     "pytest-parametrize-cases",
     "pytest-lazy-fixtures",
 ]
+sqlalchemy = ["sqlalchemy"]
+
 
 [tool.hatch.version]
 path = "src/linearmoney/__init__.py"
@@ -34,7 +36,6 @@ path = "src/linearmoney/__init__.py"
 [tool.hatch.build]
 ignore-vcs = true
 include = ["*.json", "py.typed"]
-
 
 # This is needed for hatchling to find the version in the package __init__.py file.
 # See https://github.com/pypa/hatch/issues/981#issuecomment-1743631364
@@ -80,7 +81,6 @@ python = "3.10"
 python = "3.11"
 
 
-
 [tool.hatch.envs.test]
 description = "Test Suite and Coverage Reporting"
 dependencies = [
@@ -88,7 +88,10 @@ dependencies = [
     "pytest-cov",
     "pytest-parametrize-cases",
     "pytest-lazy-fixtures",
+    "pytest-asyncio",
+    "aiosqlite",
 ]
+features = ["sqlalchemy"]
 
 [[tool.hatch.envs.test.matrix]]
 python = ["3.10", "3.11", "3.12"]
@@ -119,7 +122,7 @@ dependencies = [
 [tool.hatch.envs.style.scripts]
 format = "black ."
 lintsrc = "flake8 src"
-linttests = "flake8 --extend-ignore E501 tests"
+linttests = "flake8 tests"
 lintdocs = "flake8 documentation"
 
 
@@ -150,11 +153,31 @@ detached = true
 build = "python process_cldr_data.py"
 test = "python tests/cldr/check_data.py"
 
+[tool.hatch.envs.extest]
+description = "Test the optional extensions"
+dependencies = [
+    "pytest",
+    "pytest-cov",
+    "pytest-parametrize-cases",
+    "pytest-lazy-fixtures",
+    "pytest-asyncio",
+    "aiosqlite",
+]
+features = ["sqlalchemy"]
+
+[[tool.hatch.envs.extest.matrix]]
+python = ["3.10", "3.11", "3.12"]
+
+[tool.hatch.envs.extest.scripts]
+suite = "pytest tests/ext {args}"
+prod = "- pip install --force-reinstall -i https://test.pypi.org/simple linearmoney && pytest test/ext"
+
 
 [tool.pytest.ini_options]
 log_file="testsuite.log"
 log_file_level="DEBUG"
 addopts = "--import-mode=importlib --show-capture=no --ignore=cldr-json"
+asyncio_mode = "auto"
 
 
 [tool.coverage.report]
