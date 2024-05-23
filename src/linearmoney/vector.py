@@ -207,7 +207,7 @@ class MoneyVector(ImmutableDeduplicationMixin, EqualityByHashMixin):
     @property
     @cache.cached()
     def dim(self) -> int:
-        """The dimension of this `MunnyVector`."""
+        """The dimension of this `MoneyVector`."""
 
         return len(self)
 
@@ -215,7 +215,7 @@ class MoneyVector(ImmutableDeduplicationMixin, EqualityByHashMixin):
     @cache.cached()
     def axes(self) -> tuple[str, ...]:
         """Tuple of the ISO 4217 alpha currency codes representing the axes of this
-        `MunnyVector`."""
+        `MoneyVector`."""
 
         return self._axes
 

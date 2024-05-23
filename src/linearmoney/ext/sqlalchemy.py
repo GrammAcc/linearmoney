@@ -1,4 +1,12 @@
-"""SQLAlchemy ORM integrations for linearmoney."""
+"""SQLAlchemy ORM integrations for linearmoney.
+
+Install with `pip install "linearmoney[sqlalchemy]"`.
+"""
+
+__all__ = [
+    "VectorMoney",
+    "AtomicMoney",
+]
 
 import decimal
 
@@ -43,7 +51,11 @@ class VectorMoney(TypeDecorator):
     """
 
     impl = String
+
+    # We add an empty docstring to `cache_ok`, so that pdoc doesn't
+    # include the parent class' docstring.
     cache_ok = True
+    """"""
 
     # SQLAlchemy types `value` argument as Any | None, which makes sense for an overload.
     # We ignore the override error because violating Liskov doesn't make any difference
@@ -51,12 +63,18 @@ class VectorMoney(TypeDecorator):
     def process_bind_param(
         self, value: lm.vector.MoneyVector, dialect: Dialect  # type: ignore[override]
     ):
+        """Serialize the `MoneyVector` to a `str` compatible with the sqlalchemy `String`
+        column type."""
+
         return lm.vector.store(value)
 
     # SQLAlchemy types `value` argument as Any | None, which makes sense for an overload.
     # We ignore the override error because violating Liskov doesn't make any difference
     # when the argument isn't typed.
     def process_result_value(self, value: str, dialect: Dialect):  # type: ignore[override]
+        """Deserialize the `str` stored in the db to a `MoneyVector` equivalent to the vector
+        that was originally stored."""
+
         return lm.vector.restore(value)
 
 
@@ -70,7 +88,7 @@ class AtomicMoney(TypeDecorator):
     the `currency` argument provided on column declaration.
 
     This means that attempting to store a money vector from a different currency space
-    will result in a `linearmoney.Exceptions.SpaceError`.
+    will result in a `linearmoney.exceptions.SpaceError`.
 
     The reason for using a single-currency space in the internal calculations instead
     of checking the space of the passed in vector is to ensure that
@@ -112,17 +130,45 @@ class AtomicMoney(TypeDecorator):
     """
 
     impl = Integer
+    # We add an empty docstring to `cache_ok`, so that pdoc doesn't
+    # include the parent class' docstring.
     cache_ok = True
+    """"""
 
-    currency: lm.data.CurrencyData
-    forex: lm.vector.ForexVector
-    space: lm.vector.CurrencySpace
+    _currency: lm.data.CurrencyData
+
+    _forex: lm.vector.ForexVector
+    _space: lm.vector.CurrencySpace
 
     def __init__(self, currency: lm.data.CurrencyData, *args, **kwargs) -> None:
+        """"""
         super().__init__()
-        self.currency = currency
-        self.forex = lm.vector.forex({"base": currency.iso_code, "rates": {}})
-        self.space = lm.vector.space(self.forex)
+        self._currency = currency
+        self._forex = lm.vector.forex({"base": currency.iso_code, "rates": {}})
+        self._space = lm.vector.space(self.forex)
+
+    @property
+    def currency(self) -> lm.data.CurrencyData:
+        """The `CurrencyData` provided in the column constructor.
+
+        Defines the single-currency `forex` and `space` for converting
+        the `MoneyVector` into an integer on serialization."""
+
+        return self._currency
+
+    @property
+    def forex(self) -> lm.vector.ForexVector:
+        """The `ForexVector` representing the single-currency
+        rates used to convert the `MoneyVector` to and from an integer."""
+
+        return self._forex
+
+    @property
+    def space(self) -> lm.vector.CurrencySpace:
+        """The single-currency `CurrencySpace` used to convert the
+        `MoneyVector` to and from an integer."""
+
+        return self._space
 
     # SQLAlchemy types `value` argument as Any | None, which makes sense for an overload.
     # We ignore the override error because violating Liskov doesn't make any difference
@@ -130,6 +176,9 @@ class AtomicMoney(TypeDecorator):
     def process_bind_param(
         self, value: lm.vector.MoneyVector, dialect: Dialect  # type: ignore[override]
     ):
+        """Serialize the `MoneyVector` to an `int` for storage in the sqlalchemy `Integer`
+        column type."""
+
         return lm.scalar.atomic(
             lm.vector.evaluate(value, self.currency.iso_code, self.forex),
             self.currency,
@@ -139,6 +188,9 @@ class AtomicMoney(TypeDecorator):
     # We ignore the override error because violating Liskov doesn't make any difference
     # when the argument isn't typed.
     def process_result_value(self, value: int, dialect: Dialect):  # type: ignore[override]
+        """Deserialize the `int` stored in the db to a `MoneyVector` equivalent to the vector
+        that was originally stored."""
+
         exponent = decimal.Decimal(10) ** decimal.Decimal(self.currency.data["places"])
         decimal_value = decimal.Decimal(value) / exponent
         return lm.vector.asset(decimal_value, self.currency.iso_code, self.space)
