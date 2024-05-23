@@ -73,6 +73,7 @@ all = [
     "- hatch run style:linttests",
     "- hatch run style:lintdocs",
 ]
+quicktest = "hatch run -py=3.10,3.11 test:suite {args}"
 
 [tool.hatch.envs.py310]
 python = "3.10"

@@ -17,8 +17,15 @@ class VectorMoney(TypeDecorator):
     it should be used whenever non-destructive storage is desired.
 
     The disadvantage of this column type is that it uses a sqlalchemy String column
-    (VARCHAR) underneath, so in-db aggregate functions like SUM and MAX/MIN cannot
+    (VARCHAR) underneath, so in-db aggregate functions like SUM and MAX cannot
     be used and these operations need to be performed in Python if they are needed.
+
+    Another consequence of this is that comparisons in where clauses don't work as
+    expected. For example,
+    `select(VectorModel).where(VectorModel.money_column > money_vector)` will compare
+    the serialized string of `money_vector` against the string stored in the db for the
+    greater than operator, so it will not give a correct result based on the actual
+    monetary values of the vectors.
 
     Examples:
         >>> from sqlalchemy.orm import (
@@ -67,11 +74,26 @@ class AtomicMoney(TypeDecorator):
     This means that attempting to store a money vector from a different currency space
     will result in a `linearmoney.Exceptions.SpaceError`.
 
-    The advantage of this column type is that it allows the use of in-db aggregate
-    functions like SUM and MAX/MIN. The disadvantage is that it can only be used
-    with single-currency applications or with a manual conversion step before
-    passing any values into sqlalchemy's column operations. For this reason,
-    multi-currency applications should generally choose `VectorMoney` instead.
+    The reason for using a single-currency space in the internal calculations instead
+    of checking the space of the passed in vector is to ensure that
+    the value read from the database is the same value that was written to it.
+
+    For example, if we store a vector of (0 EUR, 10 USD,) in an AtomicMoney column
+    for USD, then it will store the integer 1000 in the database. We will get the
+    same value stored if we store a vector of (10 USD,). The difference is that
+    we lose the information about the currency space when storing the value as an
+    integer, so when we read the values from the db, both with deserialize to (10 USD,).
+    By enforcing a single-currency space on write, we ensure that the values read
+    from the database are actually the values that were written to the database, and
+    we ensure that the integrity of math on those values will not be compromised
+    through any subsequent writes/reads to/from the database.
+
+    The main advantage of this column type is that it allows the use of in-db aggregate
+    functions like SUM and MAX as well as ordered comparisons. The disadvantage is
+    that it can only be used with single-currency applications or with a manual
+    conversion step before passing any values into sqlalchemy's column operations.
+    For this reason, multi-currency applications should generally choose `VectorMoney`
+    instead.
 
     Examples:
         >>> from sqlalchemy.orm import (
@@ -84,6 +106,7 @@ class AtomicMoney(TypeDecorator):
         >>> from linearmoney.ext.sqlalchemy import AtomicMoney
         >>>
         >>> CURRENCY = lm.data.currency("USD")
+        >>>
         >>> class LMExample(DeclarativeBase):
         >>>
         >>>     __tablename__ = "lm_example"

@@ -5,6 +5,7 @@ from sqlalchemy.orm import (
     sessionmaker,
 )
 from sqlalchemy import create_engine, select
+from sqlalchemy.exc import StatementError
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
 import pytest
@@ -125,10 +126,10 @@ def test_atomic_money_read_write(fixt_session):
     assert lm.vector.evaluate(asset_vec, "usd", fo) == 10
 
     with fixt_session() as session:
-        session.add(VectorModel(id=1, money_column=asset_vec))
+        session.add(AtomicModel(id=1, money_column=asset_vec))
         session.commit()
         stored_asset_vec = (
-            session.execute(select(VectorModel).where(VectorModel.id == 1))
+            session.execute(select(AtomicModel).where(AtomicModel.id == 1))
             .scalars()
             .first()
             .money_column
@@ -145,10 +146,10 @@ async def test_atomic_money_async_read_write(fixt_async_session):
     assert lm.vector.evaluate(asset_vec, "usd", fo) == 10
 
     async with fixt_async_session() as session:
-        session.add(VectorModel(id=1, money_column=asset_vec))
+        session.add(AtomicModel(id=1, money_column=asset_vec))
         await session.commit()
         stored_asset_vec = (
-            (await session.execute(select(VectorModel).where(VectorModel.id == 1)))
+            (await session.execute(select(AtomicModel).where(AtomicModel.id == 1)))
             .scalars()
             .first()
             .money_column
@@ -165,14 +166,46 @@ def test_atomic_money_in_where_clause(fixt_session):
     assert lm.vector.evaluate(asset_vec, "usd", fo) == 10
 
     with fixt_session() as session:
-        session.add(VectorModel(id=1, money_column=asset_vec))
+        session.add(AtomicModel(id=1, money_column=asset_vec))
         session.commit()
         stored_asset_vec = (
             session.execute(
-                select(VectorModel).where(VectorModel.money_column == asset_vec)
+                select(AtomicModel).where(AtomicModel.money_column == asset_vec)
             )
             .scalars()
             .first()
             .money_column
         )
         assert stored_asset_vec == asset_vec
+
+
+def test_atomic_money_enforces_single_currency_asset(fixt_session):
+    """Ensure the AtomicMoney column type does not allow storing multi-currency
+    vectors."""
+
+    fo = lm.vector.forex({"base": "usd", "rates": {"jpy": 100}})
+    sp = lm.vector.space(fo)
+    asset_vec = lm.vector.asset(10, "usd", sp) + lm.vector.asset(100, "jpy", sp)
+    assert lm.vector.evaluate(asset_vec, "usd", fo) == 11
+
+    with fixt_session() as session:
+        with pytest.raises(StatementError):
+            session.add(AtomicModel(id=1, money_column=asset_vec))
+            session.commit()
+
+
+def test_atomic_money_enforces_single_currency_space(fixt_session):
+    """Ensure the AtomicMoney column type does not allow storing vectors with
+    currency spaces larger than 1 dimension."""
+
+    fo = lm.vector.forex({"base": "usd", "rates": {"jpy": 100}})
+    sp = lm.vector.space(fo)
+    asset_vec = lm.vector.asset(10, "usd", sp)
+    assert lm.vector.evaluate(asset_vec, "usd", fo) == 10
+    # Make sure the vector only has one value, so we are only testing the space.
+    assert len([i for i in asset_vec if i != 0]) == 1
+
+    with fixt_session() as session:
+        with pytest.raises(StatementError):
+            session.add(AtomicModel(id=1, money_column=asset_vec))
+            session.commit()
