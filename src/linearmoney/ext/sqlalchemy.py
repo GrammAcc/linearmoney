@@ -28,20 +28,18 @@ class VectorMoney(TypeDecorator):
     monetary values of the vectors.
 
     Examples:
-        >>> from sqlalchemy.orm import (
-        >>>     Mapped,
-        >>>     mapped_column,
-        >>>     DeclarativeBase,
-        >>> )
+        >>> from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
         >>>
         >>> from linearmoney.ext.sqlalchemy import VectorMoney
         >>>
-        >>> class LMExample(DeclarativeBase):
+        >>> class BaseModel(DeclarativeBase): ...
         >>>
-        >>>     __tablename__ = "lm_example"
-        >>>
-        >>>     id: Mapped[int] = mapped_column(primary_key=True)
-        >>>     money_column: Mapped[VectorMoney] = mapped_column(VectorMoney)
+        >>> class LMExample(BaseModel):
+        ...
+        ...     __tablename__ = "lm_example"
+        ...
+        ...     id: Mapped[int] = mapped_column(primary_key=True)
+        ...     money_column: Mapped[VectorMoney] = mapped_column(VectorMoney)
     """
 
     impl = String
@@ -96,23 +94,21 @@ class AtomicMoney(TypeDecorator):
     instead.
 
     Examples:
-        >>> from sqlalchemy.orm import (
-        >>>     Mapped,
-        >>>     mapped_column,
-        >>>     DeclarativeBase,
-        >>> )
+        >>> from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
         >>>
-        >>> import lienarmoney as lm
+        >>> import linearmoney as lm
         >>> from linearmoney.ext.sqlalchemy import AtomicMoney
+        >>>
+        >>> class BaseModel(DeclarativeBase): ...
         >>>
         >>> CURRENCY = lm.data.currency("USD")
         >>>
-        >>> class LMExample(DeclarativeBase):
-        >>>
-        >>>     __tablename__ = "lm_example"
-        >>>
-        >>>     id: Mapped[int] = mapped_column(primary_key=True)
-        >>>     money_column: Mapped[AtomicMoney] = mapped_column(AtomicMoney(CURRENCY))
+        >>> class LMExample(BaseModel):
+        ...
+        ...     __tablename__ = "lm_example"
+        ...
+        ...     id: Mapped[int] = mapped_column(primary_key=True)
+        ...     money_column: Mapped[AtomicMoney] = mapped_column(AtomicMoney(CURRENCY))
     """
 
     impl = Integer

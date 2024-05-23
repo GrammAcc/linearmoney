@@ -101,6 +101,7 @@ python = ["3.10", "3.11", "3.12"]
 suite = "pytest {args}"
 cov = "pytest --cov-config=pyproject.toml --cov-report html:htmlcov --cov=linearmoney {args}"
 prod = "- pip install --force-reinstall -i https://test.pypi.org/simple linearmoney && pytest"
+ext = "pytest tests/ext {args}"
 
 
 [tool.hatch.envs.types]
@@ -138,6 +139,7 @@ dependencies = [
     "mkdocs-material",
     "pytest",
 ]
+features = ["sqlalchemy"]
 
 [tool.hatch.envs.docs.scripts]
 build = [
@@ -156,25 +158,6 @@ detached = true
 [tool.hatch.envs.cldr.scripts]
 build = "python process_cldr_data.py"
 test = "python tests/cldr/check_data.py"
-
-[tool.hatch.envs.extest]
-description = "Test the optional extensions"
-dependencies = [
-    "pytest",
-    "pytest-cov",
-    "pytest-parametrize-cases",
-    "pytest-lazy-fixtures",
-    "pytest-asyncio",
-    "aiosqlite",
-]
-features = ["sqlalchemy"]
-
-[[tool.hatch.envs.extest.matrix]]
-python = ["3.10", "3.11", "3.12"]
-
-[tool.hatch.envs.extest.scripts]
-suite = "pytest tests/ext {args}"
-prod = "- pip install --force-reinstall -i https://test.pypi.org/simple linearmoney && pytest test/ext"
 
 
 [tool.pytest.ini_options]
