@@ -104,7 +104,10 @@ prod = "- pip install --force-reinstall -i https://test.pypi.org/simple linearmo
 
 [tool.hatch.envs.types]
 description = "Run static type checker"
-dependencies = ["mypy"]
+dependencies = [
+    "mypy",
+    "sqlalchemy[mypy]",
+]
 
 [tool.hatch.envs.types.scripts]
 check = "mypy -p linearmoney"

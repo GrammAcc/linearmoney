@@ -40,10 +40,18 @@ class VectorMoney(TypeDecorator):
     impl = String
     cache_ok = True
 
-    def process_bind_param(self, value: lm.vector.MoneyVector, dialect: Dialect):
+    # SQLAlchemy types `value` argument as Any | None, which makes sense for an overload.
+    # We ignore the override error because violating Liskov doesn't make any difference
+    # when the argument isn't typed.
+    def process_bind_param(
+        self, value: lm.vector.MoneyVector, dialect: Dialect  # type: ignore[override]
+    ):
         return lm.vector.store(value)
 
-    def process_result_value(self, value: String, dialect: Dialect):
+    # SQLAlchemy types `value` argument as Any | None, which makes sense for an overload.
+    # We ignore the override error because violating Liskov doesn't make any difference
+    # when the argument isn't typed.
+    def process_result_value(self, value: str, dialect: Dialect):  # type: ignore[override]
         return lm.vector.restore(value)
 
 
@@ -97,13 +105,21 @@ class AtomicMoney(TypeDecorator):
         self.forex = lm.vector.forex({"base": currency.iso_code, "rates": {}})
         self.space = lm.vector.space(self.forex)
 
-    def process_bind_param(self, value: lm.vector.MoneyVector, dialect: Dialect):
+    # SQLAlchemy types `value` argument as Any | None, which makes sense for an overload.
+    # We ignore the override error because violating Liskov doesn't make any difference
+    # when the argument isn't typed.
+    def process_bind_param(
+        self, value: lm.vector.MoneyVector, dialect: Dialect  # type: ignore[override]
+    ):
         return lm.scalar.atomic(
             lm.vector.evaluate(value, self.currency.iso_code, self.forex),
             self.currency,
         )
 
-    def process_result_value(self, value: Integer, dialect: Dialect):
+    # SQLAlchemy types `value` argument as Any | None, which makes sense for an overload.
+    # We ignore the override error because violating Liskov doesn't make any difference
+    # when the argument isn't typed.
+    def process_result_value(self, value: int, dialect: Dialect):  # type: ignore[override]
         exponent = decimal.Decimal(10) ** decimal.Decimal(self.currency.data["places"])
         decimal_value = decimal.Decimal(value) / exponent
         return lm.vector.asset(decimal_value, self.currency.iso_code, self.space)
