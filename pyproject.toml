@@ -91,6 +91,7 @@ dependencies = [
     "pytest-lazy-fixtures",
     "pytest-asyncio",
     "aiosqlite",
+    "sqlalchemy[asyncio]",
 ]
 features = ["sqlalchemy"]
 
