@@ -30,6 +30,7 @@ Key Features:
 - No dependencies other than Python itself.
 - Completely thread-safe.
 - 100% Test and API Documentation coverage.
+- Database/ORM integrations.
 
 The linearmoney library takes a non-traditional approach to financial applications
 by using linear algebra internally to ensure the correctness of monetary calculations
@@ -47,7 +48,7 @@ data to provide data-driven interfaces for currency rounding, formatting, and lo
 
 ## Installation
 
-linearmoney requires Python >= 3.11
+linearmoney requires Python >= 3.10
 
 From PyPi:
 
@@ -106,6 +107,24 @@ the code more explicit and easier to test.
 See the [Recipes](https://grammacc.github.io/linearmoney/recipes.html)
 section of the user guide for
 some examples of how to mitigate the verbosity of the library and other helpful patterns.
+
+## Optional Extensions
+
+The `linearmoney.ext` sub-package provides optional integrations with other libraries/tools.
+
+Most tools shouldn't need any kind of adapter layer for you to use linearmoney with
+them since you would normally evaluate a money vector whenever you need to do something
+with its value outside of linearmoney's functions or math between vectors. The exceptions
+to this are ORMs and similar tools that need some kind of serialization step to be
+performed.
+
+[SQLAlchemy](https://grammacc.github.io/linearmoney/api_reference/linearmoney/ext/sqlalchemy.html)
+integrations are implemented, and Django ORM is planned.
+
+If there is a tool that you want better integration with or simply some kind of
+extra functionality that requires additional dependencies, please
+[open an issue](https://github.com/GrammAcc/linearmoney/issues/new/choose) and
+we will evaluate if it is within the scope of the project to support as an extension.
 
 ## Contributing
 

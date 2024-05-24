@@ -21,12 +21,15 @@ __all__: list[str] = [
 
 import decimal
 import copy
-from typing import TypeAlias, Self, TypedDict, TypeVar
+from typing import TYPE_CHECKING, TypeAlias, TypedDict, TypeVar
 from collections.abc import Iterator
 
 from linearmoney import cache, _utils
 from linearmoney.mixins import ImmutableDeduplicationMixin, EqualityByHashMixin
 from linearmoney.exceptions import SpaceError, IntegrityError
+
+if TYPE_CHECKING:
+    from typing import Self
 
 DecimalVector: TypeAlias = tuple[decimal.Decimal, ...]
 
@@ -204,7 +207,7 @@ class MoneyVector(ImmutableDeduplicationMixin, EqualityByHashMixin):
     @property
     @cache.cached()
     def dim(self) -> int:
-        """The dimension of this `MunnyVector`."""
+        """The dimension of this `MoneyVector`."""
 
         return len(self)
 
@@ -212,7 +215,7 @@ class MoneyVector(ImmutableDeduplicationMixin, EqualityByHashMixin):
     @cache.cached()
     def axes(self) -> tuple[str, ...]:
         """Tuple of the ISO 4217 alpha currency codes representing the axes of this
-        `MunnyVector`."""
+        `MoneyVector`."""
 
         return self._axes
 

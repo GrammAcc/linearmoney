@@ -7,8 +7,11 @@ __all__: list[str] = [
 
 
 from abc import ABCMeta, abstractmethod
-from typing import ClassVar, Self
+from typing import TYPE_CHECKING, ClassVar
 from collections.abc import Hashable, Sequence
+
+if TYPE_CHECKING:
+    from typing import Self
 
 
 class ImmutableDeduplicationMixin:

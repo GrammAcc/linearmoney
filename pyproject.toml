@@ -10,7 +10,7 @@ authors = [{name = "GrammAcc", email = "grammaticallyacceptable@grammacc.dev"}]
 maintainers = [{name = "GrammAcc", email = "grammaticallyacceptable@grammacc.dev"}]
 license = "MIT"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 keywords = ["money", "framework", "currency", "forex", "fintech"]
 classifiers = ["Development Status :: 3 - Alpha"]
 
@@ -26,6 +26,8 @@ dev = [
     "pytest-parametrize-cases",
     "pytest-lazy-fixtures",
 ]
+sqlalchemy = ["sqlalchemy"]
+
 
 [tool.hatch.version]
 path = "src/linearmoney/__init__.py"
@@ -34,7 +36,6 @@ path = "src/linearmoney/__init__.py"
 [tool.hatch.build]
 ignore-vcs = true
 include = ["*.json", "py.typed"]
-
 
 # This is needed for hatchling to find the version in the package __init__.py file.
 # See https://github.com/pypa/hatch/issues/981#issuecomment-1743631364
@@ -53,7 +54,7 @@ python = "3.12"
 [tool.hatch.envs.default.scripts]
 ci = [
     "hatch run test:suite",
-    "hatch run -py=3.11 test:cov",
+    "hatch run -py=3.10,3.11 test:cov",
     "hatch run docs:test-prose",
     "hatch run docs:test-in-source",
     "hatch run types:check",
@@ -64,7 +65,7 @@ ci = [
 all = [
     "hatch run style:format",
     "- hatch run test:suite",
-    "- hatch run -py=3.11 test:cov",
+    "- hatch run -py=3.10,3.11 test:cov",
     "- hatch run docs:test-prose",
     "- hatch run docs:test-in-source",
     "- hatch run types:check",
@@ -72,6 +73,13 @@ all = [
     "- hatch run style:linttests",
     "- hatch run style:lintdocs",
 ]
+quicktest = "hatch run -py=3.10,3.11 test:suite {args}"
+
+[tool.hatch.envs.py310]
+python = "3.10"
+
+[tool.hatch.envs.py311]
+python = "3.11"
 
 
 [tool.hatch.envs.test]
@@ -81,20 +89,28 @@ dependencies = [
     "pytest-cov",
     "pytest-parametrize-cases",
     "pytest-lazy-fixtures",
+    "pytest-asyncio",
+    "aiosqlite",
+    "sqlalchemy[asyncio]",
 ]
+features = ["sqlalchemy"]
 
 [[tool.hatch.envs.test.matrix]]
-python = ["3.11", "3.12"]
+python = ["3.10", "3.11", "3.12"]
 
 [tool.hatch.envs.test.scripts]
-suite = "pytest"
-cov = "pytest --cov-config=pyproject.toml --cov-report html:htmlcov --cov=linearmoney"
+suite = "pytest {args}"
+cov = "pytest --cov-config=pyproject.toml --cov-report html:htmlcov --cov=linearmoney {args}"
 prod = "- pip install --force-reinstall -i https://test.pypi.org/simple linearmoney && pytest"
+ext = "pytest tests/ext {args}"
 
 
 [tool.hatch.envs.types]
 description = "Run static type checker"
-dependencies = ["mypy"]
+dependencies = [
+    "mypy",
+    "sqlalchemy[mypy]",
+]
 
 [tool.hatch.envs.types.scripts]
 check = "mypy -p linearmoney"
@@ -112,7 +128,7 @@ dependencies = [
 [tool.hatch.envs.style.scripts]
 format = "black ."
 lintsrc = "flake8 src"
-linttests = "flake8 --extend-ignore E501 tests"
+linttests = "flake8 tests"
 lintdocs = "flake8 documentation"
 
 
@@ -124,6 +140,7 @@ dependencies = [
     "mkdocs-material",
     "pytest",
 ]
+features = ["sqlalchemy"]
 
 [tool.hatch.envs.docs.scripts]
 build = [
@@ -148,6 +165,7 @@ test = "python tests/cldr/check_data.py"
 log_file="testsuite.log"
 log_file_level="DEBUG"
 addopts = "--import-mode=importlib --show-capture=no --ignore=cldr-json"
+asyncio_mode = "auto"
 
 
 [tool.coverage.report]

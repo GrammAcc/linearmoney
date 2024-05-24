@@ -292,10 +292,10 @@ def l10n(
         >>> val = lm.vector.evaluate(av, "eur", fv)
         >>> rounded_val = lm.scalar.roundas(val, eur)
         >>> lm.scalar.l10n(rounded_val, eur, fr_FR)
-        '20,14€'
+        '20,14 €'
         >>> cash_rounded_val = lm.scalar.roundas(val, eur, cash=True)
         >>> lm.scalar.l10n(cash_rounded_val, eur, fr_FR)
-        '20,14€'
+        '20,14 €'
         >>> lm.scalar.l10n(rounded_val, eur, fr_FR, international=True)
         '20,14 EUR'
     """

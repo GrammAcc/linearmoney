@@ -147,7 +147,8 @@ _valid_values = [
     112,
     112.12,
     decimal.Decimal(112.12),
-    fractions.Fraction(225, 2),
+    # Fractions don't have SupportsInt protocol until python 3.11.
+    # fractions.Fraction(225, 2),
 ]
 
 

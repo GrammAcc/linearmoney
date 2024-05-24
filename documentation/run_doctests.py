@@ -58,7 +58,7 @@ def _run_module_doctests(module: pdoc.doc.Module):
 
 # Mostly copied from pdoc.pdoc() implementation:
 all_modules: list[pdoc.doc.Module] = []
-for module_name in pdoc.extract.walk_specs(["linearmoney"]):
+for module_name in pdoc.extract.walk_specs(["linearmoney", "linearmoney.ext"]):
     try:
         all_modules.append(pdoc.doc.Module.from_name(module_name))
     except RuntimeError:
