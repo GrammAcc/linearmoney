@@ -10,6 +10,7 @@ __all__ = [
     "resources",
     "mixins",
     "cache",
+    "ext",
 ]
 
 
