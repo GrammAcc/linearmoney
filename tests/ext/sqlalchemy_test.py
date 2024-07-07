@@ -1,3 +1,5 @@
+from typing import Optional
+
 from sqlalchemy.orm import (
     DeclarativeBase,
     Mapped,
@@ -209,3 +211,55 @@ def test_atomic_money_enforces_single_currency_space(fixt_session):
         with pytest.raises(StatementError):
             session.add(AtomicModel(id=1, money_column=asset_vec))
             session.commit()
+
+
+class NullableVectorModel(BaseModel):
+
+    __tablename__ = "nullable_vector_model"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    money_column: Mapped[Optional[VectorMoney]] = mapped_column(VectorMoney)
+
+
+class NullableAtomicModel(BaseModel):
+
+    __tablename__ = "nullable_atomic_model"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    money_column: Mapped[Optional[AtomicMoney]] = mapped_column(
+        AtomicMoney(lm.data.currency("USD"))
+    )
+
+
+def test_vector_money_nullable_column(fixt_session):
+    """Ensure the VectorMoney column type works with nullable values."""
+
+    with fixt_session() as session:
+        session.add(NullableVectorModel(id=1))
+        session.commit()
+        stored_asset_vec = (
+            session.execute(
+                select(NullableVectorModel).where(NullableVectorModel.id == 1)
+            )
+            .scalars()
+            .first()
+            .money_column
+        )
+        assert stored_asset_vec is None
+
+
+def test_atomic_money_nullable_column(fixt_session):
+    """Ensure the AtomicMoney column type works with nullable values."""
+
+    with fixt_session() as session:
+        session.add(NullableAtomicModel(id=1))
+        session.commit()
+        stored_asset_vec = (
+            session.execute(
+                select(NullableAtomicModel).where(NullableAtomicModel.id == 1)
+            )
+            .scalars()
+            .first()
+            .money_column
+        )
+        assert stored_asset_vec is None

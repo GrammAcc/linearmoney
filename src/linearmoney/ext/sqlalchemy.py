@@ -66,7 +66,9 @@ class VectorMoney(TypeDecorator):
         """Serialize the `MoneyVector` to a `str` compatible with the sqlalchemy `String`
         column type."""
 
-        return lm.vector.store(value)
+        if value is not None:
+            return lm.vector.store(value)
+        return value
 
     # SQLAlchemy types `value` argument as Any | None, which makes sense for an overload.
     # We ignore the override error because violating Liskov doesn't make any difference
@@ -75,7 +77,9 @@ class VectorMoney(TypeDecorator):
         """Deserialize the `str` stored in the db to a `MoneyVector` equivalent to the vector
         that was originally stored."""
 
-        return lm.vector.restore(value)
+        if value is not None:
+            return lm.vector.restore(value)
+        return value
 
 
 class AtomicMoney(TypeDecorator):
@@ -179,10 +183,12 @@ class AtomicMoney(TypeDecorator):
         """Serialize the `MoneyVector` to an `int` for storage in the sqlalchemy `Integer`
         column type."""
 
-        return lm.scalar.atomic(
-            lm.vector.evaluate(value, self.currency.iso_code, self.forex),
-            self.currency,
-        )
+        if value is not None:
+            return lm.scalar.atomic(
+                lm.vector.evaluate(value, self.currency.iso_code, self.forex),
+                self.currency,
+            )
+        return value
 
     # SQLAlchemy types `value` argument as Any | None, which makes sense for an overload.
     # We ignore the override error because violating Liskov doesn't make any difference
@@ -191,6 +197,10 @@ class AtomicMoney(TypeDecorator):
         """Deserialize the `int` stored in the db to a `MoneyVector` equivalent to the vector
         that was originally stored."""
 
-        exponent = decimal.Decimal(10) ** decimal.Decimal(self.currency.data["places"])
-        decimal_value = decimal.Decimal(value) / exponent
-        return lm.vector.asset(decimal_value, self.currency.iso_code, self.space)
+        if value is not None:
+            exponent = decimal.Decimal(10) ** decimal.Decimal(
+                self.currency.data["places"]
+            )
+            decimal_value = decimal.Decimal(value) / exponent
+            return lm.vector.asset(decimal_value, self.currency.iso_code, self.space)
+        return value
