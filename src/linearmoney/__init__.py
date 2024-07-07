@@ -32,6 +32,6 @@ from . import (  # noqa: E402
     resources,
 )
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 CLDR_VERSION = resources.get_package_resource("cldr_version")
