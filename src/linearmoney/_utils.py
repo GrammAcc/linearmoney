@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-
 __all__: list[str] = [
     "coerce_decimal",
     "get_supported_numeric",
@@ -11,10 +10,10 @@ __all__: list[str] = [
 ]
 
 import decimal
-import time
 import logging
+import time
 from functools import singledispatch
-from typing import Callable, TypeVar, ParamSpec
+from typing import Callable, ParamSpec, TypeVar
 
 perf_logger = logging.getLogger("performance")
 file_handler = logging.FileHandler(

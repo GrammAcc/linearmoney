@@ -1,7 +1,6 @@
 from collections.abc import Hashable
 
 import pytest
-
 from pytest_lazy_fixtures import lf
 
 

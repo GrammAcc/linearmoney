@@ -1,9 +1,8 @@
-import pytest
-
 import threading
 
-import linearmoney as lm
+import pytest
 
+import linearmoney as lm
 
 redundancy = 100
 

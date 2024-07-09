@@ -1,7 +1,7 @@
+import functools
 import json
 import os
 import unicodedata
-import functools
 
 
 def remove_control_characters(s):

@@ -123,10 +123,11 @@ description = "Autoformatting and Linting"
 dependencies = [
     "black",
     "flake8",
+    "isort",
 ]
 
 [tool.hatch.envs.style.scripts]
-format = "black ."
+format = ["isort --atomic .", "black ."]
 lintsrc = "flake8 src"
 linttests = "flake8 tests"
 lintdocs = "flake8 documentation"
@@ -178,3 +179,7 @@ omit = ["_utils.py"]
 
 [tool.coverage.run]
 source = ["linearmoney"]
+
+[tool.isort]
+profile = "black"
+skip_gitignore = true

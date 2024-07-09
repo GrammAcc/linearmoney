@@ -14,14 +14,14 @@ __all__ = [
 
 import copy
 import enum
-from collections.abc import MutableMapping, Mapping
-from typing import TypedDict, Any, cast
-from dataclasses import dataclass
 import locale as posix_locale
+from collections.abc import Mapping, MutableMapping
+from dataclasses import dataclass
+from typing import Any, TypedDict, cast
 
 from linearmoney import cache, resources
-from linearmoney.mixins import ImmutableDeduplicationMixin, EqualityByHashMixin
 from linearmoney.exceptions import UnknownDataError
+from linearmoney.mixins import EqualityByHashMixin, ImmutableDeduplicationMixin
 
 
 # This class needs to have a docstring, or the doctest examples in

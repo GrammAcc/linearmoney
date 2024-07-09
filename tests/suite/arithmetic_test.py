@@ -1,14 +1,12 @@
 import decimal
-import pytest
 
-from pytest_parametrize_cases import parametrize_cases, Case
+import pytest
 from pytest_lazy_fixtures import lf
+from pytest_parametrize_cases import Case, parametrize_cases
 
 import linearmoney as lm
-from linearmoney.exceptions import SpaceError, IntegrityError
-
+from linearmoney.exceptions import IntegrityError, SpaceError
 from tests.conftest import helpers
-
 
 _numeric_input_types = [
     2,

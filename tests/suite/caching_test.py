@@ -2,7 +2,7 @@ import decimal
 import fractions
 
 import pytest
-from pytest_parametrize_cases import parametrize_cases, Case
+from pytest_parametrize_cases import Case, parametrize_cases
 
 import linearmoney as lm
 from linearmoney.exceptions import CacheError

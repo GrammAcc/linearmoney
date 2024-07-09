@@ -16,20 +16,13 @@ __all__ = [
     "set_base_size",
 ]
 
-import logging
-
 import decimal
-import threading
-
 import functools
+import logging
+import threading
 from collections import OrderedDict
-from collections.abc import Hashable, Callable, Mapping
-from typing import (
-    TypeVar,
-    ParamSpec,
-    SupportsInt,
-    Any,
-)
+from collections.abc import Callable, Hashable, Mapping
+from typing import Any, ParamSpec, SupportsInt, TypeVar
 
 from linearmoney.exceptions import CacheError
 

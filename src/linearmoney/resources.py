@@ -2,16 +2,15 @@
 
 from __future__ import annotations
 
-
 __all__: list[str] = [
     "get_package_resource",
 ]
 
 
-import json
 import importlib.resources
+import json
 from os import PathLike
-from typing import Literal, Any, TypeAlias
+from typing import Any, Literal, TypeAlias
 
 import linearmoney as lm
 

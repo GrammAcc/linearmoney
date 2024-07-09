@@ -1,5 +1,5 @@
-import pickle
 import copy
+import pickle
 
 import pytest
 from pytest_lazy_fixtures import lf

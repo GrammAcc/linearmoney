@@ -1,20 +1,13 @@
 from typing import Optional
 
-from sqlalchemy.orm import (
-    DeclarativeBase,
-    Mapped,
-    mapped_column,
-    sessionmaker,
-)
+import pytest
 from sqlalchemy import create_engine, select
 from sqlalchemy.exc import StatementError
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
-
-import pytest
-
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
 import linearmoney as lm
-from linearmoney.ext.sqlalchemy import VectorMoney, AtomicMoney
+from linearmoney.ext.sqlalchemy import AtomicMoney, VectorMoney
 
 
 class BaseModel(DeclarativeBase): ...

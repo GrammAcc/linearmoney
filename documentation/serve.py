@@ -1,5 +1,4 @@
 import http.server
-
 from pathlib import Path
 
 site_dir = Path(Path(__file__).parent.parent, "docs")

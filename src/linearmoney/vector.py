@@ -19,14 +19,14 @@ __all__: list[str] = [
     "RatesDict",
 ]
 
-import decimal
 import copy
-from typing import TYPE_CHECKING, TypeAlias, TypedDict, TypeVar
+import decimal
 from collections.abc import Iterator
+from typing import TYPE_CHECKING, TypeAlias, TypedDict, TypeVar
 
-from linearmoney import cache, _utils
-from linearmoney.mixins import ImmutableDeduplicationMixin, EqualityByHashMixin
-from linearmoney.exceptions import SpaceError, IntegrityError
+from linearmoney import _utils, cache
+from linearmoney.exceptions import IntegrityError, SpaceError
+from linearmoney.mixins import EqualityByHashMixin, ImmutableDeduplicationMixin
 
 if TYPE_CHECKING:
     from typing import Self

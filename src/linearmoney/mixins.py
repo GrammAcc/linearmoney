@@ -7,8 +7,8 @@ __all__: list[str] = [
 
 
 from abc import ABCMeta, abstractmethod
-from typing import TYPE_CHECKING, ClassVar
 from collections.abc import Hashable, Sequence
+from typing import TYPE_CHECKING, ClassVar
 
 if TYPE_CHECKING:
     from typing import Self

@@ -1,5 +1,5 @@
-import threading
 import decimal
+import threading
 from contextlib import contextmanager
 from types import SimpleNamespace
 
@@ -7,8 +7,8 @@ import pytest
 from pytest_lazy_fixtures import lf
 
 import linearmoney as lm
-from linearmoney.vector import MoneyVector
 from linearmoney.data import DataMap
+from linearmoney.vector import MoneyVector
 
 
 def pytest_deselected(items):

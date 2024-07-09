@@ -10,8 +10,8 @@ __all__ = [
 
 import decimal
 
-from sqlalchemy.types import TypeDecorator, String, Integer
 from sqlalchemy import Dialect
+from sqlalchemy.types import Integer, String, TypeDecorator
 
 import linearmoney as lm
 

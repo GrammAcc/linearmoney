@@ -22,15 +22,7 @@ logger = logging.getLogger(__name__)
 logger.info("linearmoney root logger initialized.")
 
 
-from . import (  # noqa: E402
-    vector,
-    cache,
-    data,
-    exceptions,
-    scalar,
-    mixins,
-    resources,
-)
+from . import cache, data, exceptions, mixins, resources, scalar, vector  # noqa: E402
 
 __version__ = "0.2.1"
 

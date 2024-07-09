@@ -1,13 +1,11 @@
 import locale as posix_locale
 
 import pytest
-
-from pytest_parametrize_cases import parametrize_cases, Case
 from pytest_lazy_fixtures import lf
+from pytest_parametrize_cases import Case, parametrize_cases
 
 import linearmoney as lm
 from linearmoney.exceptions import UnknownDataError
-
 from tests.conftest import helpers
 
 

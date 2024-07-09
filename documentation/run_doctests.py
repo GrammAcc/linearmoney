@@ -3,8 +3,8 @@ if __name__ != "__main__":
 
 
 import doctest
-import warnings
 import traceback
+import warnings
 
 import pdoc
 

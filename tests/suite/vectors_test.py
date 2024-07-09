@@ -4,10 +4,8 @@ import fractions
 import pytest
 
 import linearmoney as lm
-from linearmoney.exceptions import SpaceError, IntegrityError
-
+from linearmoney.exceptions import IntegrityError, SpaceError
 from tests.conftest import helpers
-
 
 _vector_classes = [lm.vector.MoneyVector, lm.vector.ForexVector]
 
