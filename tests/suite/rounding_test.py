@@ -180,25 +180,13 @@ def test_midpoint_rounding(value, fractions, expected, fixt_space, fixt_forex_us
 
 @parametrize_cases(
     Case(
-        "denomination_2_places_2_round_down",
+        "denomination_2_places_2",
         value="10.03",
         fractions={"denomination": 2, "places": 2},
         expected="10.04",
     ),
     Case(
-        "denomination_2_places_2_round_up",
-        value="10.03",
-        fractions={"denomination": 2, "places": 2},
-        expected="10.04",
-    ),
-    Case(
-        "denomination_20_places_3_round_down",
-        value="10.030",
-        fractions={"denomination": 20, "places": 3},
-        expected="10.040",
-    ),
-    Case(
-        "denomination_20_places_3_round_up",
+        "denomination_20_places_3",
         value="10.030",
         fractions={"denomination": 20, "places": 3},
         expected="10.040",
