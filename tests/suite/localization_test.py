@@ -182,7 +182,7 @@ def test_basic_l10n(locale, iso_code, asset, expected, fixt_forex_usd):
 
     val = lm.vector.evaluate(asset, iso_code, fixt_forex_usd)
     currency = lm.data.currency(iso_code)
-    rounded_val = lm.scalar.roundas(val, currency)
+    rounded_val = lm.round.as_currency(val, currency)
     assert lm.scalar.l10n(rounded_val, currency, locale) == expected
 
 
@@ -256,7 +256,7 @@ def test_l10n_international(locale, iso_code, asset, expected, fixt_forex_usd):
 
     val = lm.vector.evaluate(asset, iso_code, fixt_forex_usd)
     currency = lm.data.currency(iso_code)
-    rounded_val = lm.scalar.roundas(val, currency)
+    rounded_val = lm.round.as_currency(val, currency)
     assert lm.scalar.l10n(rounded_val, currency, locale, international=True) == expected
 
 
@@ -370,7 +370,7 @@ def test_l10n_with_formatting_overrides(
     lc = lm.data.locale("en", "us", **overrides)
     val = lm.vector.evaluate(fixt_negative_l10n_asset, iso_code, fixt_forex_usd)
     currency = lm.data.currency(iso_code)
-    rounded_val = lm.scalar.roundas(val, currency)
+    rounded_val = lm.round.as_currency(val, currency)
     assert lm.scalar.l10n(rounded_val, currency, lc) == expected
 
 
@@ -386,13 +386,13 @@ def test_l10n_non_ascii_format(
     lc = lm.data.locale("fr", "fr")
     val_eur = lm.vector.evaluate(fixt_positive_l10n_asset, "eur", fixt_forex_usd)
     curr_eur = lm.data.currency("eur")
-    rounded_val_eur = lm.scalar.roundas(val_eur, curr_eur)
+    rounded_val_eur = lm.round.as_currency(val_eur, curr_eur)
     assert lm.scalar.l10n(rounded_val_eur, curr_eur, lc) == "".join(
         ["4", fixt_french_thousands_space, "000,00 ", fixt_euro_symbol]
     )
     val_usd = lm.vector.evaluate(fixt_positive_l10n_asset, "usd", fixt_forex_usd)
     curr_usd = lm.data.currency("usd")
-    rounded_val_usd = lm.scalar.roundas(val_usd, curr_usd)
+    rounded_val_usd = lm.round.as_currency(val_usd, curr_usd)
     assert lm.scalar.l10n(rounded_val_usd, curr_usd, lc) == "".join(
         ["10", fixt_french_thousands_space, "000,00 $US"]
     )
@@ -407,7 +407,7 @@ def test_l10n_multiple_groupings(fixt_indian_rupee_symbol, fixt_space, fixt_fore
     inr = lm.vector.asset("1000000000", "inr", fixt_space)
     val = lm.vector.evaluate(inr, "inr", fixt_forex_usd)
     currency = lm.data.currency("inr")
-    rounded_val = lm.scalar.roundas(val, currency)
+    rounded_val = lm.round.as_currency(val, currency)
     assert lm.scalar.l10n(rounded_val, currency, lc) == "".join(
         [fixt_indian_rupee_symbol, "1,00,00,00,000.00"]
     )
@@ -424,7 +424,7 @@ def test_l10n_multiple_groupings_small_number(
     inr = lm.vector.asset("1000", "inr", fixt_space)
     val = lm.vector.evaluate(inr, "inr", fixt_forex_usd)
     currency = lm.data.currency("inr")
-    rounded_val = lm.scalar.roundas(val, currency)
+    rounded_val = lm.round.as_currency(val, currency)
     assert lm.scalar.l10n(rounded_val, currency, lc) == "".join(
         [fixt_indian_rupee_symbol, "1,000.00"]
     )
@@ -439,7 +439,7 @@ def test_l10n_currency_with_None_symbol(fixt_space, fixt_forex_usd):
     sut = lm.vector.asset("10", "usd", fixt_space)
     val = lm.vector.evaluate(sut, "usd", fixt_forex_usd)
     currency = lm.data.currency("usd")
-    rounded_val = lm.scalar.roundas(val, currency)
+    rounded_val = lm.round.as_currency(val, currency)
     assert lm.scalar.l10n(rounded_val, currency, lc) == "USD 10.00"
 
 

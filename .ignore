@@ -1,0 +1,9 @@
+**/*.json
+**/*.tar.*
+docs
+
+# Scratch files
+!**/temp.*
+!**/tmp.*
+!**/*.temp
+!**/*.tmp

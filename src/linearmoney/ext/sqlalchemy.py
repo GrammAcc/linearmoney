@@ -184,10 +184,11 @@ class AtomicMoney(TypeDecorator):
         column type."""
 
         if value is not None:
-            return lm.scalar.atomic(
-                lm.vector.evaluate(value, self.currency.iso_code, self.forex),
-                self.currency,
+            decimal_value = lm.vector.evaluate(
+                value, self.currency.iso_code, self.forex
             )
+            atomic_value = lm.round.atomic(decimal_value, self.currency)
+            return int(atomic_value)
         return value
 
     # SQLAlchemy types `value` argument as Any | None, which makes sense for an overload.
@@ -198,9 +199,7 @@ class AtomicMoney(TypeDecorator):
         that was originally stored."""
 
         if value is not None:
-            exponent = decimal.Decimal(10) ** decimal.Decimal(
-                self.currency.data["places"]
-            )
+            exponent = decimal.Decimal(10) ** self.currency.data["places"]
             decimal_value = decimal.Decimal(value) / exponent
             return lm.vector.asset(decimal_value, self.currency.iso_code, self.space)
         return value

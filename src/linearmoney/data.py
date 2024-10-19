@@ -20,7 +20,7 @@ from dataclasses import dataclass
 from typing import Any, TypedDict, cast
 
 from linearmoney import cache, resources
-from linearmoney.exceptions import UnknownDataError
+from linearmoney.exceptions import InvalidDataError, UnknownDataError
 from linearmoney.mixins import EqualityByHashMixin, ImmutableDeduplicationMixin
 
 
@@ -349,20 +349,6 @@ _REQUIRED_CURRENCY_KEYS = {
 }
 
 
-@cache.cached()
-def _merge_currency_overrides(currencies: CurrencyMap, **overrides) -> CurrencyMap:
-    """Merge any values given by keyword arguments into the resulting currencies data
-    overriding the values for the corresponding keys in `currencies`."""
-
-    new_currencies = copy.deepcopy(currencies)
-
-    for i in _REQUIRED_CURRENCY_KEYS:
-        if i in overrides:
-            new_currencies[i] = overrides[i]  # type: ignore[literal-required]
-
-    return new_currencies
-
-
 _fallback_currencies = resources.get_package_resource("currencies")
 _supported_iso_codes = set(resources.get_package_resource("supported_iso_codes"))
 
@@ -390,6 +376,11 @@ def currency(iso_code: str, **overrides) -> CurrencyData:
         `linearmoney.exceptions.UnknownDataError`:
             If the cldr-json data does not have denominational data for `iso_code`
             and not all of the fields of `CurrencyMap` are provided as **overrides.
+        `linearmoney.exceptions.InvalidDataError`:
+            If the `{cash_}denomination` uses more digits than the `{cash_}places`.
+            For example, denomination of 25 places of 1 would cause this error.
+            This is because it is not possible to round to 25 with one decimal place
+            of precision.
     """
 
     if not iso_code.isupper():
@@ -414,15 +405,18 @@ You must provide all rounding data for unknown currency."
         currencies = _fallback_currencies["DEFAULT"]
 
     if overrides:
-        # We cast to satisfy mypy since we can't use read-only TypedDict yet.
-        # Remove this cast once pep 705 is implemented.
-        return CurrencyData(
-            iso_code,
-            data=cast(
-                CurrencyMap, DataMap(_merge_currency_overrides(currencies, **overrides))
-            ),
-        )
-    else:
-        # We cast to satisfy mypy since we can't use read-only TypedDict yet.
-        # Remove this cast once pep 705 is implemented.
-        return CurrencyData(iso_code, data=cast(CurrencyMap, DataMap(currencies)))
+        currencies = copy.deepcopy(currencies)
+
+        for i in _REQUIRED_CURRENCY_KEYS:
+            if i in overrides:
+                currencies[i] = overrides[i]  # type: ignore[literal-required]
+    if currencies["places"] > 0:
+        if len(str(currencies["denomination"])) > currencies["places"]:
+            raise InvalidDataError("Not enough places to fit denomination")
+    if currencies["cash_places"] > 0:
+        if len(str(currencies["cash_denomination"])) > currencies["cash_places"]:
+            raise InvalidDataError("Not enough cash_places to fit cash_denomination")
+
+    # We cast to satisfy mypy since we can't use read-only TypedDict yet.
+    # Remove this cast once pep 705 is implemented.
+    return CurrencyData(iso_code, data=cast(CurrencyMap, DataMap(currencies)))

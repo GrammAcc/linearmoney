@@ -11,19 +11,19 @@ import linearmoney as lm
     Case("jpy", value="1000.123456", currency_code="jpy", expected="1000"),
     Case("cad", value="10.123456", currency_code="cad", expected="10.12"),
 )
-def test_roundas_basic_usage(
+def test_as_currency_basic_usage(
     value, currency_code, expected, fixt_space, fixt_forex_usd
 ):
-    """The `roundas` function uses the `denomination` and `places` of the
+    """The `as_currency` function uses the `denomination` and `places` of the
     specified currency's data to determine how the value will be rounded."""
 
     sut = lm.vector.asset(value, currency_code, fixt_space)
     val = lm.vector.evaluate(sut, currency_code, fixt_forex_usd)
     curr = lm.data.currency(currency_code)
-    assert str(lm.scalar.roundas(val, curr)) == expected
+    assert str(lm.round.as_currency(val, curr)) == expected
 
 
-def test_roundas_cash(fixt_space, fixt_forex_usd):
+def test_as_currency_cash(fixt_space, fixt_forex_usd):
     """If the `cash` keyword argument is True, the value should be rounded
     based on the currency's `cash_denomination` and `cash_places`
     data as opposed to the normal `denomination` and `places` data."""
@@ -31,21 +31,21 @@ def test_roundas_cash(fixt_space, fixt_forex_usd):
     sut = lm.vector.asset("10.183456", "cad", fixt_space)
     val = lm.vector.evaluate(sut, "cad", fixt_forex_usd)
     curr = lm.data.currency("cad")
-    assert str(lm.scalar.roundas(val, curr)) == "10.18"
-    assert str(lm.scalar.roundas(val, curr, cash=True)) == "10.20"
+    assert str(lm.round.as_currency(val, curr)) == "10.18"
+    assert str(lm.round.as_currency(val, curr, cash=True)) == "10.20"
 
 
-def test_roundas_whole_dollars(fixt_space, fixt_forex_usd):
+def test_as_currency_whole_dollars(fixt_space, fixt_forex_usd):
     """When rounding an integer value, the result should still have the correct number
     of decimal places based on the currency."""
 
     sut = lm.vector.asset(10, "USD", fixt_space)
     val = lm.vector.evaluate(sut, "USD", fixt_forex_usd)
     curr = lm.data.currency("USD", denomination=10, places=5)
-    assert str(lm.scalar.roundas(val, curr)) == "10.00000"
+    assert str(lm.round.as_currency(val, curr)) == "10.00000"
 
 
-def test_roundas_negative_places(fixt_space, fixt_forex_usd):
+def test_as_currency_negative_places(fixt_space, fixt_forex_usd):
     """When rounding to a currency with a negative value for `places`, we round as if
     `places` were 0."""
 
@@ -53,7 +53,7 @@ def test_roundas_negative_places(fixt_space, fixt_forex_usd):
         sut = lm.vector.asset("10.000000", "USD", fixt_space)
         val = lm.vector.evaluate(sut, "USD", fixt_forex_usd)
         curr = lm.data.currency("USD", denomination=10, places=-decimal_places)
-        assert str(lm.scalar.roundas(val, curr)) == "10"
+        assert str(lm.round.as_currency(val, curr)) == "10"
 
 
 @pytest.fixture(scope="class", params=["usd", "cad", "jpy"])
@@ -80,78 +80,58 @@ def fixt_currency_codes(request):
     Case("six_places", places=6, expected="1111.123456"),
     Case("seven_places", places=7, expected="1111.1234560"),
 )
-def test_roundto(fixt_currency_codes, places, expected, fixt_space, fixt_forex_usd):
-    """The `roundto` function should round the value to the specified number of
+def test_to_places(fixt_currency_codes, places, expected, fixt_space, fixt_forex_usd):
+    """The `to_places` function should round the value to the specified number of
     places as if the denomination was 0 or 1, and the currency data is
     ignored."""
 
     sut = lm.vector.asset("1111.123456", fixt_currency_codes, fixt_space)
     val = lm.vector.evaluate(sut, fixt_currency_codes, fixt_forex_usd)
-    assert str(lm.scalar.roundto(val, places)) == expected
+    assert str(lm.round.to_places(val, places)) == expected
 
 
-def test_roundto_negative_places(fixt_space, fixt_forex_usd):
+def test_to_places_negative_places(fixt_space, fixt_forex_usd):
     """If `places` is negative, it should be treated as if it were
     0."""
 
     sut = lm.vector.asset("10.6", "usd", fixt_space)
     val = lm.vector.evaluate(sut, "usd", fixt_forex_usd)
     for places in range(9):
-        assert str(lm.scalar.roundto(val, -(places + 1))) == "11"
+        assert str(lm.round.to_places(val, -(places + 1))) == "11"
 
 
-def test_integer_value_roundto(fixt_space, fixt_forex_usd):
+def test_integer_value_to_places(fixt_space, fixt_forex_usd):
     """Ensure rounding an integer value to a specific number of places
     results in the correct number of zeros after the decimal point."""
 
     sut = lm.vector.asset("10", "usd", fixt_space)
     val = lm.vector.evaluate(sut, "usd", fixt_forex_usd)
-    assert str(lm.scalar.roundto(val, 4)) == "10.0000"
+    assert str(lm.round.to_places(val, 4)) == "10.0000"
 
 
 @parametrize_cases(
-    Case(
-        "10.4_places_1_denomination_15",
-        value="10.4",
-        places=1,
-        denomination=15,
-        expected="10.45",
-    ),
-    Case(
-        "10.35_places_1_denomination_15",
-        value="10.35",
-        places=1,
-        denomination=15,
-        expected="10.30",
-    ),
-    Case(
-        "10.5_places_2_denomination_150",
-        value="10.5",
-        places=2,
-        denomination=150,
-        expected="10.450",
-    ),
-    Case(
-        "10.55_places_2_denomination_150",
-        value="10.55",
-        places=2,
-        denomination=150,
-        expected="10.600",
-    ),
+    Case("thousand", value=1000, expected="123457000"),
+    Case("ten_thousand", value=10_000, expected="123460000"),
+    Case("hundred_thousand", value=100_000, expected="123500000"),
+    Case("million", value=1_000_000, expected="123000000"),
 )
-def test_denomination_digits_more_than_places(
-    value, places, denomination, expected, fixt_space, fixt_forex_usd
-):
-    """Check an edge case where the `denomination` has more digits than the
-    `places` we are rounding to.
+def test_to_nearest(fixt_currency_codes, value, expected, fixt_space, fixt_forex_usd):
+    """The to_nearest function should integer round the `amount` to the nearest multiple
+    of the `value`."""
 
-    This should round to the number of digits in `denomination`.
-    """
+    sut = lm.vector.asset(123456789.123456789, fixt_currency_codes, fixt_space)
+    amount = lm.vector.evaluate(sut, fixt_currency_codes, fixt_forex_usd)
+    assert str(lm.round.to_nearest(amount, value)) == expected
 
-    usd_override = lm.data.currency("usd", denomination=denomination, places=places)
-    sut = lm.vector.asset(value, "usd", fixt_space)
+
+def test_to_nearest_non_positive_value(fixt_space, fixt_forex_usd):
+    """The to_nearest function should raise if `value` is not positive."""
+
+    sut = lm.vector.asset("10000", "usd", fixt_space)
     val = lm.vector.evaluate(sut, "usd", fixt_forex_usd)
-    assert str(lm.scalar.roundas(val, usd_override)) == expected
+    for places in range(10):
+        with pytest.raises(ValueError):
+            lm.round.to_nearest(val, -places)
 
 
 @parametrize_cases(
@@ -175,7 +155,7 @@ def test_midpoint_rounding(value, fractions, expected, fixt_space, fixt_forex_us
     usd_override = lm.data.currency("usd", **fractions)
     sut = lm.vector.asset(value, "usd", fixt_space)
     val = lm.vector.evaluate(sut, "usd", fixt_forex_usd)
-    assert str(lm.scalar.roundas(val, usd_override)) == expected
+    assert str(lm.round.as_currency(val, usd_override)) == expected
 
 
 @parametrize_cases(
@@ -206,7 +186,7 @@ def test_denomination_digits_less_than_to_places_with_leading_zeros(
     usd_override = lm.data.currency("usd", **fractions)
     sut = lm.vector.asset(value, "usd", fixt_space)
     val = lm.vector.evaluate(sut, "usd", fixt_forex_usd)
-    assert str(lm.scalar.roundas(val, usd_override)) == expected
+    assert str(lm.round.as_currency(val, usd_override)) == expected
 
 
 @parametrize_cases(
@@ -248,7 +228,7 @@ def test_carryover(fractions, expected, fixt_space, fixt_forex_usd):
     usd_override = lm.data.currency("usd", **fractions)
     sut = lm.vector.asset("99.9999999", "usd", fixt_space)
     val = lm.vector.evaluate(sut, "usd", fixt_forex_usd)
-    assert str(lm.scalar.roundas(val, usd_override)) == expected
+    assert str(lm.round.as_currency(val, usd_override)) == expected
 
 
 @parametrize_cases(
@@ -275,7 +255,7 @@ def test_atomic(val, currency, expected):
     """The `atomic` function should return the decimal's value as an
     integer in the supplied currency's smallest denomination."""
 
-    sut = lm.scalar.atomic(val, currency)
+    sut = lm.round.atomic(val, currency)
     assert sut == expected
 
 
@@ -302,5 +282,5 @@ def test_atomic(val, currency, expected):
 def test_atomic_cash(val, currency, expected):
     """Use the smallest ***cash*** denomination when `cash` is True."""
 
-    sut = lm.scalar.atomic(val, currency, cash=True)
+    sut = lm.round.atomic(val, currency, cash=True)
     assert sut == expected

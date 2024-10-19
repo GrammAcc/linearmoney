@@ -5,6 +5,7 @@ from __future__ import annotations
 __all__ = [
     "vector",
     "scalar",
+    "round",
     "data",
     "exceptions",
     "resources",
@@ -22,7 +23,16 @@ logger = logging.getLogger(__name__)
 logger.info("linearmoney root logger initialized.")
 
 
-from . import cache, data, exceptions, mixins, resources, scalar, vector  # noqa: E402
+from . import (  # noqa: E402
+    cache,
+    data,
+    exceptions,
+    mixins,
+    resources,
+    round,
+    scalar,
+    vector,
+)
 
 __version__ = "0.2.1"
 

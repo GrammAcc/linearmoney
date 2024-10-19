@@ -1,7 +1,8 @@
 import pytest
 
 import linearmoney as lm
-from linearmoney.exceptions import UnknownDataError
+from linearmoney.exceptions import InvalidDataError, UnknownDataError
+from tests.conftest import helpers
 
 
 def test_basic_usage():
@@ -69,3 +70,22 @@ def test_custom_currency_unknown_data_error():
         lm.data.currency("GIL", denomination=0, places=2)
     with pytest.raises(UnknownDataError):
         lm.data.currency("GIL", denomination=0, places=2, cash_denomination=0)
+
+
+def test_custom_currency_invalid_data_error():
+    """Attempting to create a CurrencyData with a {cash_}denomination that uses more digits
+    than its {cash_}places should raise an InvalidDataError."""
+
+    with pytest.raises(InvalidDataError):
+        lm.data.currency("USD", denomination=25, places=1)
+    with pytest.raises(InvalidDataError):
+        lm.data.currency("USD", cash_denomination=25, cash_places=1)
+    with helpers.does_not_raise(InvalidDataError):
+        lm.data.currency(
+            "USD", cash_denomination=25, cash_places=2, denomination=1, places=1
+        )
+
+    with helpers.does_not_raise(InvalidDataError):
+        lm.data.currency(
+            "USD", denomination=25, places=2, cash_denomination=1, cash_places=1
+        )

@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 __all__ = [
-    "SpaceError",
-    "IntegrityError",
-    "UnknownDataError",
     "CacheError",
+    "IntegrityError",
+    "InvalidDataError",
+    "SpaceError",
+    "UnknownDataError",
 ]
 
 
@@ -21,6 +22,13 @@ class SpaceError(Exception):
 class IntegrityError(Exception):
     """An operation that would result in breaking the
     mathematical invariants of the linear money model was attempted."""
+
+    def __init__(self, msg: str) -> None:
+        return super().__init__(msg)
+
+
+class InvalidDataError(Exception):
+    """Attempted to create a data store with unsupported or invalid data."""
 
     def __init__(self, msg: str) -> None:
         return super().__init__(msg)
