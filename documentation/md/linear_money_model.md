@@ -1,9 +1,5 @@
 # A Linear-Algebraic Model for Monetary Data
 
-Published: 01-Jan-2024
-<br/>
-Update: 05-Jan-2024 - Style and Structure.
-
 View the update history for this article on
 [GitHub](https://github.com/GrammAcc/linearmoney/commits/main/documentation/md/linear_money_model.md).
 
@@ -12,35 +8,6 @@ View the update history for this article on
 Dalton Lang
 <br/>
 [@GrammAcc](https://github.com/GrammAcc)
-
-## Abstract
-
-Working with monetary data in a computer programming context is much more difficult
-than it should be, particularly when developing modern multi-currency applications
-for international users. The root cause of this is a fundamental misunderstanding
-of the mathematical properties of money among programmers, which stems from a lack of a
-formal mathematical definition of money itself. In this article, I will attempt to
-extrapolate the mathematical properties of money from its functional properties in
-order to make it easier to work with money programmatically and to be able to more
-reliably prove the correctness of financial calculations in general.
-
-I will gradually develop a purely mathematical model for working with monetary data
-to communicate the purpose of each piece and make the final iteration more
-intelligible. This will also serve to form an intuitive understanding
-of the mathematical properties of money that will make it easier to avoid
-pitfalls when performing monetary calculations.
-
-I will start by discussing the current best practices for working with currency
-programmatically and the difficulties that they present.
-The current practices are based on the foundational work by Martin Fowler, which
-I will use as a reference point and a foundation for the model to be
-developed, but my intention is not to
-discredit the work of Fowler and his colleagues at Thoughtworks or anyone
-else who has made contributions to the collective knowledge of our field. Nor
-is it to develop a pattern or framework to replace these ideas. My intention with
-this article is simply to identify and resolve a lack of clarity
-of the mathematical rules that underlie these patterns in order to simplify their
-implementation and maintenance in modern applications.
 
 ## Introduction
 
@@ -90,131 +57,13 @@ If we are to develop a mathematical model for working with monetary data, it mus
 able to encode all three of these properties at the mathematical level without any
 logical orchestration in code.
 
-## The Dilemma
-
-Defining a mathematical object that can satisfy the functional properties of money is
-easier said than done. Martin Fowler's *Money* pattern<sup>[[1]](#1)</sup> is a
-good starting place
-considering it is effectively the original source of the current de facto money
-implementation. The core concept of Fowler's *Money* pattern is that we have a class
-that encapsulates
-an amount and a currency together in one object that can be used in arithmetic
-operations. This is a simple idea that seems obvious in hindsight, but it was a
-foundational idea for application design, and most applications that do anything with
-money are at least partially inspired by it. The difficulty with Fowler's
-pattern and by consequence most, if not all, modern money frameworks, is that they
-treat money as a collection of separate pieces of data. An amount, a currency, an
-exchange rate, rounding rules, etc... This creates a fundamental problem when working
-with money in applications because the math that we can do with them is limited to the
-math that can be done with abstract numbers, but we need to do math with concrete
-numbers (e.g. 10 USD, 15 EUR, etc...). To support modern applications, we need some
-kind of mathematical model that can handle calculations with multiple different
-currencies at once without having to encode the *concreteness* of our monies in
-separate objects.
-
-Most modern currency frameworks improve upon Fowler's original single-class pattern, but
-they tend to focus on adding scaffolding around the original single-class pattern to
-handle other things like formatting and exchange. This has created some very useful
-frameworks that make life easier for the programmers that use them, but it ends up making
-the resulting framework more useful in a specific context without solving the general
-problem of working with monetary data programmatically, so not all applications benefit
-from or are able to use these frameworks. There is nothing in place to make the work
-of the framework authors easier, so improvements to existing frameworks and new, better
-frameworks are few and far between.
-
-The real issue we need to solve if we want a robust and language-agnostic pattern for
-working with money is not how to structure all of the separate pieces of data that can
-affect financial information, but how to actually do math with *money* instead of only
-numbers. If we can figure that out, then implementing any kind of currency framework
-will be much easier since we will have mathematically enforceable rules to guide our
-design decisions.
-
-The fundamental flaw in the current de facto standard money implementation is that it
-attempts to do math on integers or decimals instead of concrete monies, which causes
-the programmer (or pattern designer) to have to define their own rules of mathematics
-for working with money. Fowler actually points out this dilemma in his book when he
-discusses arithmetic between different currencies.
-He mentions that the simplest solution
-is to treat the addition/subtraction of two different currencies as an error, but it's
-also possible to use a structure like Ward Cunningham's
-*Money Bag*, an object that tracks values in multiple currencies
-simultaneously<sup>[[1]](#1)</sup>, so this is a core issue of working with monetary
-data that Fowler was aware of over 20 years ago but the broader programming community
-has not paid much attention to, or at least has coped with instead of actively
-searching for a solution. Of note, Fowler doesn't advise how
-we *should* solve this particular problem in his book and instead, he leaves it as a
-sort of implementation detail for the programmer to decide based on the requirements of
-the application. This is understandable since the solution would be project-dependent
-when using this pattern, but this design decision the programmer has to make is
-deceptively problematic.
-
-It might not seem like it at first, but when we make these kinds of decisions, we are
-essentially redefining the rules of mathematics as they apply to money. This has
-very far-reaching consequences when we start doing more complicated things like
-integrating with third-party services or serializing monetary data since our
-calculations with money affect the accuracy of our data which has a very
-wide range of highly impactful uses.
-
-This isn't something that a developer should have to think about or decide. Even
-ignoring the additional design burden this places on the programmer, it also creates
-less reliable software. For example, what would happen if I decided that
-*2 + 2 = cheese*, and then you tried to integrate a service I was providing with your
-application?
-
-At the end of the day, no matter how much we want to, programmers don't get to redefine
-the rules of the universe.
-
-Of course, we've been doing things this way for over 20 years, and it works, so why
-change it?
-
-Unfortunately, this isn't only an "If it ain't broke, don't fix it." kind of issue.
-When it comes to programming, once we get into the realm of software, barring resource
-limitations, we can pretty much do whatever we want.
-
-Continuing with the example above, if I really did decide that I wanted
-*2 + 2* to equal *cheese*, I could do that:
-
-```python
-class FourCheeseBlend(int):
-    """An especially zesty integer."""
-
-    def __add__(self, other) -> int:
-        """2 + 2 == cheese"""
-        
-        if self == 2 and other == 2:
-            return hash("cheese")
-        else:
-            return super().__add__(other)
-```
-
-The above Python class will integrate properly with any Python 3 program, it's
-type-safe, and the behavior will be correct until the program puts 2 and 2 together.
-
-However, once we need to calculate *2 + 2*, the behavior of the program becomes
-undefined, and we have no indication that anything went wrong.
-
-The moral of this story is that just because we *can* make up our own rules doesn't mean
-that we *should*, and it would save us time and effort if we didn't have to.
-
-Of course, most reasonable programmers would think it's pretty obvious that the class
-above should never be used, but the reason why that is obvious is because the rules of
-basic arithmetic are obvious to us. However, when it comes to doing math with money, very
-few programmers (or anyone for that matter) actually understand the rules for how to
-calculate monetary amounts. In fact, at the time of writing, there don't seem to
-be any established mathematical rules for this, so I would argue that without
-mathematical truth to guide us, we have been including FourCheeseBlends in our
-financial applications for as long as we've been building them. We just haven't
-realized it yet.
-
 ---
 
 ## Developing the Model
 
-As mentioned in the previous section, to the best of my knowledge, there are no
-clearly defined mathematical properties of money in the current literature, so in
-order to define a mathematical model, we first need to identify those properties
-ourselves and decide on a purely mathematical object that is capable of encoding those
-properties for us.
+In order to define a mathematical model, we first need to identify the mathematical
+properties of money and decide on a purely mathematical object that is capable of encoding
+those properties for us.
 
 ---
 
@@ -266,10 +115,10 @@ in our model in order to satisfy all three properties for the model as a whole.
 Let's start by looking at the traditional money implementation first and see how well
 it satisfies our requirements.
 
-For #1, the standard implementation based on Fowler's pattern associates a single
-amount with a single currency inside an object to ensure we are always aware of the
-concreteness of the numbers we are working with, but this is an incomplete data model
-because a concrete number is still only a number mathematically, so using an
+For #1, the standard implementation based on Martin Fowler's *Money* pattern<sup>[[1]](#1)</sup>
+associates a single amount with a single currency inside an object to ensure we are always
+aware of the concreteness of the numbers we are working with, but this is an incomplete data
+model because a concrete number is still only a number mathematically, so using an
 object-oriented approach to encapsulating the amount and currency together in one object
 requires us to conceptually strip the currency away before and reattach it after any
 calculation we perform on the monetary amount, which is additional logical overhead for

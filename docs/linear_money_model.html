@@ -17,8 +17,11 @@
         <link rel="next" href="api_reference/linearmoney.html">
       
       
+        
+      
+      
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -26,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -47,11 +50,10 @@
     
       <link rel="stylesheet" href="syntax-highlighting.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
-    
     
     
   </head>
@@ -85,12 +87,12 @@
     <a href="index.html" title="linearmoney" class="md-header__button md-logo" aria-label="linearmoney" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -110,36 +112,38 @@
     </div>
     
     
-      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -150,6 +154,7 @@
     </div>
   </div>
 </div>
+      
     
     
   </nav>
@@ -180,7 +185,7 @@
     <a href="index.html" title="linearmoney" class="md-nav__button md-logo" aria-label="linearmoney" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     linearmoney
@@ -198,9 +203,16 @@
       <a href="index.html" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     Home
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -218,6 +230,7 @@
     
     
     
+    
     <li class="md-nav__item md-nav__item--nested">
       
         
@@ -228,9 +241,16 @@
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
+    
+  
     User Guide
+  
+
+    
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -239,7 +259,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            User Guide
+            
+  
+    User Guide
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -253,9 +277,16 @@
       <a href="quickstart.html" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     Quickstart
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -274,9 +305,16 @@
       <a href="recipes.html" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     Recipes
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -295,9 +333,16 @@
       <a href="glossary.html" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     Glossary
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -316,9 +361,16 @@
       <a href="FAQ.html" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     FAQ
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -353,9 +405,16 @@
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
+  
   <span class="md-ellipsis">
+    
+  
     Linear Money Model
+  
+
+    
   </span>
+  
   
 
           <span class="md-nav__icon md-icon"></span>
@@ -364,9 +423,16 @@
       <a href="linear_money_model.html" class="md-nav__link md-nav__link--active">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     Linear Money Model
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -389,16 +455,9 @@
         <li class="md-nav__item">
   <a href="#author" class="md-nav__link">
     <span class="md-ellipsis">
-      Author
-    </span>
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#abstract" class="md-nav__link">
-    <span class="md-ellipsis">
-      Abstract
+        Author
+      
     </span>
   </a>
   
@@ -407,16 +466,9 @@
         <li class="md-nav__item">
   <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      Introduction
-    </span>
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#the-dilemma" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Dilemma
+        Introduction
+      
     </span>
   </a>
   
@@ -425,7 +477,9 @@
         <li class="md-nav__item">
   <a href="#developing-the-model" class="md-nav__link">
     <span class="md-ellipsis">
-      Developing the Model
+      
+        Developing the Model
+      
     </span>
   </a>
   
@@ -435,7 +489,9 @@
           <li class="md-nav__item">
   <a href="#conceptual-properties-of-money" class="md-nav__link">
     <span class="md-ellipsis">
-      Conceptual Properties of Money
+      
+        Conceptual Properties of Money
+      
     </span>
   </a>
   
@@ -444,7 +500,9 @@
           <li class="md-nav__item">
   <a href="#a-mathematical-money-object" class="md-nav__link">
     <span class="md-ellipsis">
-      A Mathematical Money Object
+      
+        A Mathematical Money Object
+      
     </span>
   </a>
   
@@ -453,7 +511,9 @@
           <li class="md-nav__item">
   <a href="#countable-monies" class="md-nav__link">
     <span class="md-ellipsis">
-      Countable Monies
+      
+        Countable Monies
+      
     </span>
   </a>
   
@@ -462,7 +522,9 @@
           <li class="md-nav__item">
   <a href="#doing-math-with-money" class="md-nav__link">
     <span class="md-ellipsis">
-      Doing Math with Money
+      
+        Doing Math with Money
+      
     </span>
   </a>
   
@@ -471,7 +533,9 @@
           <li class="md-nav__item">
   <a href="#math-with-forex-rates" class="md-nav__link">
     <span class="md-ellipsis">
-      Math with Forex Rates
+      
+        Math with Forex Rates
+      
     </span>
   </a>
   
@@ -480,7 +544,9 @@
           <li class="md-nav__item">
   <a href="#exploring-currency-space" class="md-nav__link">
     <span class="md-ellipsis">
-      Exploring Currency Space
+      
+        Exploring Currency Space
+      
     </span>
   </a>
   
@@ -489,7 +555,9 @@
           <li class="md-nav__item">
   <a href="#evaluation" class="md-nav__link">
     <span class="md-ellipsis">
-      Evaluation
+      
+        Evaluation
+      
     </span>
   </a>
   
@@ -498,7 +566,9 @@
           <li class="md-nav__item">
   <a href="#putting-it-all-together" class="md-nav__link">
     <span class="md-ellipsis">
-      Putting it all together
+      
+        Putting it all together
+      
     </span>
   </a>
   
@@ -512,7 +582,9 @@
         <li class="md-nav__item">
   <a href="#notes-on-performance" class="md-nav__link">
     <span class="md-ellipsis">
-      Notes on Performance
+      
+        Notes on Performance
+      
     </span>
   </a>
   
@@ -521,7 +593,9 @@
         <li class="md-nav__item">
   <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
-      Conclusion
+      
+        Conclusion
+      
     </span>
   </a>
   
@@ -530,7 +604,9 @@
         <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     <span class="md-ellipsis">
-      References
+      
+        References
+      
     </span>
   </a>
   
@@ -554,9 +630,16 @@
       <a href="api_reference/linearmoney.html" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     API Reference
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -593,16 +676,9 @@
         <li class="md-nav__item">
   <a href="#author" class="md-nav__link">
     <span class="md-ellipsis">
-      Author
-    </span>
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#abstract" class="md-nav__link">
-    <span class="md-ellipsis">
-      Abstract
+        Author
+      
     </span>
   </a>
   
@@ -611,16 +687,9 @@
         <li class="md-nav__item">
   <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      Introduction
-    </span>
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#the-dilemma" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Dilemma
+        Introduction
+      
     </span>
   </a>
   
@@ -629,7 +698,9 @@
         <li class="md-nav__item">
   <a href="#developing-the-model" class="md-nav__link">
     <span class="md-ellipsis">
-      Developing the Model
+      
+        Developing the Model
+      
     </span>
   </a>
   
@@ -639,7 +710,9 @@
           <li class="md-nav__item">
   <a href="#conceptual-properties-of-money" class="md-nav__link">
     <span class="md-ellipsis">
-      Conceptual Properties of Money
+      
+        Conceptual Properties of Money
+      
     </span>
   </a>
   
@@ -648,7 +721,9 @@
           <li class="md-nav__item">
   <a href="#a-mathematical-money-object" class="md-nav__link">
     <span class="md-ellipsis">
-      A Mathematical Money Object
+      
+        A Mathematical Money Object
+      
     </span>
   </a>
   
@@ -657,7 +732,9 @@
           <li class="md-nav__item">
   <a href="#countable-monies" class="md-nav__link">
     <span class="md-ellipsis">
-      Countable Monies
+      
+        Countable Monies
+      
     </span>
   </a>
   
@@ -666,7 +743,9 @@
           <li class="md-nav__item">
   <a href="#doing-math-with-money" class="md-nav__link">
     <span class="md-ellipsis">
-      Doing Math with Money
+      
+        Doing Math with Money
+      
     </span>
   </a>
   
@@ -675,7 +754,9 @@
           <li class="md-nav__item">
   <a href="#math-with-forex-rates" class="md-nav__link">
     <span class="md-ellipsis">
-      Math with Forex Rates
+      
+        Math with Forex Rates
+      
     </span>
   </a>
   
@@ -684,7 +765,9 @@
           <li class="md-nav__item">
   <a href="#exploring-currency-space" class="md-nav__link">
     <span class="md-ellipsis">
-      Exploring Currency Space
+      
+        Exploring Currency Space
+      
     </span>
   </a>
   
@@ -693,7 +776,9 @@
           <li class="md-nav__item">
   <a href="#evaluation" class="md-nav__link">
     <span class="md-ellipsis">
-      Evaluation
+      
+        Evaluation
+      
     </span>
   </a>
   
@@ -702,7 +787,9 @@
           <li class="md-nav__item">
   <a href="#putting-it-all-together" class="md-nav__link">
     <span class="md-ellipsis">
-      Putting it all together
+      
+        Putting it all together
+      
     </span>
   </a>
   
@@ -716,7 +803,9 @@
         <li class="md-nav__item">
   <a href="#notes-on-performance" class="md-nav__link">
     <span class="md-ellipsis">
-      Notes on Performance
+      
+        Notes on Performance
+      
     </span>
   </a>
   
@@ -725,7 +814,9 @@
         <li class="md-nav__item">
   <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
-      Conclusion
+      
+        Conclusion
+      
     </span>
   </a>
   
@@ -734,7 +825,9 @@
         <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     <span class="md-ellipsis">
-      References
+      
+        References
+      
     </span>
   </a>
   
@@ -750,46 +843,20 @@
           
           
             <div class="md-content" data-md-component="content">
+              
               <article class="md-content__inner md-typeset">
                 
                   
 
 
+
 <h1 id="a-linear-algebraic-model-for-monetary-data">A Linear-Algebraic Model for Monetary Data</h1>
-<p>Published: 01-Jan-2024
-<br/>
-Update: 05-Jan-2024 - Style and Structure.</p>
 <p>View the update history for this article on
 <a href="https://github.com/GrammAcc/linearmoney/commits/main/documentation/md/linear_money_model.md">GitHub</a>.</p>
 <h2 id="author">Author</h2>
 <p>Dalton Lang
 <br/>
 <a href="https://github.com/GrammAcc">@GrammAcc</a></p>
-<h2 id="abstract">Abstract</h2>
-<p>Working with monetary data in a computer programming context is much more difficult
-than it should be, particularly when developing modern multi-currency applications
-for international users. The root cause of this is a fundamental misunderstanding
-of the mathematical properties of money among programmers, which stems from a lack of a
-formal mathematical definition of money itself. In this article, I will attempt to
-extrapolate the mathematical properties of money from its functional properties in
-order to make it easier to work with money programmatically and to be able to more
-reliably prove the correctness of financial calculations in general.</p>
-<p>I will gradually develop a purely mathematical model for working with monetary data
-to communicate the purpose of each piece and make the final iteration more
-intelligible. This will also serve to form an intuitive understanding
-of the mathematical properties of money that will make it easier to avoid
-pitfalls when performing monetary calculations.</p>
-<p>I will start by discussing the current best practices for working with currency
-programmatically and the difficulties that they present.
-The current practices are based on the foundational work by Martin Fowler, which
-I will use as a reference point and a foundation for the model to be
-developed, but my intention is not to
-discredit the work of Fowler and his colleagues at Thoughtworks or anyone
-else who has made contributions to the collective knowledge of our field. Nor
-is it to develop a pattern or framework to replace these ideas. My intention with
-this article is simply to identify and resolve a lack of clarity
-of the mathematical rules that underlie these patterns in order to simplify their
-implementation and maintenance in modern applications.</p>
 <h2 id="introduction">Introduction</h2>
 <p>Traditional financial applications treat money as a simple data structure consisting of
 an amount and a currency. This is an intuitive representation of money, and it is
@@ -830,113 +897,11 @@ on our own.</p>
 <p>If we are to develop a mathematical model for working with monetary data, it must be
 able to encode all three of these properties at the mathematical level without any
 logical orchestration in code.</p>
-<h2 id="the-dilemma">The Dilemma</h2>
-<p>Defining a mathematical object that can satisfy the functional properties of money is
-easier said than done. Martin Fowler's <em>Money</em> pattern<sup><a href="#1">[1]</a></sup> is a
-good starting place
-considering it is effectively the original source of the current de facto money
-implementation. The core concept of Fowler's <em>Money</em> pattern is that we have a class
-that encapsulates
-an amount and a currency together in one object that can be used in arithmetic
-operations. This is a simple idea that seems obvious in hindsight, but it was a
-foundational idea for application design, and most applications that do anything with
-money are at least partially inspired by it. The difficulty with Fowler's
-pattern and by consequence most, if not all, modern money frameworks, is that they
-treat money as a collection of separate pieces of data. An amount, a currency, an
-exchange rate, rounding rules, etc... This creates a fundamental problem when working
-with money in applications because the math that we can do with them is limited to the
-math that can be done with abstract numbers, but we need to do math with concrete
-numbers (e.g. 10 USD, 15 EUR, etc...). To support modern applications, we need some
-kind of mathematical model that can handle calculations with multiple different
-currencies at once without having to encode the <em>concreteness</em> of our monies in
-separate objects.</p>
-<p>Most modern currency frameworks improve upon Fowler's original single-class pattern, but
-they tend to focus on adding scaffolding around the original single-class pattern to
-handle other things like formatting and exchange. This has created some very useful
-frameworks that make life easier for the programmers that use them, but it ends up making
-the resulting framework more useful in a specific context without solving the general
-problem of working with monetary data programmatically, so not all applications benefit
-from or are able to use these frameworks. There is nothing in place to make the work
-of the framework authors easier, so improvements to existing frameworks and new, better
-frameworks are few and far between.</p>
-<p>The real issue we need to solve if we want a robust and language-agnostic pattern for
-working with money is not how to structure all of the separate pieces of data that can
-affect financial information, but how to actually do math with <em>money</em> instead of only
-numbers. If we can figure that out, then implementing any kind of currency framework
-will be much easier since we will have mathematically enforceable rules to guide our
-design decisions.</p>
-<p>The fundamental flaw in the current de facto standard money implementation is that it
-attempts to do math on integers or decimals instead of concrete monies, which causes
-the programmer (or pattern designer) to have to define their own rules of mathematics
-for working with money. Fowler actually points out this dilemma in his book when he
-discusses arithmetic between different currencies.
-He mentions that the simplest solution
-is to treat the addition/subtraction of two different currencies as an error, but it's
-also possible to use a structure like Ward Cunningham's
-<em>Money Bag</em>, an object that tracks values in multiple currencies
-simultaneously<sup><a href="#1">[1]</a></sup>, so this is a core issue of working with monetary
-data that Fowler was aware of over 20 years ago but the broader programming community
-has not paid much attention to, or at least has coped with instead of actively
-searching for a solution. Of note, Fowler doesn't advise how
-we <em>should</em> solve this particular problem in his book and instead, he leaves it as a
-sort of implementation detail for the programmer to decide based on the requirements of
-the application. This is understandable since the solution would be project-dependent
-when using this pattern, but this design decision the programmer has to make is
-deceptively problematic.</p>
-<p>It might not seem like it at first, but when we make these kinds of decisions, we are
-essentially redefining the rules of mathematics as they apply to money. This has
-very far-reaching consequences when we start doing more complicated things like
-integrating with third-party services or serializing monetary data since our
-calculations with money affect the accuracy of our data which has a very
-wide range of highly impactful uses.</p>
-<p>This isn't something that a developer should have to think about or decide. Even
-ignoring the additional design burden this places on the programmer, it also creates
-less reliable software. For example, what would happen if I decided that
-<em>2 + 2 = cheese</em>, and then you tried to integrate a service I was providing with your
-application?</p>
-<p>At the end of the day, no matter how much we want to, programmers don't get to redefine
-the rules of the universe.</p>
-<p>Of course, we've been doing things this way for over 20 years, and it works, so why
-change it?</p>
-<p>Unfortunately, this isn't only an "If it ain't broke, don't fix it." kind of issue.
-When it comes to programming, once we get into the realm of software, barring resource
-limitations, we can pretty much do whatever we want.</p>
-<p>Continuing with the example above, if I really did decide that I wanted
-<em>2 + 2</em> to equal <em>cheese</em>, I could do that:</p>
-<div class="language-python"><pre><span></span><code><span class="k">class</span> <span class="nc">FourCheeseBlend</span><span class="p">(</span><span class="nb">int</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;An especially zesty integer.&quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;2 + 2 == cheese&quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">other</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="s2">&quot;cheese&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-</code></pre></div>
-
-<p>The above Python class will integrate properly with any Python 3 program, it's
-type-safe, and the behavior will be correct until the program puts 2 and 2 together.</p>
-<p>However, once we need to calculate <em>2 + 2</em>, the behavior of the program becomes
-undefined, and we have no indication that anything went wrong.</p>
-<p>The moral of this story is that just because we <em>can</em> make up our own rules doesn't mean
-that we <em>should</em>, and it would save us time and effort if we didn't have to.</p>
-<p>Of course, most reasonable programmers would think it's pretty obvious that the class
-above should never be used, but the reason why that is obvious is because the rules of
-basic arithmetic are obvious to us. However, when it comes to doing math with money, very
-few programmers (or anyone for that matter) actually understand the rules for how to
-calculate monetary amounts. In fact, at the time of writing, there don't seem to
-be any established mathematical rules for this, so I would argue that without
-mathematical truth to guide us, we have been including FourCheeseBlends in our
-financial applications for as long as we've been building them. We just haven't
-realized it yet.</p>
 <hr />
 <h2 id="developing-the-model">Developing the Model</h2>
-<p>As mentioned in the previous section, to the best of my knowledge, there are no
-clearly defined mathematical properties of money in the current literature, so in
-order to define a mathematical model, we first need to identify those properties
-ourselves and decide on a purely mathematical object that is capable of encoding those
-properties for us.</p>
+<p>In order to define a mathematical model, we first need to identify the mathematical
+properties of money and decide on a purely mathematical object that is capable of encoding
+those properties for us.</p>
 <hr />
 <h3 id="conceptual-properties-of-money">Conceptual Properties of Money</h3>
 <p>To start with, we should elaborate a bit on the three properties of money defined
@@ -984,10 +949,10 @@ in our model in order to satisfy all three properties for the model as a whole.<
 <h3 id="a-mathematical-money-object">A Mathematical Money Object</h3>
 <p>Let's start by looking at the traditional money implementation first and see how well
 it satisfies our requirements.</p>
-<p>For #1, the standard implementation based on Fowler's pattern associates a single
-amount with a single currency inside an object to ensure we are always aware of the
-concreteness of the numbers we are working with, but this is an incomplete data model
-because a concrete number is still only a number mathematically, so using an
+<p>For #1, the standard implementation based on Martin Fowler's <em>Money</em> pattern<sup><a href="#1">[1]</a></sup>
+associates a single amount with a single currency inside an object to ensure we are always
+aware of the concreteness of the numbers we are working with, but this is an incomplete data
+model because a concrete number is still only a number mathematically, so using an
 object-oriented approach to encapsulating the amount and currency together in one object
 requires us to conceptually strip the currency away before and reattach it after any
 calculation we perform on the monetary amount, which is additional logical overhead for
@@ -1455,10 +1420,13 @@ ISBN-13: 978-0-321-12742-6</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.081f42fc.min.js"></script>
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="js/mathjax.js"></script>
       
